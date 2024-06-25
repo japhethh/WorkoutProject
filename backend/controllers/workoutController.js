@@ -48,6 +48,8 @@ const updateWorkout = async (req, res) => {
     if (set) exercise.set = set;
     if (rep) exercise.req = rep;
 
+    
+
     await user.save();
 
     res.status(200).json({ success: true, message: "Exercise updated successfully", updatedExercise: exercise });
@@ -56,5 +58,25 @@ const updateWorkout = async (req, res) => {
   }
 };
 
+const deleteWorkout = async (req,res) => {
+  const {id, exerciseId} = req.params;
+  try {
+    const workout = await workoutModel.findById(id);
+    if(!workout){
+      return res.status(400).json({success:false,message:"Workout not found"})
+    }
+    const exercise =  workout.exercises.id(exerciseId)
+    if(!exercise){
+      return res.status(400).json({success:false,message:"Exercise not found"})
+    }
+    workout.exercises.pull({ _id: exerciseId });
+    
+    await workout.save();
+    res.status(200).json({success:true,message:"Exercise deleted successfully"})
+  } catch (error) {
+    res.status(400).json({success:false,message:error.message})
+  }
+}
 
-export { addWorkout, getWorkout, updateWorkout };
+
+export { addWorkout, getWorkout, updateWorkout,deleteWorkout };
