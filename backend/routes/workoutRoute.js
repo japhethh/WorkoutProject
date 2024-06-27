@@ -6,4 +6,6 @@ workoutRouter.post("/add", addWorkout);
 workoutRouter.get("/get",getWorkout);
 workoutRouter.put("/update/:id/exercise/:exerciseId",updateWorkout);
 workoutRouter.delete("/delete/:id/exercise/:exerciseId",deleteWorkout)
+
+workoutRouter.post("/")
 export default workoutRouter;
