@@ -1,8 +1,8 @@
 import express from 'express';
-import "dotenv/config"
 import cors from 'cors';
 import { ConnectDB } from './config/db.js';
 import workoutRouter from './routes/workoutRoute.js';
+import "dotenv/config"
 
 const app = express();
 const port = 4000;

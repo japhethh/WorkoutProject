@@ -5,6 +5,10 @@ const workoutscheme = new mongoose.Schema({
     type: String,
     required: true,
   },
+  password:{
+    type:String,
+    required:true,
+  },
   date:{
     type:Date,
     default:Date.now,
@@ -19,7 +23,7 @@ const workoutscheme = new mongoose.Schema({
         type:Number,
         required:true
       },
-      req:{
+      rep:{
         type:Number,
         required:true,
       },
