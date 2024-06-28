@@ -5,7 +5,7 @@ type Props = {}
 
 const Home = (props: Props) => {
   return (
-    <div className="flex flex-wrap-reverse  w-5/6 mx-auto py-8 gap-10 ">
+    <div className="flex flex-wrap  w-5/6 mx-auto py-8 gap-10 ">
       <div className="w-full lg:w-1/5 flex justify-center ">
 
         <AddExercise />
