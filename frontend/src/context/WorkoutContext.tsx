@@ -1,4 +1,4 @@
-import { createContext, ReactNode, FC, useEffect, useState } from "react";
+import { createContext, ReactNode, FC, useEffect, useState, useReducer, Dispatch } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -12,7 +12,8 @@ interface WorkoutContextValue {
   handleDelete: (id: string) => Promise<void>;
   token: string | null;
   setToken: (value: any | null) => void;
-
+  userInfo: StateType;
+  dispatch: Dispatch<ActionType>
 }
 
 interface Props {
@@ -31,8 +32,33 @@ interface Data {
   exercises: Item[];
 }
 
+interface StateType {
+  user: any;
+
+}
+
+interface ActionType {
+  type: "GET_USER",
+  payload: any;
+}
+
+
+
+const reduce = (state: StateType, action: ActionType) => {
+  switch (action.type) {
+    case "GET_USER":
+      return {
+        ...state,
+        user: action.payload,
+      }
+    default:
+      return state;
+  }
+}
+
 const WorkoutContextProvider: FC<Props> = ({ children }) => {
   const URL = "http://localhost:4000";
+  const [userInfo, dispatch] = useReducer(reduce, { user: null });
   const [data, setData] = useState<Data | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
@@ -50,6 +76,7 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
 
       });
       setData(response.data.data);
+      dispatch({type:"GET_USER",payload:response.data.data})
       console.log(response.data.data);
     } catch (error) {
       console.log(error);
@@ -79,6 +106,8 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
     handleDelete,
     token,
     setToken,
+    userInfo,
+    dispatch
   };
 
   return (
