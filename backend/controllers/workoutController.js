@@ -1,21 +1,23 @@
 import workoutModel from "../models/workoutModel.js";
 
 const addWorkout = async (req, res) => {
-  const { name, set,rep,userId } = req.body;
+  const { name, set, rep, userId } = req.body;
   try {
-    const user = await workoutModel.findById(userId); 
+    const user = await workoutModel.findById(userId);
 
-    if(!user){
-      return res.status(400).json({success:false,message:"Work out not found"});
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Work out not found" });
     }
 
     const newExercise = {
       name,
       set,
-      rep
-    }
-    
-    user.exercises.push(newExercise );
+      rep,
+    };
+
+    user.exercises.push(newExercise);
 
     await user.save();
 
@@ -43,18 +45,17 @@ const addWorkout = async (req, res) => {
 // };
 
 const getWorkout = async (req, res) => {
-  const {userId} = req.body;
+  const { userId } = req.body;
 
   try {
     const data = await workoutModel.findById(userId);
     res.status(200).json({ success: true, data });
-    console.log(data)
+    console.log(data);
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: "Error" });
   }
 };
-
 
 const updateWorkout = async (req, res) => {
   const { id, exerciseId } = req.params;
@@ -64,50 +65,63 @@ const updateWorkout = async (req, res) => {
     const user = await workoutModel.findById(id);
 
     if (!user) {
-      return res.status(400).json({ success: false, message: "Workout not found" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Workout not found" });
     }
 
     const exercise = user.exercises.id(exerciseId);
 
     if (!exercise) {
-      return res.status(400).json({ success: false, message: "Exercise not found" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Exercise not found" });
     }
 
     if (name) exercise.name = name;
     if (set) exercise.set = set;
     if (rep) exercise.req = rep;
 
-    
-
     await user.save();
 
-    res.status(200).json({ success: true, message: "Exercise updated successfully", updatedExercise: exercise });
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "Exercise updated successfully",
+        updatedExercise: exercise,
+      });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
 };
 
-const deleteWorkout = async (req,res) => {
-  const {id, exerciseId} = req.params;
+const deleteWorkout = async (req, res) => {
+  const { exerciseId } = req.params;
+  const { userId } = req.body;
   try {
-    const workout = await workoutModel.findById(id);
-    if(!workout){
-      return res.status(400).json({success:false,message:"Workout not found"})
+    const workout = await workoutModel.findById(userId);
+    if (!workout) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Workout not found" });
     }
-    const exercise =  workout.exercises.id(exerciseId)
-    if(!exercise){
-      return res.status(400).json({success:false,message:"Exercise not found"})
+    const exercise = workout.exercises.id(exerciseId);
+
+    if (!exercise) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Exercise not found" });
     }
     workout.exercises.pull({ _id: exerciseId });
-    
+
     await workout.save();
-    res.status(200).json({success:true,message:"Exercise deleted successfully"})
+    res
+      .status(200)
+      .json({ success: true, message: "Exercise deleted successfully" });
   } catch (error) {
-    res.status(400).json({success:false,message:error.message})
+    res.status(400).json({ success: false, message: error.message });
   }
-}
+};
 
-
-export { addWorkout, getWorkout, updateWorkout,deleteWorkout };
-
-
+export { addWorkout, getWorkout, updateWorkout, deleteWorkout };

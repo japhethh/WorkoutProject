@@ -1,13 +1,13 @@
 import workoutModel from "../models/workoutModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import validator from 'validator';
+import validator from "validator";
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await workoutModel.findOne({email});
+    const user = await workoutModel.findOne({ email });
 
     if (!user) {
       return res
@@ -24,7 +24,7 @@ const loginUser = async (req, res) => {
     }
 
     const token = createToken(user._id);
-    res.status(200).json({ success: true, token });
+    res.status(200).json({ success: true, token, message: `${user.userName}` });
   } catch (error) {
     console.log(error);
     res.status(400).json({ success: false, message: "Errors" });

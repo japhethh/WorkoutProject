@@ -57,9 +57,9 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   };
 
   const handleDelete = async (exerciseId: string) => {
-    const id = "667b2157c675054ab1f3fa5c";
+
     try {
-      await axios.delete(`${URL}/api/workout/delete/${id}/exercise/${exerciseId}`, {
+      await axios.delete(`${URL}/api/workout/delete/exercise/${exerciseId}`, {
         headers: {
           token
         },

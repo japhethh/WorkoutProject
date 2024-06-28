@@ -23,7 +23,7 @@ const Register = (props: Props) => {
   if(!context){
     return null;
   }
-  const {setToken} = context;
+  const {setToken,URL} = context;
   const handleRegister = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setData((prev) => ({ ...prev, [name]: value }));
@@ -33,7 +33,7 @@ const Register = (props: Props) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:4000/api/auth/register', data);
+      const response = await axios.post(`${URL}/api/user/register`, data);
       toast.success("Registration successful");
       navigate("/login");
       setToken(localStorage.setItem("token",response.data.token))

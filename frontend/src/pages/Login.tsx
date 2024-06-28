@@ -4,42 +4,53 @@ import { WorkoutContext } from '../context/WorkoutContext.tsx'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 type Props = {}
-interface Data{
-  email:string;
-  password:string;
+interface Data {
+  email: string;
+  password: string;
 }
 const Login = (props: Props) => {
   const context = useContext(WorkoutContext);
   if (!context) {
     return null;
   }
-  const { URL,setToken } = context;
-  const [data,setData] = useState<Data>({
-    email:"",
-    password:""
+  const { URL, setToken } = context;
+  const [data, setData] = useState<Data>({
+    email: "",
+    password: ""
   })
 
   // const navigate = useNavigate();
 
-  const handleLogin = (e:any) => {
+  const handleLogin = (e: any) => {
     const name = e.target.name;
     const value = e.target.value;
-    setData((prev) => ({...prev,[name]:value}))
+    setData((prev) => ({ ...prev, [name]: value }))
     console.log(data)
   }
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const response = await axios.post(`${URL}/api/user/login`,data);
-    if(!response.data.token){
-      toast.error("Error");
-    }else{
-    toast.success("Success Login")
-    setToken(localStorage.setItem("token",response.data.token ));
-    window.location.href = "/";
-    // navigate('/');
-  }
-  }
+    try {
+      const response = await axios.post(`${URL}/api/user/login`, data);
+  
+      if (!response.data.token) {
+        toast.error("Error");
+      } else {
+        if (response.data.success) {
+          toast.success(response.data.message);
+          localStorage.setItem("token", response.data.token);
+          window.location.href = "/";
+        } else {
+          toast.error(response.data.message);
+        }
+      }
+    } catch (error) {
+      console.error("Error during login:", error); // Log the error for debugging
+      toast.error("An error occurred during login. Please try again."); // Show a generic error message
+    }
+  };
+  
+  
   return (
     <div className="dark min-h-screen flex items-center justify-center bg-gray-900">
       <div className="w-full max-w-md">
@@ -48,8 +59,8 @@ const Login = (props: Props) => {
             <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="username">
               Email
             </label>
-            <input 
-            name="email" value={data.email} onChange={handleLogin}
+            <input
+              name="email" value={data.email} onChange={handleLogin}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
@@ -72,7 +83,7 @@ const Login = (props: Props) => {
           </div>
           <div className="mb-6">
             <label className="block text-gray-500 font-bold">
-              <input className="mr-2 leading-tight" type="checkbox" required/>
+              <input className="mr-2 leading-tight" type="checkbox" required />
               <span className="text-sm">Remember Me</span>
             </label>
           </div>
