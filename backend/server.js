@@ -8,9 +8,16 @@ import "dotenv/config"
 const app = express();
 const port = 4000;
 
+// app.use(cors( 
+//     {
+//       origin:["https://deploy-mern-1whq.vercel.app"],
+//       methods:["POST","GET"],
+//       credentials:true,
+//     }
+// ));
 app.use(cors( 
     {
-      origin:["https://deploy-mern-1whq.vercel.app"],
+      origin:["https://workout-project-api.vercel.app"],
       methods:["POST","GET"],
       credentials:true,
     }
