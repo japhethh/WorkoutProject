@@ -12,7 +12,7 @@ interface WorkoutContextValue {
   handleDelete: (id: string) => Promise<void>;
   token: string | null;
   setToken: (value: any | null) => void;
-  
+
 }
 
 interface Props {
@@ -45,9 +45,9 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   const getAll = async () => {
     try {
       const response = await axios.get(`${URL}/api/workout/get`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers:
+          { token },
+
       });
       setData(response.data.data);
       console.log(response.data.data);
@@ -61,7 +61,7 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
     try {
       await axios.delete(`${URL}/api/workout/delete/${id}/exercise/${exerciseId}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          token
         },
       });
       await getAll();

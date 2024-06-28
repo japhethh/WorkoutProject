@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +13,7 @@ type Props = {};
 const App = (props: Props) => {
   const context = useContext(WorkoutContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!context) {
@@ -21,11 +23,16 @@ const App = (props: Props) => {
     const { token } = context;
 
     if (token) {
-      navigate("/");
+      if (location.pathname === "/login" || location.pathname === "/register") {
+        navigate("/")
+      }
     } else {
-      navigate("/login");
+      if (location.pathname !== "/login" && location.pathname !== "/register") {
+        navigate("/login");
+
+      }
     }
-  }, [context, navigate]);
+  }, [context, navigate, location]);
 
   if (!context) {
     return null;
@@ -38,6 +45,7 @@ const App = (props: Props) => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );

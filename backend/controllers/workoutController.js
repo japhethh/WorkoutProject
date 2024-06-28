@@ -1,10 +1,9 @@
 import workoutModel from "../models/workoutModel.js";
 
 const addWorkout = async (req, res) => {
-  const { name, set,rep } = req.body;
-  const id = "667b2157c675054ab1f3fa5c";
+  const { name, set,rep,userId } = req.body;
   try {
-    const user = await workoutModel.findById(id); 
+    const user = await workoutModel.findById(userId); 
 
     if(!user){
       return res.status(400).json({success:false,message:"Work out not found"});
@@ -44,10 +43,10 @@ const addWorkout = async (req, res) => {
 // };
 
 const getWorkout = async (req, res) => {
-  const id = "667b2157c675054ab1f3fa5c";
+  const {userId} = req.body;
 
   try {
-    const data = await workoutModel.findById(id);
+    const data = await workoutModel.findById(userId);
     res.status(200).json({ success: true, data });
     console.log(data)
   } catch (error) {

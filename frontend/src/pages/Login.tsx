@@ -19,9 +19,9 @@ const Login = (props: Props) => {
     password:""
   })
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleRegister = (e:any) => {
+  const handleLogin = (e:any) => {
     const name = e.target.name;
     const value = e.target.value;
     setData((prev) => ({...prev,[name]:value}))
@@ -49,7 +49,7 @@ const Login = (props: Props) => {
               Email
             </label>
             <input 
-            name="email" value={data.email} onChange={handleRegister}
+            name="email" value={data.email} onChange={handleLogin}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
@@ -60,7 +60,7 @@ const Login = (props: Props) => {
             <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
-            <input name="password" value={data.password} onChange={handleRegister}
+            <input name="password" value={data.password} onChange={handleLogin}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"

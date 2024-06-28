@@ -16,7 +16,7 @@ const AddExercise = () => {
   if (!context) {
     return null; // Or handle the case where context is null
   }
-  const { URL, getAll } = context;
+  const { URL, getAll,token } = context;
 
   const [data, setData] = useState<Data>(
     {
@@ -39,7 +39,7 @@ const AddExercise = () => {
   const handleAdd = async (event: any) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${URL}/api/workout/add`, data)
+      const response = await axios.post(`${URL}/api/workout/add`, data,{headers:{token}})
       getAll();
       console.log(response)
       setData({name:"",set:0,rep:0})

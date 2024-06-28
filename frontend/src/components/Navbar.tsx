@@ -11,16 +11,16 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import { WorkoutContext } from '../context/WorkoutContext'; // Import WorkoutContext
+import { Link } from 'react-router-dom';
+import { WorkoutContext } from '../context/WorkoutContext';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  const context = React.useContext(WorkoutContext); // Access WorkoutContext
-  const { token } = context || {}; // Destructure token from context
+  const context = React.useContext(WorkoutContext);
+  const { token } = context || {};
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -39,8 +39,7 @@ function ResponsiveAppBar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    // Redirect to login or home page after logout if needed
-    window.location.href = "/login"; // Update this as needed
+    window.location.href = "/login";
   };
 
   return (
@@ -51,8 +50,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h6"
             noWrap
-            component={Link} // Use Link from react-router-dom for navigation
-            to="/" // Update with your home page route
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -102,8 +101,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component={Link} // Use Link from react-router-dom for navigation
-            to="/" // Update with your home page route
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -121,7 +120,6 @@ function ResponsiveAppBar() {
             {/* Buttons removed */}
           </Box>
 
-          {/* Conditional Rendering for Sign Up or Open Settings */}
           {token ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
@@ -161,7 +159,7 @@ function ResponsiveAppBar() {
               </Menu>
             </Box>
           ) : (
-           <button type="button" className="btn rounded-full text-[#1976D2]">Sign up</button>
+            <Link to="/register" className="btn rounded-full text-[#1976D2]">Sign up</Link>
           )}
         </Toolbar>
       </Container>
