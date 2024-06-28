@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({storage:storage});
-
+// ,upload.single("image")
 userRouter.post("/register",upload.single("image"),registerUser);
 userRouter.post("/login",upload.single("image"),loginUser);
 

@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { ConnectDB } from './config/db.js';
 import workoutRouter from './routes/workoutRoute.js';
-import userRouter from './routes/userRouter.js';
+import userRouter from './routes/userRoute.js';
 import "dotenv/config"
 
 const app = express();
