@@ -1,28 +1,66 @@
-import React from 'react'
-
+import axios from 'axios'
+import React, { useContext, useState } from 'react'
+import { WorkoutContext } from '../context/WorkoutContext.tsx'
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 type Props = {}
-
+interface Data{
+  email:string;
+  password:string;
+}
 const Login = (props: Props) => {
-  return(
+  const context = useContext(WorkoutContext);
+  if (!context) {
+    return null;
+  }
+  const { URL,setToken } = context;
+  const [data,setData] = useState<Data>({
+    email:"",
+    password:""
+  })
+
+  const navigate = useNavigate();
+
+  const handleRegister = (e:any) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setData((prev) => ({...prev,[name]:value}))
+    console.log(data)
+  }
+
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+    const response = await axios.post(`${URL}/api/user/login`,data);
+    if(!response.data.token){
+      toast.error("Error");
+    }else{
+    toast.success("Success Login")
+    setToken(localStorage.setItem("token",response.data.token ));
+    window.location.href = "/";
+    // navigate('/');
+  }
+  }
+  return (
     <div className="dark min-h-screen flex items-center justify-center bg-gray-900">
       <div className="w-full max-w-md">
-        <form action="#" className="bg-gray-800 shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+        <form onSubmit={handleSubmit} className="bg-gray-800 shadow-lg rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="username">
-              Login
+              Email
             </label>
-            <input
+            <input 
+            name="email" value={data.email} onChange={handleRegister}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
               id="username"
               type="text"
-              placeholder="Username"
+              placeholder="Enter Email"
             />
           </div>
           <div className="mb-6">
             <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
-            <input
+            <input name="password" value={data.password} onChange={handleRegister}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
@@ -34,14 +72,13 @@ const Login = (props: Props) => {
           </div>
           <div className="mb-6">
             <label className="block text-gray-500 font-bold">
-              <input className="mr-2 leading-tight" type="checkbox" />
+              <input className="mr-2 leading-tight" type="checkbox" required/>
               <span className="text-sm">Remember Me</span>
             </label>
           </div>
           <div className="flex items-center justify-between">
-            <button
+            <button type="submit"
               className="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"
-              type="button"
             >
               Sign In
             </button>

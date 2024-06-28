@@ -2,16 +2,17 @@ import { createContext, ReactNode, FC, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-
-export const WorkoutContext = createContext<WorkoutContextValue | null>(null)
+export const WorkoutContext = createContext<WorkoutContextValue | null>(null);
 
 interface WorkoutContextValue {
   URL: string;
   data: Data | null;
   setData: (value: Data) => void;
   getAll: () => Promise<void>;
-  handleDelete: (id: string) => Promise<void>,
-  token:string;
+  handleDelete: (id: string) => Promise<void>;
+  token: string | null;
+  setToken: (value: any | null) => void;
+  
 }
 
 interface Props {
@@ -27,46 +28,48 @@ interface Item {
 
 interface Data {
   userName: string;
-  exercises: Item[]
+  exercises: Item[];
 }
-
-
 
 const WorkoutContextProvider: FC<Props> = ({ children }) => {
   const URL = "http://localhost:4000";
   const [data, setData] = useState<Data | null>(null);
-  const [token, setToken] = useState<any>("")
-
+  const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
   useEffect(() => {
-    getAll();
-    if(!localStorage.getItem("token")){
-      setToken(localStorage.getItem("token"))
+    if (token) {
+      getAll();
     }
-  }, [])
-
+  }, [token]);
 
   const getAll = async () => {
     try {
-      const response = await axios.get(`${URL}/api/workout/get`);
+      const response = await axios.get(`${URL}/api/workout/get`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setData(response.data.data);
-   
       console.log(response.data.data);
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const handleDelete = async (exerciseId: string) => {
     const id = "667b2157c675054ab1f3fa5c";
     try {
-      await axios.delete(`${URL}/api/workout/delete/${id}/exercise/${exerciseId}`);
+      await axios.delete(`${URL}/api/workout/delete/${id}/exercise/${exerciseId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       await getAll();
-      toast.error("Deleted Successfully")
+      toast.error("Deleted Successfully");
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   const contextValue: WorkoutContextValue = {
     URL,
@@ -74,15 +77,15 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
     setData,
     getAll,
     handleDelete,
-    token
-  }
-
+    token,
+    setToken,
+  };
 
   return (
     <WorkoutContext.Provider value={contextValue}>
       {children}
     </WorkoutContext.Provider>
-  )
-}
+  );
+};
 
-export default WorkoutContextProvider
+export default WorkoutContextProvider;
