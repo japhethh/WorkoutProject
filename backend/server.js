@@ -21,7 +21,8 @@ app.use(express.json());
 ConnectDB();
 
 app.get("/", (req, res) => {
-  res.send("<h2 className='text-orange-500'> Api working!  </h2>")
+  // res.send("<h2 className='text-orange-500'> Api working!  </h2>")
+  res.json("Hello")
 })
 
 app.use("/api/workout",workoutRouter)
