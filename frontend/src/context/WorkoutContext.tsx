@@ -34,15 +34,12 @@ interface Data {
 
 interface StateType {
   user: any;
-
 }
 
 interface ActionType {
   type: "GET_USER",
   payload: any;
 }
-
-
 
 const reduce = (state: StateType, action: ActionType) => {
   switch (action.type) {
@@ -58,9 +55,6 @@ const reduce = (state: StateType, action: ActionType) => {
 
 const WorkoutContextProvider: FC<Props> = ({ children }) => {
   const URL = "https://workout-project-api.vercel.app";
-  
-
-  // const URL = "http://localhost:3000";
   const [userInfo, dispatch] = useReducer(reduce, { user: null });
   const [data, setData] = useState<Data | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
@@ -74,12 +68,12 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   const getAll = async () => {
     try {
       const response = await axios.get(`${URL}/api/workout/get`, {
-        headers:
-          { token },
-
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
       });
       setData(response.data.data);
-      dispatch({type:"GET_USER",payload:response.data.data})
+      dispatch({type:"GET_USER",payload:response.data.data});
       console.log(response.data.data);
     } catch (error) {
       console.log(error);
@@ -87,11 +81,10 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   };
 
   const handleDelete = async (exerciseId: string) => {
-
     try {
       await axios.delete(`${URL}/api/workout/delete/exercise/${exerciseId}`, {
         headers: {
-          token
+          Authorization: `Bearer ${token}`
         },
       });
       await getAll();
