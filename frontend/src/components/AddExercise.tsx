@@ -1,5 +1,5 @@
 import axios from 'axios';
-import  { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { toast } from 'react-toastify';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
@@ -10,13 +10,11 @@ interface Data {
 }
 
 const AddExercise = () => {
-
-
   const context = useContext(WorkoutContext);
   if (!context) {
     return null; // Or handle the case where context is null
   }
-  const { URL, getAll,token } = context;
+  const { URL, getAll, token } = context;
 
   const [data, setData] = useState<Data>(
     {
@@ -39,13 +37,13 @@ const AddExercise = () => {
   const handleAdd = async (event: any) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${URL}/api/workout/add`, data,{headers:{token}})
+      const response = await axios.post(`${URL}/api/workout/add`, data, { headers: { token } })
       getAll();
       console.log(response)
-      setData({name:"",set:0,rep:0})
+      setData({ name: "", set: 0, rep: 0 })
       toast.success(response.data.message);
     } catch (err) {
-      toast.error("Error")
+      console.log("No Entering")
     }
 
   }
