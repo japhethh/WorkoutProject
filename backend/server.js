@@ -22,11 +22,8 @@ app.use(express.json());
 
 ConnectDB();
 
-app.get("/", (req, res) => {
-  // res.json("Hello");
   app.get("/", (req, res) => {
     res.send("Hello, worlds!"); // Sending a plain text response
-  });
   });
 
 app.use("/api/workout", workoutRouter);
