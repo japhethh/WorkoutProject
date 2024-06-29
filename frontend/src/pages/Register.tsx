@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { WorkoutContext } from '../context/WorkoutContext';
 import { toast } from 'react-toastify';
 
-
 interface Data {
   userName: string;
   email: string;
@@ -19,10 +18,11 @@ const Register = () => {
   });
   const navigate = useNavigate();
   const context = useContext(WorkoutContext);
-  if(!context){
+  if (!context) {
     return null;
   }
-  const {setToken,URL} = context;
+  const { setToken, URL } = context;
+
   const handleRegister = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setData((prev) => ({ ...prev, [name]: value }));
@@ -35,7 +35,7 @@ const Register = () => {
       const response = await axios.post(`${URL}/api/user/register`, data);
       toast.success("Registration successful");
       navigate("/login");
-      setToken(localStorage.setItem("token",response.data.token))
+      setToken(localStorage.setItem("token", response.data.token));
     } catch (error) {
       console.error("Registration failed:", error);
       toast.error("Registration failed. Please try again.");
@@ -58,11 +58,12 @@ const Register = () => {
               id="userName"
               type="text"
               placeholder="Enter Username"
+              autoComplete="username"
             />
           </div>
           <div className="mb-4">
             <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="email">
-              Emails
+              Email
             </label>
             <input
               name="email"
@@ -70,8 +71,9 @@ const Register = () => {
               onChange={handleRegister}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
-              type="text"
+              type="email"
               placeholder="Enter Email"
+              autoComplete="email"
             />
           </div>
           <div className="mb-6">
@@ -86,6 +88,7 @@ const Register = () => {
               id="password"
               type="password"
               placeholder="******************"
+              autoComplete="new-password"
             />
           </div>
           <div className="flex items-center justify-between">
