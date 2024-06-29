@@ -17,8 +17,8 @@ const port = 4000;
 // ));
 app.use(
   cors({
-    origin: "https://workout-project-bpsz416wu-japhethhs-projects.vercel.app",
-    methods: ["POST", "GET", "PUT", "DELETE"],
+    origin: "https://workout-project-api.vercel.app",
+    methods: ["POST", "GET"],
     credentials: true,
   })
 );
