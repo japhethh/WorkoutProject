@@ -74,6 +74,8 @@ const Login = () => {
               id="password"
               type="password"
               placeholder="******************"
+              autoComplete="current-password" 
+
             />
             <a href="#" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
               Forgot Password?
