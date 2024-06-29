@@ -1,6 +1,6 @@
 import workoutModel from "../models/workoutModel.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import validator from "validator";
 
 const loginUser = async (req, res) => {
@@ -10,56 +10,47 @@ const loginUser = async (req, res) => {
     const user = await workoutModel.findOne({ email });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ success: false, message: "User doesn't Exist" });
+      return res.status(400).json({ success: false, message: "User doesn't exist" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid credentials" });
+      return res.status(400).json({ success: false, message: "Invalid credentials" });
     }
 
     const token = createToken(user._id);
     res.status(200).json({ success: true, token, message: `${user.userName}` });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ success: false, message: "Errors" });
+    console.error(error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
-export const createToken = (id) => {
+const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 };
 
 const registerUser = async (req, res) => {
   const { userName, password, email } = req.body;
   try {
-    const exists = await workoutModel.findOne({ email });
+    let exists = await workoutModel.findOne({ email });
 
     if (exists) {
-      return res
-        .status(400)
-        .json({ success: false, message: "User already Exist " });
+      return res.status(400).json({ success: false, message: "User already exists" });
     }
 
     if (!validator.isEmail(email)) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Please enter a valid Email" });
+      return res.status(400).json({ success: false, message: "Please enter a valid email" });
     }
 
     if (password.length < 7) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Please  enter a strong Password" });
+      return res.status(400).json({ success: false, message: "Please enter a strong password (min. 7 characters)" });
     }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
     const newUser = new workoutModel({
       userName: userName,
       password: hashedPassword,
@@ -71,8 +62,8 @@ const registerUser = async (req, res) => {
     const token = createToken(user._id);
     res.status(200).json({ success: true, token });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ success: false, message: "Error" });
+    console.error(error.message);
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
