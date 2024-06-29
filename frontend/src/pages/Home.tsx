@@ -3,7 +3,7 @@ import AddExercise from "../components/AddExercise";
 
 type Props = {}
 
-const Home = (props: Props) => {
+const Home = () => {
   return (
     <div className="flex flex-wrap  w-5/6 mx-auto py-8 gap-10 ">
       <div className="w-full lg:w-1/5 flex justify-center ">

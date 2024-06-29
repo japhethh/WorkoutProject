@@ -1,19 +1,18 @@
 import axios from 'axios'
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { WorkoutContext } from '../context/WorkoutContext.tsx'
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 type Props = {}
 interface Data {
   email: string;
   password: string;
 }
-const Login = (props: Props) => {
+const Login = () => {
   const context = useContext(WorkoutContext);
   if (!context) {
     return null;
   }
-  const { URL, setToken } = context;
+  const { URL } = context;
   const [data, setData] = useState<Data>({
     email: "",
     password: ""

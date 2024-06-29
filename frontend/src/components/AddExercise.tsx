@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import { toast } from 'react-toastify';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
-type Props = {}
+
 interface Data {
   name: string;
   set: number;

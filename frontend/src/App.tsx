@@ -8,9 +8,8 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { WorkoutContext } from "./context/WorkoutContext";
 
-type Props = {};
 
-const App = (props: Props) => {
+const App = () => {
   const context = useContext(WorkoutContext);
   const navigate = useNavigate();
   const location = useLocation();

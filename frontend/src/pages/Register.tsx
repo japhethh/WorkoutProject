@@ -12,7 +12,7 @@ interface Data {
   password: string;
 }
 
-const Register = (props: Props) => {
+const Register = () => {
   const [data, setData] = useState<Data>({
     userName: "",
     email: "",
