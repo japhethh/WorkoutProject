@@ -1,8 +1,3 @@
-import workoutModel from "../models/workoutModel.js";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import validator from "validator";
-
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -10,7 +5,7 @@ const loginUser = async (req, res) => {
     const user = await workoutModel.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ success: false, message: "User doesn't exist" });
+      return res.status(400).json({ success: false, message: "Invalid credentials" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -20,15 +15,11 @@ const loginUser = async (req, res) => {
     }
 
     const token = createToken(user._id);
-    res.status(200).json({ success: true, token, message: `${user.userName}` });
+    res.status(200).json({ success: true, token });
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ success: false, message: "Server Error" });
   }
-};
-
-const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 };
 
 const registerUser = async (req, res) => {
@@ -52,10 +43,10 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new workoutModel({
-      userName: userName,
+      userName,
       password: hashedPassword,
-      email: email,
-      exercises: [],
+      email,
+      exercises: [], // Ensure this matches your schema
     });
 
     const user = await newUser.save();
