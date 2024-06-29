@@ -14,7 +14,7 @@ const userRouter = express.Router();
 //   }
 // });
 
-const upload = multer({storage:storage});
+// const upload = multer({storage:storage});
 // ,upload.single("image")
 userRouter.post("/register",registerUser);
 userRouter.post("/login",loginUser);
