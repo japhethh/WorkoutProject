@@ -25,7 +25,7 @@ ConnectDB();
 app.get("/", (req, res) => {
   // res.json("Hello");
   app.get("/", (req, res) => {
-    res.send("Hello, world!"); // Sending a plain text response
+    res.send("Hello, worlds!"); // Sending a plain text response
   });
   });
 
