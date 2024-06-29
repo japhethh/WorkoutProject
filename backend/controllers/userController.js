@@ -1,3 +1,9 @@
+import workoutModel from '../models/workoutModel.js'
+import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken"
+import bcrypt from "bcrypt";
+import validator from 'validator'
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -21,6 +27,11 @@ const loginUser = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+
+const createToken = (id) => {
+  return jwt.sign({id}, proccess.env.JWT_SECRET);
+}
 
 const registerUser = async (req, res) => {
   const { userName, password, email } = req.body;
