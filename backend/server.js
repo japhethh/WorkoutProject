@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: "https://workout-project-frontend.vercel.app",
+    origin: "https://workout-project-api.vercel.app",
     methods: ["POST", "GET"],
     credentials: true,
   })
