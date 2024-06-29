@@ -1,7 +1,6 @@
 import workoutModel from '../models/workoutModel.js'
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken"
-import bcrypt from "bcrypt";
 import validator from 'validator'
 
 const loginUser = async (req, res) => {
