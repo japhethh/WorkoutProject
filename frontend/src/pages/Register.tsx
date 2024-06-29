@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { WorkoutContext } from '../context/WorkoutContext';
 import { toast } from 'react-toastify';
 
-type Props = {};
 
 interface Data {
   userName: string;

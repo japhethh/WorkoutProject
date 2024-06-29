@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useContext, useState } from 'react'
 import { WorkoutContext } from '../context/WorkoutContext.tsx'
 import { toast } from 'react-toastify';
-type Props = {}
 interface Data {
   email: string;
   password: string;

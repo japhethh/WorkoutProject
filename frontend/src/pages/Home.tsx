@@ -1,7 +1,6 @@
 import Exercise from "../components/Exercise";
 import AddExercise from "../components/AddExercise";
 
-type Props = {}
 
 const Home = () => {
   return (
