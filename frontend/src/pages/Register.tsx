@@ -88,8 +88,9 @@ const Register = () => {
               id="password"
               type="password"
               placeholder="******************"
-              autoComplete="new-password"
+              autoComplete="current-password" // Update this line
             />
+
           </div>
           <div className="flex items-center justify-between">
             <button
