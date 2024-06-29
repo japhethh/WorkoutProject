@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(
   cors({
     origin: "https://workout-project-frontend.vercel.app",
-    methods: ["POST", "GET","PUT","DELETE"],
+    methods: ["POST", "GET"],
     credentials: true,
   })
 );
