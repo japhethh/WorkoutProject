@@ -8,15 +8,15 @@ import "dotenv/config";
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(
-  cors({
-    origin: "https://workout-project-frontend.vercel.app",
-    methods: ["POST", "GET","PUT","DELETE"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://workout-project-frontend.vercel.app",
+//     methods: ["POST", "GET","PUT","DELETE"],
+//     credentials: true,
+//   })
+// );
 
-// app.use(cors());
+app.use(cors());
 
 app.use(express.json());
 
