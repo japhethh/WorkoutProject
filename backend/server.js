@@ -8,26 +8,28 @@ import 'dotenv/config'
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Allow multiple origins
-const allowedOrigins = [
-  'https://workout-project-frontend.vercel.app',
-  'https://workout-project-frontend-black.vercel.app'
-];
+// // Allow multiple origins
+// const allowedOrigins = [
+//   'https://workout-project-frontend.vercel.app',
+//   'https://workout-project-frontend-black.vercel.app'
+// ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error('Not allowed by CORS'));
+//       }
+//     },
+//     methods: ["POST", "GET", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
 
+  
+app.use(cors());
 app.use(express.json());
 
 ConnectDB();
