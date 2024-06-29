@@ -1,21 +1,20 @@
-
-import express from 'express';
-import cors from 'cors';
-import { ConnectDB } from './config/db.js';
-import workoutRouter from './routes/workoutRoute.js';
-import userRouter from './routes/userRoute.js';
+import express from "express";
+import cors from "cors";
+import { ConnectDB } from "./config/db.js";
+import workoutRouter from "./routes/workoutRoute.js";
+import userRouter from "./routes/userRoute.js";
 import "dotenv/config";
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(cors({
-  origin: [
-    "https://workout-project-frontend.vercel.app"
-  ],
-  methods: ["POST", "GET"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "https://workout-project-frontend.vercel.app",
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 // app.use(cors());
 
