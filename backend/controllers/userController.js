@@ -1,5 +1,5 @@
 import workoutModel from '../models/workoutModel.js'
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
 import validator from 'validator';
 
