@@ -63,7 +63,7 @@ const Register = (props: Props) => {
           </div>
           <div className="mb-4">
             <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="email">
-              Email
+              Emails
             </label>
             <input
               name="email"
