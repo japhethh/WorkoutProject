@@ -119,7 +119,9 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-              LOGO
+               {userInfo.user && 
+            <h1>{userInfo.user.userName}</h1>
+            }
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {/* Buttons removed */}
