@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Footer from "./pages/Footer";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +11,18 @@ import { WorkoutContext } from "./context/WorkoutContext";
 
 
 const App = () => {
+
+  const [darkMode, setDarkMode] = useState(() => {
+    // Retrieve the dark mode setting from localStorage when the component mounts
+    const storedDarkMode = localStorage.getItem("darkMode");
+    return storedDarkMode ? storedDarkMode : "dark"; // default to "dark" if no value is stored
+  });
+
+  useEffect(() => {
+    // Store the dark mode setting in localStorage whenever it changes
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
   const context = useContext(WorkoutContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,7 +58,9 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        
       </Routes>
+      <Footer darkMode={darkMode}/>
     </div>
   );
 };
