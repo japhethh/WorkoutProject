@@ -6,7 +6,7 @@ import userRouter from "./routes/userRoute.js";
 import 'dotenv/config'
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 // // Allow multiple origins
 // const allowedOrigins = [

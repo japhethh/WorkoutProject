@@ -9,7 +9,7 @@ interface WorkoutContextValue {
   data: Data | null;
   setData: (value: Data) => void;
   getAll: () => Promise<void>;
-  handleDelete: (id: string) => Promise<void>;
+  handleDelete: (id: string) => Promise<void>;  
   token: string | null;
   setToken: (value: any | null) => void;
   userInfo: StateType;
@@ -70,7 +70,7 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
     try {
       const response = await axios.get(`${URL}/api/workout/get`, {
         headers: {
-          Authorization: `Bearer ${token}`
+         token
         },
       });
       setData(response.data.data);
@@ -85,7 +85,7 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
     try {
       await axios.delete(`${URL}/api/workout/delete/exercise/${exerciseId}`, {
         headers: {
-          Authorization: `Bearer ${token}`
+          token
         },
       });
       await getAll();
