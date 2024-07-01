@@ -52,7 +52,7 @@ const App = () => {
   }
 
   return (
-    <div className={`container mx-auto max-md:px-0 px-7 ${darkMode} bg-background`}>
+    <div className={`max-md:px-2 py-2 px-7 ${darkMode} bg-background`}>
       <ToastContainer />
       <Nav darkMode={darkMode} setDarkMode={setDarkMode}/>
       <Routes>

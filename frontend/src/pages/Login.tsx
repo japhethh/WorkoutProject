@@ -51,6 +51,7 @@ const Login = () => {
       } else {
         toast.error("An error occurred during login. Please try again."); // Show a generic error message
       }
+
     }
   };
   
