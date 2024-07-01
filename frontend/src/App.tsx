@@ -59,8 +59,8 @@ const App = () => {
       <Nav darkMode={darkMode} setDarkMode={setDarkMode}/>
       <Routes>
         <Route path="/" element={<Home darkMode={darkMode}/>} />
-        <Route path="/login" element={<Login darkMode={darkMode} />} />
-        <Route path="/register" element={<Register darkMode={darkMode} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register  />} />
         <Route path="/profile" element={<Profile  />} />
       </Routes>
       <Footer darkMode={darkMode}/>

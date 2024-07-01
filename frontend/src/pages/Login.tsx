@@ -8,11 +8,9 @@ interface Data {
   password: string;
 }
 
-interface Dark {
-  darkMode: string;
-}
 
-const Login = ({ darkMode }: Dark) => {
+
+const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [rememberMe, setRememberMe] = useState<boolean>(false); // State for "Remember me" checkbox
   const context = useContext(WorkoutContext);

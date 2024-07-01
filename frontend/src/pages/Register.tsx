@@ -9,10 +9,8 @@ interface Data {
   email: string;
   password: string;
 }
-interface Dark {
-  darkMode: string;
-}
-const Register = ({ darkMode }: Dark) => {
+
+const Register = () => {
   const [data, setData] = useState<Data>({
     userName: "",
     email: "",
