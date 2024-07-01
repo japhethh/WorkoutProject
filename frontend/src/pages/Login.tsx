@@ -8,10 +8,7 @@ interface Data {
   password: string;
 }
 
-interface Loading {
-  loading: boolean;
-  setLoading: (value: boolean) => void;
-}
+
 
 const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
