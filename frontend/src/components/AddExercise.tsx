@@ -62,21 +62,21 @@ const AddExercise = ({ darkMode }: Dark) => {
           <div className="label">
             <span className="label-text text-paragraph">Exercise Name:</span>
           </div>
-          <input value={data.name} type="text" onChange={onHandleChanges} name="name" placeholder="Type here" className="input input-bordered w-full max-w-xs text-paragraph bg-background " />
+          <input value={data.name} type="text" onChange={onHandleChanges} name="name" placeholder="Type here" className="input border input-bordered w-full max-w-xs text-paragraph bg-background " />
 
         </label>
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
             <span className="label-text text-paragraph">Set:</span>
           </div>
-          <input value={data.set} type="text" onChange={onHandleChanges} name="set" placeholder="0" className="input input-bordered w-full max-w-xs text-paragraph bg-background" />
+          <input value={data.set} type="text" onChange={onHandleChanges} name="set" placeholder="0" className="input border input-bordered w-full max-w-xs text-paragraph bg-background" />
 
         </label>
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
             <span className="label-text text-paragraph">Rep:</span>
           </div>
-          <input value={data.rep} type="text" onChange={onHandleChanges} name="rep" placeholder="0" className="input input-bordered w-full max-w-xs text-paragraph bg-background" />
+          <input value={data.rep} type="text" onChange={onHandleChanges} name="rep" placeholder="0" className="input border input-bordered w-full max-w-xs text-paragraph bg-background" />
 
         </label>
 
