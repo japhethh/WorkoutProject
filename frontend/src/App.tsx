@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Footer from "./pages/Footer";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { WorkoutContext } from "./context/WorkoutContext";
@@ -60,6 +61,7 @@ const App = () => {
         <Route path="/" element={<Home darkMode={darkMode}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer darkMode={darkMode}/>
       </div>
