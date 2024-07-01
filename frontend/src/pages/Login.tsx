@@ -44,9 +44,13 @@ const Login = () => {
           toast.error(response.data.message);
         }
       }
-    } catch (error) {
+    } catch (error:any) {
       console.error("Error during login:", error); // Log the error for debugging
-      toast.error("An error occurred during login. Please try again."); // Show a generic error message
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An error occurred during login. Please try again."); // Show a generic error message
+      }
     }
   };
   
@@ -65,6 +69,8 @@ const Login = () => {
               id="username"
               type="text"
               placeholder="Email"
+              autoComplete="email" 
+
             />
           </div>
           <div className="mb-6">
