@@ -1,8 +1,12 @@
-import  { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PiTrashSimpleFill } from "react-icons/pi";
 import { WorkoutContext } from '../context/WorkoutContext';
 
-const Exercise = () => {
+interface Dark {
+  darkMode: string;
+}
+
+const Exercise = ({ darkMode }: Dark) => {
   const context = useContext(WorkoutContext);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
@@ -27,6 +31,11 @@ const Exercise = () => {
     setShowModal(false);
   };
 
+  const handleDeleteClick = (itemId: string) => {
+    handleDelete(itemId);
+    closeModal();
+  };
+
   if (!data) {
     return <div>Loading...</div>;
   }
@@ -42,13 +51,13 @@ const Exercise = () => {
               </h1>
               <button
                 type="button"
-                className="btn"
+                className="btn "
                 onClick={() => openModal(item._id)}
               >
-                <PiTrashSimpleFill />
+                <PiTrashSimpleFill className="text-white"/>
               </button>
             </div>
-            <div>
+            <div className="text-paragraph">
               <h1>Exercise: {item.name}</h1>
               <h1>Sets: {item.set}</h1>
               <h1>Reps: {item.rep}</h1>
@@ -59,14 +68,22 @@ const Exercise = () => {
 
       {selectedItemId && (
         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle" open={showModal}>
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <p className="py-4">Press ESC key or click the button below to close</p>
+          <div className="modal-box bg-background border">
+            <h3 className="font-bold text-lg text-paragraph">Confirm Deletion</h3>
+            <p className="py-4 text-paragraph">Are you sure you want to delete this exercise?</p>
             <div className="modal-action">
-              <form method="dialog">
-                <button className="btn mr-3" onClick={() => handleDelete(selectedItemId)}>Delete</button>
-                <button className="btn" onClick={closeModal}>Close</button>
-              </form>
+              <button
+                className={`justify-center items-center flex gap-2 py-3 px-5 font-semibold rounded-xl ${darkMode === "light" ? "bg-white text-[#1D232A]" : "bg-black text-white"}`}
+                onClick={() => handleDeleteClick(selectedItemId)}
+              >
+                Delete
+              </button>
+              <button
+                className={`justify-center items-center flex gap-2 py-3 px-5 font-semibold rounded-xl ${darkMode === "light" ? "bg-white text-[#1D232A]" : "bg-black text-white"}`}
+                onClick={closeModal}
+              >
+                Close
+              </button>
             </div>
           </div>
         </dialog>

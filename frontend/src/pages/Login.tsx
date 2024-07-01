@@ -6,6 +6,8 @@ interface Data {
   email: string;
   password: string;
 }
+
+
 const Login = () => {
   const context = useContext(WorkoutContext);
   if (!context) {
@@ -50,30 +52,30 @@ const Login = () => {
   
   
   return (
-    <div className="dark min-h-screen flex items-center justify-center bg-gray-900">
+    <div className={` min-h-screen flex items-center justify-center  bg-background`}>
       <div className="w-full max-w-md">
-        <form onSubmit={handleSubmit} className="bg-gray-800 shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+        <form onSubmit={handleSubmit} className="bg-background shadow-lg rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
-            <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="username">
+            <label className="block text-paragraph text-sm font-bold mb-2" htmlFor="username">
               Email
             </label>
             <input
               name="email" value={data.email} onChange={handleLogin}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-paragraph leading-tight focus:outline-none focus:shadow-outline bg-background"
               id="username"
               type="text"
-              placeholder="Enter Email"
+              placeholder="Email"
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-300 text-sm font-bold mb-2" htmlFor="password">
+            <label className="block text-paragraph text-sm font-bold mb-2" htmlFor="password">
               Password
             </label>
             <input name="password" value={data.password} onChange={handleLogin}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border text-paragraph rounded w-full py-2 px-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-background"
               id="password"
               type="password"
-              placeholder="******************"
+              placeholder="password"
               autoComplete="current-password" 
 
             />
@@ -82,8 +84,8 @@ const Login = () => {
             </a>
           </div>
           <div className="mb-6">
-            <label className="block text-gray-500 font-bold">
-              <input className="mr-2 leading-tight" type="checkbox" required />
+            <label className="block text-paragraph font-bold">
+              <input className="mr-2 leading-tight bg-background" type="checkbox" required />
               <span className="text-sm">Remember Me</span>
             </label>
           </div>

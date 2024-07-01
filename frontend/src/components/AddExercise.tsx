@@ -5,11 +5,13 @@ import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
 interface Data {
   name: string;
-  set: number;
-  rep: number;
+  set: any;
+  rep: any;
 }
-
-const AddExercise = () => {
+interface Dark {
+  darkMode: string
+}
+const AddExercise = ({ darkMode }: Dark) => {
   const context = useContext(WorkoutContext);
   if (!context) {
     return null; // Or handle the case where context is null
@@ -19,8 +21,8 @@ const AddExercise = () => {
   const [data, setData] = useState<Data>(
     {
       name: "",
-      set: 0,
-      rep: 0,
+      set: null,
+      rep: null,
     }
   );
 
@@ -52,33 +54,33 @@ const AddExercise = () => {
     <div className="">
       <form onSubmit={handleAdd}>
         <div>
-          <h1 className="font-semibold text-md">
+          <h1 className={`font-semibold text-md text-paragraph`}>
             Add a New Workout
           </h1>
         </div>
-        <label className="form-control w-full max-w-xs mb-3">
+        <label className="form-control w-full max-w-xs mb-3 ">
           <div className="label">
-            <span className="label-text">Exercise Name:</span>
+            <span className="label-text text-paragraph">Exercise Name:</span>
           </div>
-          <input value={data.name} type="text" onChange={onHandleChanges} name="name" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+          <input value={data.name} type="text" onChange={onHandleChanges} name="name" placeholder="Type here" className="input input-bordered w-full max-w-xs text-paragraph bg-background " />
 
         </label>
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
-            <span className="label-text">Set:</span>
+            <span className="label-text text-paragraph">Set:</span>
           </div>
-          <input value={data.set} type="text" onChange={onHandleChanges} name="set" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+          <input value={data.set} type="text" onChange={onHandleChanges} name="set" placeholder="0" className="input input-bordered w-full max-w-xs text-paragraph bg-background" />
 
         </label>
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
-            <span className="label-text">Rep:</span>
+            <span className="label-text text-paragraph">Rep:</span>
           </div>
-          <input value={data.rep} type="text" onChange={onHandleChanges} name="rep" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+          <input value={data.rep} type="text" onChange={onHandleChanges} name="rep" placeholder="0" className="input input-bordered w-full max-w-xs text-paragraph bg-background" />
 
         </label>
 
-        <button type='submit' className="btn">
+        <button type='submit' className={`justify-center items-center flex gap-2 py-3 px-5 font-semibold rounded-xl rounded-4xl  ${darkMode === "light" ? "bg-white text-[#1D232A] " : " bg-black text-white"}`}>
           Add New
           <svg
             xmlns="http://www.w3.org/2000/svg"
