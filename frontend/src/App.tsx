@@ -52,7 +52,8 @@ const App = () => {
   }
 
   return (
-    <div className={`max-md:px-2 py-2 px-7 ${darkMode} bg-background`}>
+    <div className={` ${darkMode} bg-background`}>
+      <div className="container mx-auto max-md:px-0 py-2 px-7">
       <ToastContainer />
       <Nav darkMode={darkMode} setDarkMode={setDarkMode}/>
       <Routes>
@@ -61,6 +62,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
       </Routes>
       <Footer darkMode={darkMode}/>
+      </div>
     </div>
   );
 };

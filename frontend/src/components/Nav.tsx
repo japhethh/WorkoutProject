@@ -119,8 +119,12 @@ const Nav = ({ setDarkMode }: Dark) => {
               />
               <span className="slider"></span>
             </label>
-            <Link to="/register" className="btn text-white border-none bg-[#3B82F6]">
+            {/* <Link to="/register" className="btn text-white border-none bg-[#3B82F6]">
               Sign Up
+            </Link> */}
+
+            <Link className="btn text-white border-none bg-[#3B82F6]" to={location.pathname ===  "/login" ? "/register" : "/login"}>
+            {location.pathname === "/login" ? "Sign up" : "Sign in"}
             </Link>
           </div>
         </>
