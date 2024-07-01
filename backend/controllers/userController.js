@@ -68,4 +68,28 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser };
+const changeAccount = async (req,res) => {
+  const image_filename = `${req.file.filename}`;
+
+  const {userId,userName,email,password} = req.body;
+
+  try {
+     const salt = await bcrypt.genSalt(10);
+     const hashedpassword = await bcrypt.hash(password, salt);
+  const updateUser = await workoutModel.findByIdAndUpdate(
+    userId,
+    {
+    userName:userName,
+    email:email,
+    image:image_filename,
+    password:hashedpassword
+  });
+  const user = await updateUser.save();
+  console.log(user)
+  res.json({success:true,user,message:"Update Successfully"})
+} catch (error) {
+  console.log(error);
+  res.json({success:false,message:"Error"})
+}
+}
+export { loginUser, registerUser,changeAccount };

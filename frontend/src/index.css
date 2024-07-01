@@ -13,7 +13,8 @@
   --headline: 212, 212, 212;
   --paragraph: 163, 163, 163;
   --button: 255, 216, 3;
-  --background: 12, 9, 21;
+  --background: 13, 17, 23;
+  --secondary_background:12, 9, 21;
   --secondary-paragraph: 88, 28, 135;
   --message-color:217, 217, 217;
   
@@ -26,6 +27,7 @@
   --paragraph: 45, 51, 74;
   --button: 255, 216, 3;
   --background: 255, 255, 255;
+  --secondary_background:13, 17, 23;
   --secondary-paragraph: 255, 255, 254;
   --email-color:25, 30, 36;
   --email-color:217, 217, 217;

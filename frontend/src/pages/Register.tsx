@@ -9,8 +9,10 @@ interface Data {
   email: string;
   password: string;
 }
-
-const Register = () => {
+interface Dark {
+  darkMode: string;
+}
+const Register = ({ darkMode }: Dark) => {
   const [data, setData] = useState<Data>({
     userName: "",
     email: "",
@@ -21,7 +23,7 @@ const Register = () => {
   if (!context) {
     return null;
   }
-  const { setToken, URL } = context;
+  const { setToken, apiURL } = context;
 
   const handleRegister = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -32,7 +34,7 @@ const Register = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(`${URL}/api/user/register`, data);
+      const response = await axios.post(`${apiURL}/api/user/register`, data);
       toast.success("Registration successful");
       navigate("/login");
       setToken(localStorage.setItem("token", response.data.token));
@@ -54,7 +56,7 @@ const Register = () => {
               name="userName"
               value={data.userName}
               onChange={handleRegister}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-paragraph bg-background leading-tight focus:outline-none focus:shadow-outline"
+              className="input border input-bordered w-full  text-paragraph bg-background "
               id="userName"
               type="text"
               placeholder="Enter Username"
@@ -69,7 +71,7 @@ const Register = () => {
               name="email"
               value={data.email}
               onChange={handleRegister}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-paragraph bg-background leading-tight focus:outline-none focus:shadow-outline"
+              className="input border input-bordered w-full  text-paragraph bg-background "
               id="email"
               type="email"
               placeholder="Enter Email"
@@ -84,7 +86,7 @@ const Register = () => {
               name="password"
               value={data.password}
               onChange={handleRegister}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-paragraph bg-background mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="input border input-bordered w-full  text-paragraph bg-background "
               id="password"
               type="password"
               placeholder="Enter Password"

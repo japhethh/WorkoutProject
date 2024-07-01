@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 import { toast } from 'react-toastify';
@@ -8,25 +8,40 @@ interface Data {
   password: string;
 }
 
+interface Dark {
+  darkMode: string;
+}
 
-
-const Login = () => {
+const Login = ({ darkMode }: Dark) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [rememberMe, setRememberMe] = useState<boolean>(false); // State for "Remember me" checkbox
   const context = useContext(WorkoutContext);
 
   if (!context) {
     return null;
   }
 
-  const { URL } = context;
+  const { apiURL } = context;
   const [data, setData] = useState<Data>({
     email: "",
     password: ""
   });
 
+  // Load "Remember me" checkbox state from localStorage on component mount
+  useEffect(() => {
+    const rememberMeValue = localStorage.getItem("rememberMe");
+    if (rememberMeValue) {
+      setRememberMe(JSON.parse(rememberMeValue));
+    }
+  }, []);
+
   const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCheckboxChange = () => {
+    setRememberMe(!rememberMe); // Toggle the "Remember me" state
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,11 +49,19 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(`${URL}/api/user/login`, data);
+      const response = await axios.post(`${apiURL}/api/user/login`, data);
 
       if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.token);
+
+        // Save "Remember me" checkbox state to localStorage if checked
+        if (rememberMe) {
+          localStorage.setItem("rememberMe", JSON.stringify(rememberMe));
+        } else {
+          localStorage.removeItem("rememberMe");
+        }
+
         window.location.href = "/";
       } else {
         toast.error(response.data.message);
@@ -56,7 +79,7 @@ const Login = () => {
   };
 
   return (
-    <div className={` min-h-screen flex items-center justify-center  bg-background`}>
+    <div className={`min-h-screen flex items-center justify-center bg-background`}>
       <div className="w-full max-w-md">
         <form onSubmit={handleSubmit} className="bg-background shadow-lg rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
@@ -67,7 +90,7 @@ const Login = () => {
               name="email"
               value={data.email}
               onChange={handleLogin}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-paragraph leading-tight focus:outline-none focus:shadow-outline bg-background"
+              className="input border input-bordered w-full  text-paragraph bg-background "
               id="username"
               type="text"
               placeholder="Email"
@@ -82,22 +105,30 @@ const Login = () => {
               name="password"
               value={data.password}
               onChange={handleLogin}
-              className="shadow appearance-none border text-paragraph rounded w-full py-2 px-3 text-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline bg-background"
+              className="input border input-bordered w-full  text-paragraph bg-background "
+
               id="password"
               type="password"
               placeholder="Password"
               autoComplete="current-password"
             />
-            <a href="#" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+            <a href="#" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 mt-2">
               Forgot Password?
             </a>
           </div>
-          <div className="mb-6">
-            <label className="block text-paragraph font-bold">
-              <input className="mr-2 leading-tight bg-background" type="checkbox" required />
-              <span className="text-sm">Remember Me</span>
+          <div className="mb-6 flex items-center">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={handleCheckboxChange}
+              className="checkbox checkbox-primary mr-2 cursor-pointer"
+              id="rememberMe"
+            />
+            <label htmlFor="rememberMe" className="text-sm cursor-pointer ">
+              Remember me
             </label>
           </div>
+
           <div className="flex items-center justify-between">
             <button
               type="submit"

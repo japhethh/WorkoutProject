@@ -16,7 +16,7 @@ const AddExercise = ({ darkMode }: Dark) => {
   if (!context) {
     return null; // Or handle the case where context is null
   }
-  const { URL, getAll, token } = context;
+  const { apiURL, getAll, token } = context;
 
   const [data, setData] = useState<Data>(
     {
@@ -39,7 +39,7 @@ const AddExercise = ({ darkMode }: Dark) => {
   const handleAdd = async (event: any) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${URL}/api/workout/add`, data, { headers: { token } })
+      const response = await axios.post(`${apiURL}/api/workout/add`, data, { headers: { token } })
       getAll();
       console.log(response)
       setData({ name: "", set: 0, rep: 0 })
