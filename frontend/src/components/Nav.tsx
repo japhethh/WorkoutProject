@@ -40,7 +40,7 @@ const Nav = ({ setDarkMode }: Dark) => {
         <>
           <div className="flex-1">
 
-            {userInfo.user && (<a className={`btn btn-ghost text-xl text-paragraph`}>{userInfo.user.userName}</a>)}
+            {userInfo.user && (<Link to="/" className={`btn btn-ghost text-xl text-paragraph`}>{userInfo.user.userName}</Link>)}
           </div>
           <div className="flex-none">
             {/* <div className="dropdown dropdown-end">

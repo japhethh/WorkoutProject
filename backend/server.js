@@ -39,6 +39,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/workout", workoutRouter);
+app.use("/images",express.static("uploads"));
 app.use("/api/user", userRouter);
 
 app.listen(port, () => {
