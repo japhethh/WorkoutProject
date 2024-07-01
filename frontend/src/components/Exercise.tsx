@@ -58,9 +58,8 @@ const Exercise = ({ darkMode }: Dark) => {
               </button>
             </div>
             <div className="text-paragraph">
-              <h1>Exercise: {item.name}</h1>
-              <h1>Sets: {item.set}</h1>
-              <h1>Reps: {item.rep}</h1>
+              <h1>Sets: <span className="font-semibold">{item.set}</span></h1>
+              <h1>Reps:  <span className="font-semibold">{item.rep}</span></h1>
             </div>
           </div>
         ))}
