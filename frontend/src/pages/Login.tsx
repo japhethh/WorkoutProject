@@ -35,8 +35,7 @@ const Login = () => {
 
   const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
-  };
+    setData((prev) => ({ ...prev, [name]: value.trim() }));  };
 
   const handleCheckboxChange = () => {
     setRememberMe(!rememberMe); // Toggle the "Remember me" state

@@ -54,7 +54,7 @@ const Exercise = ({ darkMode }: Dark) => {
                 className="btn "
                 onClick={() => openModal(item._id)}
               >
-                <PiTrashSimpleFill className="text-paragraph"/>
+                <PiTrashSimpleFill className="text-white"/>
               </button>
             </div>
             <div className="text-paragraph">
