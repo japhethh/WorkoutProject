@@ -65,20 +65,47 @@ const AddExercise = ({ darkMode }: Dark) => {
           <input value={data.name} type="text" onChange={onHandleChanges} name="name" placeholder="Type here" className="input border input-bordered w-full max-w-xs text-paragraph bg-background " />
 
         </label>
+
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
             <span className="label-text text-paragraph">Set:</span>
           </div>
-          <input value={data.set} type="text" onChange={onHandleChanges} name="set" placeholder="0" className="input border input-bordered w-full max-w-xs text-paragraph bg-background" />
+          <div className="indicator">
+            <div className="tooltip tooltip-right " data-tip="A group of exercises performed consecutively.">
+              <span className="indicator-item indicator-start badge badge-primary"> </span>
+            </div>
 
+            <input
+              value={data.set}
+              type="text"
+              onChange={onHandleChanges}
+              name="set"
+              placeholder="0"
+              className="input border input-bordered w-full max-w-xs text-paragraph bg-background"
+            />
+          </div>
         </label>
+
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
             <span className="label-text text-paragraph">Rep:</span>
           </div>
-          <input value={data.rep} type="text" onChange={onHandleChanges} name="rep" placeholder="0" className="input border input-bordered w-full max-w-xs text-paragraph bg-background" />
+          <div className="indicator">
+            <div className="tooltip tooltip-right" data-tip="One complete exercise movement">
+              <span className="indicator-item indicator-start badge badge-primary"> </span>
+            </div>
 
+            <input
+              value={data.rep}
+              type="text"
+              onChange={onHandleChanges}
+              name="rep"
+              placeholder="0"
+              className="input border input-bordered w-full max-w-xs text-paragraph bg-background"
+            />
+          </div>
         </label>
+
 
         <button type='submit' className={`justify-center items-center flex gap-2 py-3 px-5 font-semibold rounded-xl rounded-4xl  ${darkMode === "light" ? "bg-white text-[#1D232A] " : " bg-black text-white"}`}>
           Add New

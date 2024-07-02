@@ -6,9 +6,9 @@ import Auth from "../middleware/Auth.js"
 const userRouter = express.Router();
 
 const storage = multer.diskStorage({
-  destination: "./uploads",
+  // destination: "./uploads",
   filename: (req, file, cb) => {
-    return cb(null, `${Date.now()}${file.originalname}`);
+    cb(null, `${Date.now()}${file.originalname}`);
   },
 });
 
@@ -17,6 +17,5 @@ const upload = multer({ storage: storage });
 userRouter.post("/register",registerUser);
 userRouter.post("/login",loginUser);
 userRouter.post("/profile",upload.single("image"),Auth,changeAccount);
-// Auth,
 
 export default userRouter;

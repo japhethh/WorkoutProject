@@ -100,6 +100,7 @@ const Profile: React.FC = () => {
               <input
                 hidden
                 onChange={(e) => setImage(e.target.files?.[0] ?? null)}
+                accept="image/*"
                 type="file"
                 id="image"
               />
