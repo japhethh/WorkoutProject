@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { WorkoutContext } from "../context/WorkoutContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import upload_area from '../assets/upload_area.png';
+import defaultLogo from '../assets/defaultLogo.png';
 
-interface Data {
+interface ProfileInfo {
   userName: string;
   email: string;
-  password: string;
 }
 
 const Profile: React.FC = () => {
@@ -16,10 +15,11 @@ const Profile: React.FC = () => {
     return null;
   }
 
-  const { userInfo, apiURL } = context;
+  const { userInfo, apiURL, token, getAll } = context;
 
-  const [image, setImage] = useState<File | null>(null); // State for image file
-  const [data, setData] = useState<Data>(() => {
+  const [image, setImage] = useState<File | null>(null);
+
+  const [data, setData] = useState<ProfileInfo>(() => {
     const storedData = sessionStorage.getItem("profileData");
     return storedData ? JSON.parse(storedData) : {
       userName: userInfo.user ? userInfo.user.userName : "",
@@ -30,40 +30,42 @@ const Profile: React.FC = () => {
 
   useEffect(() => {
     sessionStorage.setItem("profileData", JSON.stringify(data));
+    console.log(data)
   }, [data]);
 
-  const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const onChangeProfileinfo = (event: any) => {
     const name = event.target.name;
     const value = event.target.value;
     setData((data) => ({ ...data, [name]: value }));
   };
 
-  const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onHandleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("Submitting", data);
 
     const formData = new FormData();
-    formData.append("name", data.userName);
+    formData.append("userName", data.userName);
+    formData.append("email", data.email);
     if (image) {
       formData.append("image", image);
     }
 
     try {
-      const response = await axios.post(`${apiURL}/api/user/password_and_security`, formData);
+      const response = await axios.post(`${apiURL}/api/user/profile`, formData,{ headers: { token } })
+
       if (response.data.success) {
-        setData({
-          userName: "",
-          email: "",
-          password: ""
-        });
-        setImage(null);
+        await getAll();
         toast.success(response.data.message);
       } else {
         toast.error(response.data.message);
       }
-    } catch (error) {
-      toast.error("An error occurred. Please try again.");
-    }
+    } catch (error: any) {
+      console.error("Error during login:", error); // Log the error for debugging
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An error occurred during login. Please try again.");
+      }
+    } 
   };
 
   return (
@@ -77,7 +79,7 @@ const Profile: React.FC = () => {
             </span>
           )}
         </h1>
-        <h1 className="italic text-[13px]">
+        <h1 className="italic text-[13px] text-paragraph">
           Change your profile information & password from here...
         </h1>
       </div>
@@ -90,14 +92,13 @@ const Profile: React.FC = () => {
             <div className="flex justify-center items-center">
               <label htmlFor="image" className="cursor-pointer">
                 <img
-                  className="w-[80px] h-[80px] rounded-full"
-                  src={image ? URL.createObjectURL(image) : upload_area}
+                  className="w-[80px] h-[80px] rounded-full object-cover"
+                  src={image ? URL.createObjectURL(image) : defaultLogo}
                   alt="Upload Area"
                 />
               </label>
               <input
                 hidden
-                required
                 onChange={(e) => setImage(e.target.files?.[0] ?? null)}
                 type="file"
                 id="image"
@@ -108,31 +109,32 @@ const Profile: React.FC = () => {
               Name <span className="text-red-500">*</span>
             </label>
             <input
-              onChange={onChangeHandle}
+              onChange={onChangeProfileinfo}
               value={data.userName}
               className="input border input-bordered w-full  text-paragraph bg-background "
               name="userName"
               type="text"
               id="userName"
             />
-
             <label className="text-sm py-2 text-headline" htmlFor="email">
               Email <span className="text-red-500">*</span>
             </label>
             <input
-              onChange={onChangeHandle}
+              onChange={onChangeProfileinfo}
               value={data.email}
-              className="input border input-bordered w-full  text-paragraph bg-background "
+              className="input border input-bordered w-full text-paragraph bg-background cursor-not-allowed disabled:bg-background disabled:text-gray-400 disabled:border-none"
               name="email"
               type="email"
               id="email"
+              disabled
             />
+
 
             <button
               className="bg-primary w-[100px] text-white mt-4 py-2 px-1 rounded-sm flex justify-center items-center gap-2"
               type="submit"
             >
-              <span className="text-sm font-normal">Update</span>{" "}
+              <span className="text-sm font-normal">Update</span>
             </button>
           </form>
         </div>
@@ -143,8 +145,8 @@ const Profile: React.FC = () => {
             Current Password <span className="text-red-500">*</span>
           </label>
           <input
-            onChange={onChangeHandle}
-            value={data.password}
+            // onChange={onChangeHandle}
+            // value={data.password}
             className="input border input-bordered w-full  text-paragraph bg-background "
             name="password"
             type="password"
@@ -155,8 +157,8 @@ const Profile: React.FC = () => {
             New Password <span className="text-red-500">*</span>
           </label>
           <input
-            onChange={onChangeHandle}
-            value={data.password}
+            // onChange={onChangeHandle}
+            // value={data.password}
             className="input border input-bordered w-full  text-paragraph bg-background "
             name="password"
             type="password"
@@ -167,8 +169,8 @@ const Profile: React.FC = () => {
             Confirm Password <span className="text-red-500">*</span>
           </label>
           <input
-            onChange={onChangeHandle}
-            value={data.password}
+            // onChange={onChangeHandle}
+            // value={data.password}
             className="input border input-bordered w-full  text-paragraph bg-background "
             name="password"
             type="password"
