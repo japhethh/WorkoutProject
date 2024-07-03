@@ -37,7 +37,17 @@ const Exercise = ({ darkMode }: Dark) => {
   };
 
   if (!data) {
-    return <div>Loading...</div>;
+    return (
+      <div className="bg-gray-200  rounded-xl w-full p-5">
+        <div className="flex justify-between items-center">
+        <div className="skeleton mb-3 h-6 w-32 bg-background"></div>
+        <div className="skeleton mb-3 h-7 w-10 bg-background"></div>
+        </div>
+        <div className="skeleton h-6 w-20 mb-2 bg-background"></div>
+        <div className="skeleton h-6 w-20 bg-background"></div>
+
+      </div>
+    )
   }
 
   return (
@@ -54,7 +64,7 @@ const Exercise = ({ darkMode }: Dark) => {
                 className="bg-gray-200 rounded-md p-3 "
                 onClick={() => openModal(item._id)}
               >
-                <PiTrashSimpleFill className="text-paragraph"/>
+                <PiTrashSimpleFill className="text-paragraph" />
               </button>
             </div>
             <div className="text-paragraph">

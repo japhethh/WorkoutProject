@@ -30,7 +30,8 @@ const Profile: React.FC = () => {
 
   useEffect(() => {
     sessionStorage.setItem("profileData", JSON.stringify(data));
-    console.log(data)
+    console.log(data);
+    console.log(image);
   }, [data]);
 
   const onChangeProfileinfo = (event: any) => {

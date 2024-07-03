@@ -5,13 +5,14 @@ import Auth from "../middleware/Auth.js"
 
 const userRouter = express.Router();
 
+//Image Storage engine
 const storage = multer.diskStorage({
-  // destination: "./uploads",
+  destination: "./uploads",
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}${file.originalname}`);
+    return cb(null, `${Date.now()}${file.originalname}`);
   },
 });
-
+  
 const upload = multer({ storage: storage });
 
 userRouter.post("/register",registerUser);
