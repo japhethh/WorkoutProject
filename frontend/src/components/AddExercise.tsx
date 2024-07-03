@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import { toast } from 'react-toastify';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
