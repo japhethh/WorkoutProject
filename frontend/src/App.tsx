@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 // import Navbar from "./components/Navbar";
 import Nav from "./components/Nav";
-import Help from "./components/Help";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Footer from "./pages/Footer";
