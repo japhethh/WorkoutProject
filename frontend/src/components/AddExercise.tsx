@@ -79,7 +79,7 @@ const AddExercise = ({ darkMode }: Dark) => {
             <span className="label-text text-paragraph">Set:</span>
           </div>
           <div className="indicator">
-            <div className="tooltip tooltip-right" data-tip="A group of exercises performed consecutively.">
+            <div className="tooltip tooltip-right z-10" data-tip="A group of exercises performed consecutively.">
               <span className="indicator-item indicator-start badge badge-primary"> </span>
             </div>
             <input value={info.set} type="text" onChange={onHandleChanges} name="set" placeholder="0" className="input border input-bordered w-full max-w-xs text-paragraph bg-background" />
@@ -91,7 +91,7 @@ const AddExercise = ({ darkMode }: Dark) => {
             <span className="label-text text-paragraph">Rep:</span>
           </div>
           <div className="indicator">
-            <div className="tooltip tooltip-right" data-tip="One complete exercise movement">
+            <div className="tooltip tooltip-right z-10" data-tip="One complete exercise movement">
               <span className="indicator-item indicator-start badge badge-primary"> </span>
             </div>
             <input value={info.rep} type="text" onChange={onHandleChanges} name="rep" placeholder="0" className="input border input-bordered w-full max-w-xs text-paragraph bg-background" />

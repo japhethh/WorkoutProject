@@ -10,6 +10,7 @@ export default {
      headline:"rgba(var(--headline))",
      paragraph:"rgba(var(--paragraph))",
      background:"rgba(var(--background))",
+     help:"rgba(var(--help))",
      secondary_background:"rgba(var(--secondary_background))",
      secondaryparagraph:"rgba(var(--secondary-paragraph))",
      email:"rgba(var(--email-color))",

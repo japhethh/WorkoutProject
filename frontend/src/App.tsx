@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 // import Navbar from "./components/Navbar";
 import Nav from "./components/Nav";
+import Help from "./components/Help";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Footer from "./pages/Footer";
@@ -17,7 +18,7 @@ const App = () => {
   const [darkMode, setDarkMode] = useState<any>(() => {
     // Retrieve the dark mode setting from localStorage when the component mounts
     const storedDarkMode = localStorage.getItem("darkMode");
-    return storedDarkMode ? storedDarkMode : "light"; // default to "dark" if no value is stored
+    return storedDarkMode ? storedDarkMode : "light"; // default to "Light" if no value is stored
   });
 
   useEffect(() => {
@@ -55,15 +56,18 @@ const App = () => {
   return (
     <div className={` ${darkMode} bg-background`}>
       <div className="container mx-auto max-md:px-0 py-2 px-7">
-      <ToastContainer />
-      <Nav darkMode={darkMode} setDarkMode={setDarkMode}/>
-      <Routes>
-        <Route path="/" element={<Home darkMode={darkMode}/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register  />} />
-        <Route path="/profile" element={<Profile  />} />
-      </Routes>
-      <Footer darkMode={darkMode}/>
+        <ToastContainer />
+        <Nav darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Routes>
+          <Route path="/" element={<Home darkMode={darkMode} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+        <Help />
+
+        <Footer darkMode={darkMode} />
+
       </div>
     </div>
   );
