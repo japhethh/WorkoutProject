@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { WorkoutContext } from "../context/WorkoutContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import defaultLogo from '../assets/defaultLogo.png';
 
 interface ProfileInfo {
   userName: string;
