@@ -17,7 +17,7 @@ const upload = multer({ storage: storage });
 userRouter.post("/changePassword",Auth,changePassword);
 userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
-userRouter.post("/profile",Auth,changeAccount);
+userRouter.post("/profile",upload.single("image"),Auth,changeAccount);
 
 
 export default userRouter;
