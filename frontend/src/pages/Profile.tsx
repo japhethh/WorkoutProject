@@ -148,7 +148,7 @@ const Profile: React.FC = () => {
               <label htmlFor="image" className="cursor-pointer">
                 <img
                   className="w-[80px] h-[80px] rounded-full object-cover"
-                  src={image ? URL.createObjectURL(image) : defaultLogo}
+                  src={image ? URL.createObjectURL(image) : userInfo.user && userInfo.user.image}
                   alt="Upload Area"
                 />
               </label>
