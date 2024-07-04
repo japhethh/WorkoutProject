@@ -79,7 +79,7 @@ const Nav = ({ setDarkMode }: Dark) => {
 
 
             {/* Notification */}
-            <button  className="btn btn-ghost btn-circle text-paragraph">
+            <button className="btn btn-ghost btn-circle text-paragraph">
               <div className="indicator">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@ const Nav = ({ setDarkMode }: Dark) => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    src={userInfo.user && userInfo.user.image && userInfo.user.image ||  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" } />
                 </div>
               </div>
               <ul
