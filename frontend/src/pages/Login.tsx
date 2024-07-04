@@ -120,6 +120,7 @@ const Login = () => {
               onChange={handleCheckboxChange}
               className="checkbox checkbox-primary mr-2 cursor-pointer"
               id="rememberMe"
+              required
             />
             <label htmlFor="rememberMe" className="text-sm cursor-pointer ">
               Remember me
