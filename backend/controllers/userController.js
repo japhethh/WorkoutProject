@@ -2,6 +2,10 @@ import workoutModel from "../models/workoutModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import validator from "validator";
+import cloudinary from '../utils/cloudinary.js';
+
+
+
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -78,6 +82,35 @@ const registerUser = async (req, res) => {
   }
 };
 
+// const changeAccount = async (req, res) => {
+//   const { userName, userId, email } = req.body;
+
+//   try {
+//     const user = await workoutModel.findById(userId);
+
+//     if (!user) {
+//       return res
+//         .status(404)
+//         .json({ success: false, message: "User not found" });
+//     }
+
+//     user.userName = userName;
+//     user.email = email;
+
+//     if (req.file) {
+//       user.image = req.file.filename;
+//     }
+
+//     await user.save();
+//     res
+//       .status(200)
+//       .json({ success: true, user, message: "Update Successfully" });
+//   } catch (error) {
+//     console.error("Account Update Error:", error);
+//     res.status(400).json({ success: false, message: error.message });
+//   }
+// };
+
 const changeAccount = async (req, res) => {
   const { userName, userId, email } = req.body;
 
@@ -94,13 +127,23 @@ const changeAccount = async (req, res) => {
     user.email = email;
 
     if (req.file) {
-      user.image = req.file.filename;
+      // Upload image to Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "profile_images",
+
+      });
+
+      // Remove the file from local storage
+      fs.unlinkSync(req.file.path);
+
+      // Save the image URL in the user document
+      user.image = result.secure_url;
     }
 
     await user.save();
     res
       .status(200)
-      .json({ success: true, user, message: "Update Successfullyss" });
+      .json({ success: true, user, message: "Update Successfully" });
   } catch (error) {
     console.error("Account Update Error:", error);
     res.status(400).json({ success: false, message: error.message });

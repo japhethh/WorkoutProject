@@ -14,10 +14,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-userRouter.post("/changePassword",Auth,changePassword);
 userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
 userRouter.post("/profile",upload.single("image"),Auth,changeAccount);
+userRouter.post("/changePassword",Auth,changePassword);
 
 
 export default userRouter;
