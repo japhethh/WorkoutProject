@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import validator from "validator";
 import cloudinary from '../utils/cloudinary.js';
-
+import fs from 'fs'
 
 
 
