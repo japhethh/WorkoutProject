@@ -3,6 +3,7 @@ import cors from "cors";
 import { ConnectDB } from "./config/db.js";
 import workoutRouter from "./routes/workoutRoute.js";
 import userRouter from "./routes/userRoute.js";
+import testingRoute from './routes/testingRoute.js';
 import 'dotenv/config'
 
 const app = express();
@@ -22,6 +23,7 @@ app.use("/api/workout", workoutRouter);
 app.use("/images", express.static("uploads"));
 
 app.use("/api/user", userRouter);
+// app.use("/api/user", testingRoute);
 
 app.listen(port, () => {
   console.log(`Server Started on http://localhost:${port}`);

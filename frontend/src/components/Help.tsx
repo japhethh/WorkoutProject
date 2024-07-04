@@ -3,6 +3,7 @@ import { MdLiveHelp } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaEnvelopeOpen } from "react-icons/fa";
 import { BiMessageDetail } from "react-icons/bi";
+import { IoIosHelpCircleOutline } from "react-icons/io";
 
 
 const Help = () => {
@@ -35,20 +36,20 @@ const Help = () => {
 
 
               {/* Bottom */}
-              <div className="absolute w-full rounded-b-xl h-16 bottom-0 px-5
-              bg-blue-500">
+              <div className="absolute w-full rounded-b-xl h-14 bottom-0 px-5
+              bg-blue-500 cursor-pointer">
                 <ul className="flex justify-between items-center px-2 py-2">
-                  <li className="flex flex-col items-center text-gray-800 font-medium gap-1">
+                  <li className="flex flex-col items-center text-gray-800 font-medium ">
                     <FaEnvelopeOpen className="text-lg" />
                     <h1 className="text-sm ">Home</h1>
                   </li>
-                  <li className="flex flex-col items-center text-white">
-                    <BiMessageDetail className="text-xl" />
+                  <li className="flex flex-col items-center text-white font-medium ">
+                    <BiMessageDetail className="text-lg" />
                     <h1 className="text-sm ">Messages</h1>
                   </li>
-                  <li className="flex flex-col items-center text-white">
-                    <FaEnvelopeOpen className="text-lg" />
-                    <h1 className="text-sm ">Home</h1>
+                  <li className="flex flex-col items-center text-white font-medium ">
+                    <IoIosHelpCircleOutline className="text-lg" />
+                    <h1 className="text-sm ">Help</h1>
                   </li>
 
                 </ul>

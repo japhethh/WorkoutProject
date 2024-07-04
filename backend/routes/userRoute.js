@@ -1,22 +1,23 @@
-import express from 'express'
-import { loginUser, registerUser,changeAccount } from '../controllers/userController.js';
+import express from 'express';
 import multer from 'multer';
-import Auth from "../middleware/Auth.js"
-
+import {  loginUser, registerUser,changeAccount,changePassword } from '../controllers/userController.js';
+import cloudinary from "../utils/cloudinary.js"; // Adjust path as per your project structure
+import Auth from '../middleware/Auth.js';
 const userRouter = express.Router();
 
-//Image Storage engine
+// Configure Multer for file uploads
 const storage = multer.diskStorage({
-  destination: "./uploads",
+  destination: './uploads',
   filename: (req, file, cb) => {
-    return cb(null, `${Date.now()}${file.originalname}`);
+    cb(null, `${file.originalname}`);
   },
 });
-  
 const upload = multer({ storage: storage });
 
-userRouter.post("/register",registerUser);
-userRouter.post("/login",loginUser);
-userRouter.post("/profile",upload.single("image"),Auth,changeAccount);
+userRouter.post("/changePassword",Auth,changePassword);
+userRouter.post("/register", registerUser);
+userRouter.post("/login", loginUser);
+userRouter.post("/profile",Auth,changeAccount);
+
 
 export default userRouter;

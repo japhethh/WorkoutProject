@@ -79,7 +79,7 @@ const registerUser = async (req, res) => {
 };
 
 const changeAccount = async (req, res) => {
-  const { userName,userId, email } = req.body;
+  const { userName, userId, email } = req.body;
 
   try {
     const user = await workoutModel.findById(userId);
@@ -100,10 +100,46 @@ const changeAccount = async (req, res) => {
     await user.save();
     res
       .status(200)
-      .json({ success: true, user, message: "Update Successfully" });
+      .json({ success: true, user, message: "Update Successfullyss" });
   } catch (error) {
     console.error("Account Update Error:", error);
     res.status(400).json({ success: false, message: error.message });
   }
 };
-export { loginUser, registerUser, changeAccount };
+
+const changePassword = async (req, res) => {
+  const { userId, currentPassword, newPassword } = req.body;
+
+  try {
+    const user = await workoutModel.findById(userId);
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User not found" });
+    }
+
+    // Compare the current password
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+
+    if (!isMatch) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid current password" });
+    }
+
+    // Hash the new Password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hashedPassword;
+    await user.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: "Password updated successfully" });
+  } catch (error) {
+    console.log("Password Change Error", error);
+    res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+export { loginUser, registerUser, changeAccount, changePassword };
