@@ -51,7 +51,7 @@ const Exercise = ({ darkMode }: Dark) => {
   }
 
   return (
-    <div className="max-md:overflow-y-auto overflow-y-scroll lg:h-[500px]">
+    <div className="max-md:overflow-y-auto overflow-y-scroll lg:h-[420px]">
       <div>
         {data.exercises.map((item) => (
           <div key={item._id} className="shadow-md rounded-md p-4 mb-2">
