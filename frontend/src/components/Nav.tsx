@@ -1,6 +1,7 @@
 import { WorkoutContext } from "../context/WorkoutContext";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import DefaultLogo from '../assets/defaultLogo.png'
 interface Dark {
   setDarkMode: (value: string) => void;
   darkMode: string;
@@ -175,7 +176,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={userInfo.user && userInfo.user.image ? userInfo.user.image : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"}
+                    src={userInfo.user && userInfo.user.image ? userInfo.user.image : DefaultLogo}
                   />
                 </div>
               </div>

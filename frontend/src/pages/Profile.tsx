@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { WorkoutContext } from "../context/WorkoutContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import DefaultLogo from '../assets/defaultLogo.png'
 interface ProfileInfo {
   userName: string;
   email: string;
@@ -143,11 +143,11 @@ const Profile: React.FC = () => {
             <label className="text-sm py-2 text-headline" htmlFor="image">
               Profile Image <span className="text-red-500">*</span>
             </label>
-            <div className="flex justify-center items-center">
+            <div className="flex justify-start px-4 items-center">
               <label htmlFor="image" className="cursor-pointer">
                 <img
                   className="w-[80px] h-[80px] rounded-full object-cover"
-                  src={image ? URL.createObjectURL(image) : userInfo.user && userInfo.user.image}
+                  src={image ? URL.createObjectURL(image) : userInfo.user && userInfo.user.image ? userInfo.user.image : DefaultLogo}
                   alt="Upload Area"
                 />
               </label>
