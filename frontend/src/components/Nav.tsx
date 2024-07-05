@@ -78,33 +78,25 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
                   </li>
-                 
+
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
                   </li>
-                 
+
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
-                      </div>
-                      <p className="text-sm">Update available for 1 app</p>
-                    </div>
-                  </li>
-                  <li className="">
-                    <div className="block">
-                      <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
@@ -112,7 +104,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
@@ -120,7 +112,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
@@ -128,30 +120,38 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
                   </li>
-                 
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
                   </li>
-                 
+
                   <li className="">
                     <div className="block">
                       <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
-                      <h1>App Update Available</h1> <span className="badge">New</span>
+                        <h1>App Update Available</h1> <span className="badge">New</span>
                       </div>
                       <p className="text-sm">Update available for 1 app</p>
                     </div>
                   </li>
-                 
+
+                  <li className="">
+                    <div className="block">
+                      <div className=" flex justify-between pb-1 text-headline font-semibold text-md">
+                        <h1>App Update Available</h1> <span className="badge">New</span>
+                      </div>
+                      <p className="text-sm">Update available for 1 app</p>
+                    </div>
+                  </li>
+
                 </ul>
 
 
@@ -175,7 +175,8 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={userInfo.user && userInfo.user.image && userInfo.user.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
+                    src={userInfo.user && userInfo.user.image ? userInfo.user.image : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"}
+                  />
                 </div>
               </div>
               <ul
