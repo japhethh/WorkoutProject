@@ -40,8 +40,8 @@ const Exercise = ({ darkMode }: Dark) => {
     return (
       <div className="bg-gray-300  rounded-xl w-full p-5">
         <div className="flex justify-between items-center">
-        <div className="skeleton mb-3 h-6 w-32 bg-background"></div>
-        <div className="skeleton mb-3 h-7 w-10 bg-background"></div>
+          <div className="skeleton mb-3 h-6 w-32 bg-background"></div>
+          <div className="skeleton mb-3 h-7 w-10 bg-background"></div>
         </div>
         <div className="skeleton h-6 w-20 mb-2 bg-background"></div>
         <div className="skeleton h-6 w-20 bg-background"></div>
@@ -53,26 +53,37 @@ const Exercise = ({ darkMode }: Dark) => {
   return (
     <div className="max-md:overflow-y-auto overflow-y-scroll lg:h-[420px]">
       <div>
-        {data.exercises.map((item) => (
-          <div key={item._id} className="shadow-md rounded-md p-4 mb-2">
-            <div className="flex justify-between items-center">
-              <h1 className="text-md text-green-600 font-semibold">
-                {item.name}
-              </h1>
-              <button
-                type="button"
-                className="bg-gray-200 rounded-md p-3 "
-                onClick={() => openModal(item._id)}
-              >
-                <PiTrashSimpleFill className="text-paragraph" />
-              </button>
+        {data.exercises.length === 0 ? (
+          <>
+            <div className="text-center text-paragraph flex justify-center items-center h-64 w-full">
+                No exercises available💪
             </div>
-            <div className="text-paragraph">
-              <h1>Sets: <span className="font-semibold">{item.set}</span></h1>
-              <h1>Reps:  <span className="font-semibold">{item.rep}</span></h1>
+          </>
+        )
+          :
+          data.exercises.map((item) => (
+            <div key={item._id} className="shadow-md rounded-md p-4 mb-2">
+              <div className="flex justify-between items-center">
+                <h1 className="text-md text-green-600 font-semibold">
+                  {item.name}
+                </h1>
+                <button
+                  type="button"
+                  className="bg-gray-200 rounded-md p-3 "
+                  onClick={() => openModal(item._id)}
+                >
+                  <PiTrashSimpleFill className="text-paragraph" />
+                </button>
+              </div>
+              <div className="text-paragraph">
+                <h1>Sets: <span className="font-semibold">{item.set}</span></h1>
+                <h1>Reps:  <span className="font-semibold">{item.rep}</span></h1>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
+
+
       </div>
 
       {selectedItemId && (
