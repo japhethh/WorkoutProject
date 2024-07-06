@@ -6,7 +6,7 @@ interface User {
   userName: string;
   email: string;
   image: string;
-  _id: string; // Assuming there is an _id field
+  _id: string;
   exercises: Item[];
 }
 
@@ -24,6 +24,13 @@ const Users = () => {
   }
 
   const { data } = context;
+
+
+  if (!data) {
+    return (
+      <div>Loading</div>
+    )
+  }
 
   // Ensure that data is an array
   const users: User[] = Array.isArray(data) ? data : [];
@@ -43,13 +50,13 @@ const Users = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Password</th>
-              <th></th>
+              <th>Exercises</th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            {users.map((item: User) => (
-              <tr key={item._id}>
+            {users.map((user: User) => (
+              <tr key={user._id}>
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -60,25 +67,44 @@ const Users = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src={item.image ? item.image : DefaultImage}
+                          src={user.image ? user.image : DefaultImage}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{item.userName}</div>
+                      <div className="font-bold">{user.userName}</div>
                       <div className="text-sm opacity-50">Philippines</div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  {item.email}
+                  {user.email}
                   <br />
                   <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
                 </td>
                 <td>Purple</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <div className="dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost btn-md">...</label>
+
+                    <ul tabIndex={0} className={`dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow  ${user.exercises.length === 0 ? "h-32" : "overflow-y-scroll h-96"} `}>
+                      {user.exercises.length === 0 ? (
+                        <>
+                          <div className="flex justify-center items-center h-24">
+                            <h1>Empty</h1>
+                          </div>
+                        </>) : user.exercises.map((exercise: Item, index: number) => (
+                          <li key={index} className="p-2 ">
+                            <h1 className="">Name: {exercise.name}</h1>
+                            <h1 className="">Set: <span className="text-red-400">{exercise.set}</span></h1>
+                            <h1 className="text-paragraph">Rep: <span className="text-red-400">{exercise.rep}</span></h1>
+
+                          </li>
+                        ))}
+                    </ul>
+
+                  </div>
                 </th>
               </tr>
             ))}
@@ -90,7 +116,7 @@ const Users = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Password</th>
-              <th></th>
+              <th>Exercises</th>
             </tr>
           </tfoot>
         </table>

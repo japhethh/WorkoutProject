@@ -27,12 +27,12 @@ export const Sidebar = ({ expand }: Expands) => {
     { name: "Help", href: "/help", icon: <MdOutlineHelpOutline /> },
   ];
   return (
-    <div className="h-screen">
+    <div className="h-screen ">
       <nav
         className={`h-full flex flex-col bg-white border-r shadow-xl  overflow-hidden transition-all duration-700
         ${expand
-            ? "w-16"
-            : "w-64" /* Change the width based on `expand` state */
+            ? "w-16 max-md:w-0"
+            : "w-64 max-md:w-32" /* Change the width based on `expand` state */
           }`}
       >
         <div className="p-4 pb-2 flex justify-center  items-center ">
@@ -76,7 +76,7 @@ export const Sidebar = ({ expand }: Expands) => {
               }`}
           >
             <div className="leading-4">
-              <h4 className="font-semibold text-sm">John Doe</h4>
+              <h4 className="font-semibold text-sm">Adrey Locaylocay</h4>
               <h4 className="text-md text-gray-500 text-sm">
                 boknoy32130@gmail.com
               </h4>
