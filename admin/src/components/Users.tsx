@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import DefaultImage from '../assets/defaultLogo.png'
+import DefaultImage from '../assets/defaultLogo.png';
 import { WorkoutAdminContext } from '../context/WorkoutAdminContext';
 
 interface User {
@@ -17,14 +17,16 @@ interface Item {
 }
 
 const Users = () => {
-
   const context = useContext(WorkoutAdminContext);
 
   if (!context) {
     return null;
   }
 
-  const {  data } = context;
+  const { data } = context;
+
+  // Ensure that data is an array
+  const users: User[] = Array.isArray(data) ? data : [];
 
   return (
     <div className=" ">
@@ -32,7 +34,6 @@ const Users = () => {
         <table className="table">
           {/* head */}
           <thead>
-
             <tr>
               <th>
                 <label>
@@ -45,47 +46,42 @@ const Users = () => {
               <th></th>
             </tr>
           </thead>
-          <tbody >
-
-
-
+          <tbody>
             {/* row 1 */}
-            { data && data.map((item: User) => (
-                <tr key={item._id}>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle h-12 w-12">
-                          <img
-                            src={item.image ? item.image : DefaultImage}
-                            alt="Avatar Tailwind CSS Component" />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="font-bold">{item.userName}</div>
-                        <div className="text-sm opacity-50">Philippines</div>
+            {users.map((item: User) => (
+              <tr key={item._id}>
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
+                </th>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img
+                          src={item.image ? item.image : DefaultImage}
+                          alt="Avatar Tailwind CSS Component"
+                        />
                       </div>
                     </div>
-                  </td>
-                  <td>
-                    {item.email}
-                    <br />
-                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                  </td>
-                  <td>Purple</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                  </th>
-                </tr>
-
-
-              ))}
-
+                    <div>
+                      <div className="font-bold">{item.userName}</div>
+                      <div className="text-sm opacity-50">Philippines</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  {item.email}
+                  <br />
+                  <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                </td>
+                <td>Purple</td>
+                <th>
+                  <button className="btn btn-ghost btn-xs">details</button>
+                </th>
+              </tr>
+            ))}
           </tbody>
           {/* foot */}
           <tfoot>
@@ -106,14 +102,30 @@ const Users = () => {
             type="radio"
             name="options"
             aria-label="1"
-            defaultChecked />
-          <input className="join-item btn btn-square" type="radio" name="options" aria-label="2" />
-          <input className="join-item btn btn-square" type="radio" name="options" aria-label="3" />
-          <input className="join-item btn btn-square" type="radio" name="options" aria-label="4" />
+            defaultChecked
+          />
+          <input
+            className="join-item btn btn-square"
+            type="radio"
+            name="options"
+            aria-label="2"
+          />
+          <input
+            className="join-item btn btn-square"
+            type="radio"
+            name="options"
+            aria-label="3"
+          />
+          <input
+            className="join-item btn btn-square"
+            type="radio"
+            name="options"
+            aria-label="4"
+          />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;
