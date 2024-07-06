@@ -29,8 +29,8 @@ interface Item {
 
 interface Data {
   userName: string;
-  email:string;
-  image:string;
+  email: string;
+  image: string;
   exercises: Item[];
 }
 
@@ -65,11 +65,9 @@ const WorkoutAdminContextProvider: FC<Props> = ({ children }) => {
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
   useEffect(() => {
-    console.log(data);
-    if (token) {
-      getAllUser();
-    }
-  }, [token,data]);
+    console.log(userInfo)
+    getAllUser();
+  }, []);
 
 
   const getAllUser = async () => {
@@ -90,7 +88,7 @@ const WorkoutAdminContextProvider: FC<Props> = ({ children }) => {
       }
     }
   };
-  
+
 
   // const getAll = async () => {
   //   try {
