@@ -50,7 +50,7 @@ const Users = () => {
 
             {/* row 1 */}
             {userInfo.user && userInfo.user.exercises && userInfo.user.map((item: User, index: number) => (
-              <tr key={item.email}>
+              <tr key={index}>
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />

@@ -21,8 +21,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/workout", workoutRouter);
 app.use("/images", express.static("uploads"));
+app.use("/api/user", userRouter); 
 app.use("/api/admin", adminRouter);
-app.use("/api/user", userRouter);
+
 // app.use("/api/user", testingRoute);
 
 app.listen(port, () => {
