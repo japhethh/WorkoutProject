@@ -54,7 +54,7 @@ const Nav = ({ expand, setExpand }: Expand) => {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  src="https://res.cloudinary.com/dn3rs8crz/image/upload/v1720151075/profile_images/ehmmfzfbpp7kvl6mrz48.jpg" />
               </div>
             </div>
             <ul

@@ -3,13 +3,13 @@ import cors from "cors";
 import { ConnectDB } from "./config/db.js";
 import workoutRouter from "./routes/workoutRoute.js";
 import userRouter from "./routes/userRoute.js";
-import testingRoute from './routes/testingRoute.js';
-import 'dotenv/config'
+import testingRoute from "./routes/testingRoute.js";
+import adminRouter from './routes/adminRoute.js'
+import "dotenv/config";
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-  
 app.use(cors());
 app.use(express.json());
 
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/workout", workoutRouter);
 app.use("/images", express.static("uploads"));
-
+app.use("/api/admin", adminRouter);
 app.use("/api/user", userRouter);
 // app.use("/api/user", testingRoute);
 
