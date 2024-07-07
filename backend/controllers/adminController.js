@@ -14,7 +14,8 @@ const allUser = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const { userId } = req.params; // Retrieve userId from request parameters
+  const { userId } = req.body; // Retrieve userId from request body
+
   try {
     const user = await workoutModel.findByIdAndDelete(userId);
     if (!user) {
@@ -26,5 +27,6 @@ const deleteUser = async (req, res) => {
     res.status(500).json({ success: false, message: "Error deleting user" });
   }
 };
+
 
 export { allUser, deleteUser };

@@ -33,23 +33,24 @@ const Users: React.FC = () => {
   if (!data) {
     return <div>Loading...</div>;
   }
-  
   const handleDeleteUser = async (userId: string) => {
+    console.log("Deleting user with userId:", userId); // Log userId here
+
     try {
-      const response = await axios.delete(`${apiURL}/api/admin/deleteUser/${userId}`);
-      getAllUser();
+      const response = await axios.post(`${apiURL}/api/admin/deleteUser`, { userId });
+      console.log("Delete response:", response); // Log response from API
+
       toast.success(response.data.message);
+      getAllUser();
       setCurrentUserId(null);
+
     } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Error deleting user");
-      }
+      toast.error("Error");
     }
   };
-  
-  
+
+
+
   const handleCheckboxChange = (userId: string) => {
     setSelectedUsers((prevSelectedUsers) => {
       const updatedSelectedUsers = new Set(prevSelectedUsers);
@@ -78,7 +79,7 @@ const Users: React.FC = () => {
               </th>
               <th>Name</th>
               <th>Email</th>
-              <th>Password</th>
+              <th>Id</th>
               <th>Exercises</th>
               <th>Action</th>
             </tr>
@@ -116,7 +117,7 @@ const Users: React.FC = () => {
                   <br />
                   <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
                 </td>
-                <td>Purple</td>
+                <td>{user._id}</td>
                 <th>
                   <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-sm bg-gray-100 rounded-full ">details</label>
@@ -163,7 +164,7 @@ const Users: React.FC = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Password</th>
+              <th>Id</th>
               <th>Exercises</th>
               <th>Action</th>
             </tr>
