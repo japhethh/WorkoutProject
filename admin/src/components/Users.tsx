@@ -1,6 +1,9 @@
-import { useContext } from "react";
-import DefaultImage from '../assets/defaultLogo.png';
-import { WorkoutAdminContext } from '../context/WorkoutAdminContext';
+import React, { useContext, useState } from "react";
+import DefaultImage from "../assets/defaultLogo.png";
+import { WorkoutAdminContext } from "../context/WorkoutAdminContext";
+import axios from "axios";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 interface User {
   userName: string;
@@ -16,21 +19,48 @@ interface Item {
   rep: number;
 }
 
-const Users = () => {
+const Users: React.FC = () => {
   const context = useContext(WorkoutAdminContext);
+  const [selectedUsers, setSelectedUsers] = useState<Set<string>>(new Set());
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   if (!context) {
     return null;
   }
 
-  const { data } = context;
-
+  const { data, apiURL, getAllUser } = context;
 
   if (!data) {
-    return (
-      <div>Loading</div>
-    )
+    return <div>Loading...</div>;
   }
+  
+  const handleDeleteUser = async (userId: string) => {
+    try {
+      const response = await axios.delete(`${apiURL}/api/admin/deleteUser/${userId}`);
+      getAllUser();
+      toast.success(response.data.message);
+      setCurrentUserId(null);
+    } catch (error: any) {
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Error deleting user");
+      }
+    }
+  };
+  
+  
+  const handleCheckboxChange = (userId: string) => {
+    setSelectedUsers((prevSelectedUsers) => {
+      const updatedSelectedUsers = new Set(prevSelectedUsers);
+      if (updatedSelectedUsers.has(userId)) {
+        updatedSelectedUsers.delete(userId);
+      } else {
+        updatedSelectedUsers.add(userId);
+      }
+      return updatedSelectedUsers;
+    });
+  };
 
   // Ensure that data is an array
   const users: User[] = Array.isArray(data) ? data : [];
@@ -39,7 +69,6 @@ const Users = () => {
     <div className=" ">
       <div className="overflow-y-scroll h-[450px] w-full">
         <table className="table">
-          {/* head */}
           <thead>
             <tr>
               <th>
@@ -51,15 +80,19 @@ const Users = () => {
               <th>Email</th>
               <th>Password</th>
               <th>Exercises</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
             {users.map((user: User) => (
               <tr key={user._id}>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
+                <th className="">
+                  <label className="mr-2">
+                    <input
+                      type="checkbox"
+                      className="checkbox"
+                      onChange={() => handleCheckboxChange(user._id)}
+                    />
                   </label>
                 </th>
                 <td>
@@ -68,7 +101,7 @@ const Users = () => {
                       <div className="mask mask-squircle h-12 w-12">
                         <img
                           src={user.image ? user.image : DefaultImage}
-                          alt="Avatar Tailwind CSS Component"
+                          alt="Avatar"
                         />
                       </div>
                     </div>
@@ -86,30 +119,45 @@ const Users = () => {
                 <td>Purple</td>
                 <th>
                   <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-md">...</label>
-
-                    <ul tabIndex={0} className={`dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow  ${user.exercises.length === 0 ? "h-32" : "overflow-y-scroll h-96"} `}>
+                    <label tabIndex={0} className="btn btn-ghost btn-sm bg-gray-100 rounded-full ">details</label>
+                    <ul
+                      tabIndex={0}
+                      className={`dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow ${user.exercises.length === 0 ? "h-32" : "overflow-y-auto "
+                        }`}
+                    >
                       {user.exercises.length === 0 ? (
-                        <>
-                          <div className="flex justify-center items-center h-24">
-                            <h1>Empty</h1>
-                          </div>
-                        </>) : user.exercises.map((exercise: Item, index: number) => (
-                          <li key={index} className="p-2 ">
-                            <h1 className="">Name: {exercise.name}</h1>
-                            <h1 className="">Set: <span className="text-red-400">{exercise.set}</span></h1>
-                            <h1 className="text-paragraph">Rep: <span className="text-red-400">{exercise.rep}</span></h1>
-
+                        <div className="flex justify-center items-center h-24">
+                          <h1>Empty</h1>
+                        </div>
+                      ) : (
+                        user.exercises.map((exercise: Item, index: number) => (
+                          <li key={index} className="p-2">
+                            <h1>Name: {exercise.name}</h1>
+                            <h1>
+                              Set: <span className="text-red-400">{exercise.set}</span>
+                            </h1>
+                            <h1 className="text-paragraph">
+                              Rep: <span className="text-red-400">{exercise.rep}</span>
+                            </h1>
                           </li>
-                        ))}
+                        ))
+                      )}
                     </ul>
-
                   </div>
                 </th>
+                <td>
+                  {selectedUsers.has(user._id) && (
+                    <div
+                      className="btn btn-ghost btn-md"
+                      onClick={() => setCurrentUserId(user._id)}
+                    >
+                      <RiDeleteBinFill className="text-2xl text-red-500" />
+                    </div>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
-          {/* foot */}
           <tfoot>
             <tr>
               <th></th>
@@ -117,39 +165,34 @@ const Users = () => {
               <th>Email</th>
               <th>Password</th>
               <th>Exercises</th>
+              <th>Action</th>
             </tr>
           </tfoot>
         </table>
       </div>
-      <div className="flex justify-center items-center py-2">
-        <div className="join ">
-          <input
-            className="join-item btn btn-square"
-            type="radio"
-            name="options"
-            aria-label="1"
-            defaultChecked
-          />
-          <input
-            className="join-item btn btn-square"
-            type="radio"
-            name="options"
-            aria-label="2"
-          />
-          <input
-            className="join-item btn btn-square"
-            type="radio"
-            name="options"
-            aria-label="3"
-          />
-          <input
-            className="join-item btn btn-square"
-            type="radio"
-            name="options"
-            aria-label="4"
-          />
-        </div>
-      </div>
+      {currentUserId && (
+        <dialog
+          id="my_modal_5"
+          className="modal modal-bottom sm:modal-middle"
+          open
+        >
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Delete User</h3>
+            <p className="py-4">Are you sure you want to delete this user?</p>
+            <div className="modal-action">
+              <button
+                className="btn mr-3"
+                onClick={() => handleDeleteUser(currentUserId)}
+              >
+                Delete
+              </button>
+              <button className="btn" onClick={() => setCurrentUserId(null)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </dialog>
+      )}
     </div>
   );
 };

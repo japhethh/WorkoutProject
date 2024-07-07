@@ -3,7 +3,7 @@ import Nav from './components/Nav'
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { Sidebar } from './components/Sidebar';
-import SidebarMobile  from './components/SidebarMobile';
+import SidebarMobile from './components/SidebarMobile';
 import Users from './components/Users';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,8 +22,8 @@ const App = () => {
     <div className="container mx-auto  flex">
       <ToastContainer />
 
-      <Sidebar  expand={expand} setExpand={setExpand} />
-      <SidebarMobile/>
+      <Sidebar expand={expand} setExpand={setExpand} />
+      <SidebarMobile />
       <div className="h-screen flex-1">
         <Nav expand={expand} setExpand={setExpand} />
         <Routes>

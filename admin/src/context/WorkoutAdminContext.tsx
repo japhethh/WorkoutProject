@@ -13,7 +13,8 @@ interface WorkoutContextValue {
   token: string | null;
   setToken: (value: any | null) => void;
   userInfo: StateType;
-  dispatch: Dispatch<ActionType>
+  dispatch: Dispatch<ActionType>;
+  handleDeleteUser: (userId: string) => Promise<void>
 }
 
 interface Props {
@@ -89,6 +90,24 @@ const WorkoutAdminContextProvider: FC<Props> = ({ children }) => {
     }
   };
 
+  const handleDeleteUser = async (userId: string): Promise<void> => {
+    try {
+      const response = await axios.post(`${apiURL}/api/admin/delete`, { userId });
+      if (response.data.success) {
+        getAllUser();
+        toast.success("Deleted Successfully")
+      }
+
+    } catch (error: any) {
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        console.error("FUCK WHY IS THIS NOT WORKING!!!");
+      }
+
+    }
+  }
+
 
   // const getAll = async () => {
   //   try {
@@ -130,6 +149,7 @@ const WorkoutAdminContextProvider: FC<Props> = ({ children }) => {
     setData,
     getAllUser,
     // handleDelete,
+    handleDeleteUser,
     token,
     setToken,
     userInfo,
