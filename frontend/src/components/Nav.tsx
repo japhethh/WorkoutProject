@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import DefaultLogo from '../assets/defaultLogo.png'
 import Announcement from './Announcement'
+
 interface Dark {
   setDarkMode: (value: string) => void;
   darkMode: string;
@@ -90,7 +91,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={userInfo.user && userInfo.user.image ? userInfo.user.image : DefaultLogo}
+                    src={ userInfo.user && userInfo.user.image ? userInfo.user.image : DefaultLogo}
                   />
                 </div>
               </div>

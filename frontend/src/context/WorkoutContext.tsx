@@ -30,6 +30,8 @@ interface Item {
 
 interface Data {
   userName: string;
+  image:string;
+  email:string;
   exercises: Item[];
 }
 
@@ -91,7 +93,7 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
       });
       setData(response.data.data);
       dispatch({ type: "GET_USER", payload: response.data.data });
-      // console.log(response.data.data);
+      console.log(response.data.data);
     } catch (error) {
       console.log(error);
     }
