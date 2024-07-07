@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import BarChart from '../charts/BarChart';
 import LineChart from '../charts/LineChart';
 import Pie from '../charts/Pie';
 import { UserData } from '../context/index';
-
+import { WorkoutAdminContext } from '../context/WorkoutAdminContext';
 interface Data {
   labels: number[];
   datasets: {
@@ -14,6 +14,13 @@ interface Data {
 }
 
 const Home = () => {
+
+  const context = useContext(WorkoutAdminContext);
+  if (!context) {
+    return null;
+  }
+  const { userInfo } = context;
+
   const [userData, setUserData] = useState<Data>({
     labels: [],
     datasets: [{
@@ -82,7 +89,10 @@ const Home = () => {
             </svg>
           </div>
           <div className="stat-title">New Users</div>
-          <div className="stat-value">4,200</div>
+          <div className="stat-value">
+            {
+              userInfo.user && userInfo.user.length
+            }</div>
           <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
 
@@ -101,7 +111,11 @@ const Home = () => {
             </svg>
           </div>
           <div className="stat-title">New Registers</div>
-          <div className="stat-value">1,200</div>
+          <div className="stat-value">
+            {
+              userInfo.user && userInfo.user.length
+            }
+          </div>
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>

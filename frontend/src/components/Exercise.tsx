@@ -45,7 +45,6 @@ const Exercise = ({ darkMode }: Dark) => {
         </div>
         <div className="skeleton h-6 w-20 mb-2 bg-background"></div>
         <div className="skeleton h-6 w-20 bg-background"></div>
-
       </div>
     )
   }
@@ -56,7 +55,7 @@ const Exercise = ({ darkMode }: Dark) => {
         {data.exercises.length === 0 ? (
           <>
             <div className="text-center text-paragraph flex justify-center items-center h-64 w-full">
-                No exercises available💪
+                No exercises available
             </div>
           </>
         )

@@ -6,6 +6,7 @@ import userRouter from "./routes/userRoute.js";
 import testingRoute from "./routes/testingRoute.js";
 import adminRouter from './routes/adminRoute.js'
 import "dotenv/config";
+import announcementRouter from "./routes/announcementRoute.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -23,6 +24,7 @@ app.use("/api/workout", workoutRouter);
 app.use("/images", express.static("uploads"));
 app.use("/api/user", userRouter); 
 app.use("/api/admin", adminRouter);
+app.use("/api/admin/announcement", announcementRouter);
 
 // app.use("/api/user", testingRoute);
 

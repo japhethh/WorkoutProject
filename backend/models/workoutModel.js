@@ -39,7 +39,7 @@ const workoutscheme = new mongoose.Schema({
   ]
 
 
-});
+},{timestamps: true});
 
 const workoutModel = mongoose.model("Workout",workoutscheme);
 
