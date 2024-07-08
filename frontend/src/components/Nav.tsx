@@ -100,7 +100,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <div className="modal-box w-11/12 h-96 max-w-5xl bg-background flex flex-col justify-between">
                     <div>
                       <h3 className="font-bold text-lg text-headline text-center">Announcement</h3>
-                      <p className="py-4 text-paragraph">{modalData.body}</p>
+                      <p className="py-4 text-paragraph text-lg">{modalData.body}</p>
                     </div>
                     <div className="modal-action flex justify-end">
                       <form method="dialog">
@@ -125,8 +125,8 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                         className=""
                         onClick={() => announceModel(annc.footer, annc.body)}
                       >
-                        <div className="block py-4">
-                          <div className="flex justify-between pb-1 text-wrap text-headline font-semibold text-md ">
+                        <div className="block py-4 bg-background border border-paragraph">
+                          <div className="flex justify-between pb-1 text-wrap text-headline font-medium text-md ">
                             {/* <div className="flex justify-center items-center px-2">
                             <MdOutlineTipsAndUpdates className="text-xl text-green-500" />
                             </div> */}
