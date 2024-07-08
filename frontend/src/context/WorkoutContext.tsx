@@ -30,8 +30,8 @@ interface Item {
 
 interface Data {
   userName: string;
-  image:string;
-  email:string;
+  image: string;
+  email: string;
   exercises: Item[];
 }
 
@@ -69,6 +69,7 @@ const reduce = (state: StateType, action: ActionType) => {
   }
 }
 
+
 const WorkoutContextProvider: FC<Props> = ({ children }) => {
   // const URL = "https://workout-project-api.vercel.app";
   //const URL = "http://localhost:4000";
@@ -80,6 +81,7 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   useEffect(() => {
     if (token) {
       getAll();
+      getAllAnnouncement();
       console.log(userInfo.announcement);
     }
   }, [token]);
@@ -116,9 +118,9 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   const getAllAnnouncement = async () => {
     try {
       const response = await axios.get(`${apiURL}/api/admin/announcement/getAllAnnouncement`);
-      if (response.data.success) {
-        dispatch({ type: "GET_ANNOUNCEMENT", payload: response.data.data })
-      }
+
+      dispatch({ type: "GET_ANNOUNCEMENT", payload: response.data.data })
+      // console.log("hahhhdhafh")
     } catch (error: any) {
       if (error.response && error.response.data && error.response.data.message) {
         toast.error(error.response.data.message);

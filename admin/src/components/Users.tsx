@@ -120,30 +120,42 @@ const Users: React.FC = () => {
                 <td>{user._id}</td>
                 <th>
                   <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="btn btn-ghost btn-sm bg-gray-100 rounded-full ">details</label>
+                    {
+                      user.exercises.length === 0
+                        ?
+                        (
+                          <label tabIndex={0} className="btn btn-ghost btn-sm bg-gray-100 rounded-full ">details</label>
+                        ) :
+                        (
+                          <div className="indicator">
+                            <span className="indicator-item badge badge-primary"></span>
+                            <label tabIndex={0} className="btn btn-ghost btn-sm bg-gray-100 rounded-full ">details</label>
+                          </div>
+                        )
+                    }
                     <ul
                       tabIndex={0}
-                      className={`dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow ${user.exercises.length === 0 ? "h-32" : "overflow-y-auto "
-                        }`}
+                      className={`dropdown-content bg-white rounded-lg z-[10] mt-3 w-52 p-2 shadow ${user.exercises.length === 0 ? "h-32" : "overflow-y-auto max-h-72"}`}
                     >
                       {user.exercises.length === 0 ? (
                         <div className="flex justify-center items-center h-24">
-                          <h1>Empty</h1>
+                          <h1 className="text-gray-500">Empty</h1>
                         </div>
                       ) : (
                         user.exercises.map((exercise: Item, index: number) => (
-                          <li key={index} className="p-2">
-                            <h1>Name: {exercise.name}</h1>
-                            <h1>
-                              Set: <span className="text-red-400">{exercise.set}</span>
+                          <li key={index} className="p-2 border-b border-gray-200">
+                            <h1 className="text-gray-800">Name: {exercise.name}</h1>
+                            <h1 className="text-gray-600">
+                              Set: <span className="text-blue-500">{exercise.set}</span>
                             </h1>
-                            <h1 className="text-paragraph">
-                              Rep: <span className="text-red-400">{exercise.rep}</span>
+                            <h1 className="text-gray-600">
+                              Rep: <span className="text-blue-500">{exercise.rep}</span>
                             </h1>
                           </li>
                         ))
                       )}
                     </ul>
+
                   </div>
                 </th>
                 <td>
@@ -170,7 +182,7 @@ const Users: React.FC = () => {
             </tr>
           </tfoot>
         </table>
-      </div>
+      </div >
       {currentUserId && (
         <dialog
           id="my_modal_5"
@@ -194,7 +206,7 @@ const Users: React.FC = () => {
           </div>
         </dialog>
       )}
-    </div>
+    </div >
   );
 };
 
