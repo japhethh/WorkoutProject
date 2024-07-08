@@ -62,10 +62,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
-        </Routes> 
-
-        
-
+        </Routes>
         <Footer darkMode={darkMode} />
 
       </div>

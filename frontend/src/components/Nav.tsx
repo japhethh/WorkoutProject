@@ -31,6 +31,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
     localStorage.removeItem("token");
     sessionStorage.removeItem("profileData");
     window.location.href = "/login";
+    // window.location.reload();
   };
 
   const handleDarkModeToggle = () => {
@@ -180,7 +181,8 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <a>Settings</a>
                 </li>
                 <li>
-                  <a onClick={handleLogout}>Logout</a>
+                  <Link onClick={handleLogout}>Logout</Link>
+                  {/* <Link to="/login" onClick={handleLogout} > Logout</Link> */}
                 </li>
               </ul>
             </div>
