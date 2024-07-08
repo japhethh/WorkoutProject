@@ -181,7 +181,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <a>Settings</a>
                 </li>
                 <li>
-                  <Link onClick={handleLogout}>Logout</Link>
+                  <button type="button" onClick={handleLogout}>Logout</button>
                   {/* <Link to="/login" onClick={handleLogout} > Logout</Link> */}
                 </li>
               </ul>
