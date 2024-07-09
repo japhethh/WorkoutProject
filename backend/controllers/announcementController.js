@@ -33,4 +33,21 @@ const newAnnouncement = async (req, res) => {
   }
 };
 
-export { newAnnouncement, getAllAnnouncement };
+
+const deleteAnnouncement = async (req, res) => {
+  const { userId } = req.body; // Retrieve userId from request body
+
+  try {
+    const announcement = await announcementModel.findByIdAndDelete(userId);
+    if (!announcement) {
+      return res.status(404).json({ success: false, message: "Announcement not found" });
+    }
+    res.status(200).json({ success: true, message: "Delete Successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Error deleting announcement" });
+  }
+};
+
+
+export { newAnnouncement, getAllAnnouncement, deleteAnnouncement };

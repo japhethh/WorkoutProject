@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 // import SidebarMobile from './components/SidebarMobile';
 import Users from './components/Users';
+import ListAnnouncement from './components/ListAnnouncement';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/users" element={<Users />} />
           <Route path="/announcement" element={<AddAnnouncement />} />
+          <Route path="/listannouncement" element={<ListAnnouncement />} />
         </Routes>
       </div>
     </div>

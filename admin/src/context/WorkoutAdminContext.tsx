@@ -15,6 +15,7 @@ interface WorkoutContextValue {
   userInfo: StateType;
   dispatch: Dispatch<ActionType>;
   handleDeleteUser: (userId: string) => Promise<void>
+  getAllAnnouncement: () => Promise<void>
 }
 
 interface Props {
@@ -35,12 +36,34 @@ interface Data {
   exercises: Item[];
 }
 
+interface Item {
+  name: string;
+  set: number;
+  rep: number;
+  _id: string;
+}
+
+interface Data {
+  userName: string;
+  image: string;
+  email: string;
+  exercises: Item[];
+}
+
+interface Announcement {
+  head: string;
+  body: string;
+  footer: string;
+}
+
+
 interface StateType {
-  user: any;
+  user: Data;
+  announcement: any;
 }
 
 interface ActionType {
-  type: "GET_USER",
+  type: "GET_USER" | "GET_ANNOUNCEMENT",
   payload: any;
 }
 
@@ -50,6 +73,11 @@ const reduce = (state: StateType, action: ActionType) => {
       return {
         ...state,
         user: action.payload,
+      }
+    case "GET_ANNOUNCEMENT":
+      return {
+        ...state,
+        announcement: action.payload,
       }
     default:
       return state;
@@ -61,13 +89,14 @@ const WorkoutAdminContextProvider: FC<Props> = ({ children }) => {
   // const apiURL = "http://localhost:4000";
   const apiURL = "https://workoutproject-api.onrender.com";
 
-  const [userInfo, dispatch] = useReducer(reduce, { user: null });
+  const [userInfo, dispatch] = useReducer(reduce, { user: null, announcement: null });
   const [data, setData] = useState<Data | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
   useEffect(() => {
     console.log(userInfo)
     getAllUser();
+    getAllAnnouncement();
   }, []);
 
 
@@ -105,6 +134,21 @@ const WorkoutAdminContextProvider: FC<Props> = ({ children }) => {
         console.error("FUCK WHY IS THIS NOT WORKING!!!");
       }
 
+    }
+  }
+
+  const getAllAnnouncement = async () => {
+    try {
+      const response = await axios.get(`${apiURL}/api/admin/announcement/getAllAnnouncement`);
+      if (response.data.success) {
+        toast.success(response.data.message);
+        dispatch({ type: "GET_ANNOUNCEMENT", payload: response.data.data });
+      }
+    } catch (error: any) {
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+        console.log(error.response.data.message);
+      }
     }
   }
 
@@ -153,7 +197,8 @@ const WorkoutAdminContextProvider: FC<Props> = ({ children }) => {
     token,
     setToken,
     userInfo,
-    dispatch
+    dispatch,
+    getAllAnnouncement
   };
 
   return (
