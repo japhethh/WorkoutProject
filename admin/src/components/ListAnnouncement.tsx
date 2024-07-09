@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import DefaultImage from "../assets/defaultLogo.png";
 import { WorkoutAdminContext } from "../context/WorkoutAdminContext";
 import axios from "axios";
@@ -19,6 +19,10 @@ const ListAnnouncement: React.FC = () => {
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<Set<string>>(new Set());
   const [currentAnnouncementId, setCurrentAnnouncementId] = useState<string | null>(null);
 
+  useEffect(() => {
+    console.log(currentAnnouncementId);
+  })
+
   if (!context) {
     return null;
   }
@@ -28,13 +32,18 @@ const ListAnnouncement: React.FC = () => {
   if (!data) {
     return <div>Loading...</div>;
   }
+
+
+
+
+
   const handleDeleteAnnouncement = async (userId: string) => {
     console.log("Deleting user with userId:", userId); // Log userId here
 
     try {
       const response = await axios.post(`${apiURL}/api/admin/announcement/deleteAnnouncement`, { userId });
       console.log("Delete response:", response); // Log response from API
-      getAllAnnouncement();
+
       toast.success(response.data.message);
       setCurrentAnnouncementId(null);
 
@@ -106,7 +115,7 @@ const ListAnnouncement: React.FC = () => {
                       </div>
                     </div> */}
                     <div>
-                      <div className="font-bold">{announce.head}</div>
+                      <div className="font-semibold">{announce.head}</div>
                     </div>
                   </div>
                 </td>
