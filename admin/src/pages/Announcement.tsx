@@ -38,15 +38,13 @@ const Announcement = () => {
     handleChange('body', value);  // Update the 'body' property with the HTML content
   }
 
-  const handleOnSubmit = async (event: React.FormEvent) => {
+  const handleOnSubmit = async (event: any) => {
     event.preventDefault();
     try {
       const response = await axios.post(`${apiURL}/api/admin/announcement/addAnnouncement`, { announceData });
-      if (response.data.success) {
-        toast.success(response.data.message)
-      }
+      toast.success(response.data.message)
     } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (error.response && error.response.data && error.response.data.message) { 
         toast.error(error.response.data.message);
         console.log(error.response.data.message);
       }
