@@ -16,6 +16,7 @@ interface Announcement {
 
 const ListAnnouncement: React.FC = () => {
   const context = useContext(WorkoutAdminContext);
+  
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<Set<string>>(new Set());
   const [currentAnnouncementId, setCurrentAnnouncementId] = useState<string | null>(null);
 
