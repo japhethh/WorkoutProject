@@ -22,19 +22,7 @@ interface Props {
   children: ReactNode;
 }
 
-interface Item {
-  name: string;
-  set: number;
-  rep: number;
-  _id: string;
-}
 
-interface Data {
-  userName: string;
-  email: string;
-  image: string;
-  exercises: Item[];
-}
 
 interface Item {
   name: string;
@@ -50,11 +38,6 @@ interface Data {
   exercises: Item[];
 }
 
-interface Announcement {
-  head: string;
-  body: string;
-  footer: string;
-}
 
 
 interface StateType {

@@ -4,6 +4,7 @@ import LineChart from '../charts/LineChart';
 import Pie from '../charts/Pie';
 import { UserData } from '../context/index';
 import { WorkoutAdminContext } from '../context/WorkoutAdminContext';
+
 interface Data {
   labels: number[];
   datasets: {
@@ -14,7 +15,6 @@ interface Data {
 }
 
 const Home = () => {
-
   const context = useContext(WorkoutAdminContext);
   if (!context) {
     return null;
@@ -54,8 +54,7 @@ const Home = () => {
 
   return (
     <div className="container mx-auto px-2 overflow-y-scroll h-5/6">
-
-      <div className="flex flex-col justify-center py-4 px-2 ">
+      <div className="flex flex-col justify-center py-4 px-2">
         <div className="stats w-full shadow">
           <div className="stat">
             <div className="stat-figure text-secondary">
@@ -92,9 +91,8 @@ const Home = () => {
             </div>
             <div className="stat-title">New Users</div>
             <div className="stat-value">
-              {
-                userInfo.user && userInfo.user.length
-              }</div>
+              {userInfo && userInfo.user && Array.isArray(userInfo.user) && userInfo.user.length}
+            </div>
             <div className="stat-desc">↗︎ 400 (22%)</div>
           </div>
 
@@ -114,9 +112,7 @@ const Home = () => {
             </div>
             <div className="stat-title">New Registers</div>
             <div className="stat-value">
-              {
-                userInfo.user && userInfo.user.length
-              }
+              {userInfo && userInfo.user && Array.isArray(userInfo.user) && userInfo.user.length}
             </div>
             <div className="stat-desc">↘︎ 90 (14%)</div>
           </div>

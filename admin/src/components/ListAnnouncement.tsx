@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import DefaultImage from "../assets/defaultLogo.png";
+// import DefaultImage from "../assets/defaultLogo.png";
 import { WorkoutAdminContext } from "../context/WorkoutAdminContext";
 import axios from "axios";
 import { RiDeleteBinFill } from "react-icons/ri";
