@@ -6,10 +6,12 @@ import { MdDashboard } from "react-icons/md";
 import { SiSimpleanalytics } from "react-icons/si";
 import { FaUser } from "react-icons/fa";
 import { MdOutlineInventory2 } from "react-icons/md";
-import { FaCubes } from "react-icons/fa";
+// import { FaCubes } from "react-icons/fa";
 import { LiaMoneyBillSolid } from "react-icons/lia";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineHelpOutline } from "react-icons/md";
+import { TfiAnnouncement } from "react-icons/tfi";
+
 // const SidebarContext = createContext();
 interface Expands {
   expand: boolean;
@@ -21,7 +23,7 @@ export const Sidebar = ({ expand }: Expands) => {
     { name: "Statistic", href: "/statistic", icon: <SiSimpleanalytics /> },
     { name: "Users", href: "/users", icon: <FaUser /> },
     { name: "Inventory", href: "/inventory", icon: <MdOutlineInventory2 /> },
-    { name: "Orders", href: "/orders", icon: <FaCubes /> },
+    { name: "Announcement", href: "/announcement", icon: <TfiAnnouncement /> },
     { name: "Billings", href: "/billings", icon: <LiaMoneyBillSolid /> },
     { name: "Settings", href: "/settings", icon: <IoSettingsOutline /> },
     { name: "Help", href: "/help", icon: <MdOutlineHelpOutline /> },
@@ -32,7 +34,7 @@ export const Sidebar = ({ expand }: Expands) => {
         className={`h-full flex flex-col bg-white border-r shadow-xl  overflow-hidden transition-all duration-700
         ${expand
             ? "w-16 max-md:w-0"
-            : "w-64 max-md:w-32" /* Change the width based on `expand` state */
+            : "w-64 max-md:w-48" /* Change the width based on `expand` state */
           }`}
       >
         <div className="p-4 pb-2 flex justify-center  items-center ">

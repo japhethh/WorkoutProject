@@ -67,8 +67,8 @@ const Users: React.FC = () => {
   const users: User[] = Array.isArray(data) ? data : [];
 
   return (
-    <div className=" ">
-      <div className="overflow-y-scroll h-[450px] w-full">
+    <div className="container mx-auto px-2 overflow-y-scroll h-5/6">
+      <div className="">
         <table className="table">
           <thead>
             <tr>
