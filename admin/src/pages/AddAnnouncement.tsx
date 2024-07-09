@@ -11,7 +11,7 @@ interface Data {
   footer: string;
 }
 
-const Announcement = () => {
+const AddAnnouncement = () => {
   const context = useContext(WorkoutAdminContext);
 
   if (!context) {
@@ -120,4 +120,4 @@ const Announcement = () => {
   );
 }
 
-export default Announcement;
+export default AddAnnouncement;

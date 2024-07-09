@@ -1,5 +1,5 @@
 import Home from './pages/Home'
-import Announcement from './pages/Announcement'
+import AddAnnouncement from './pages/AddAnnouncement'
 import Nav from './components/Nav'
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
@@ -30,7 +30,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/announcement" element={<Announcement />} />
+          <Route path="/announcement" element={<AddAnnouncement />} />
         </Routes>
       </div>
     </div>
