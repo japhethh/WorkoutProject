@@ -1,5 +1,4 @@
 import announcementModel from "../models/announcementModel.js";
- 
 
 // GET THE ALL ANNOUNCEMENT
 const getAllAnnouncement = async (req, res) => {
@@ -17,9 +16,9 @@ const newAnnouncement = async (req, res) => {
 
   try {
     const bago = new announcementModel({
-      head,
-      body,
-      footer,
+      head: head,
+      body: body,
+      footer: footer,
     });
 
     await bago.save();
