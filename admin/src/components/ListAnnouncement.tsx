@@ -27,7 +27,7 @@ const ListAnnouncement: React.FC = () => {
     return null;
   }
 
-  const { data, apiURL, userInfo, getAllAnnouncement } = context;
+  const { data, apiURL, userInfo } = context;
 
   if (!data) {
     return <div>Loading...</div>;
