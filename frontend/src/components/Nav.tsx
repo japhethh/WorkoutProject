@@ -98,18 +98,21 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   } bottom-[-390px] left-[-240px] max-md:left-[-200px] menu menu-sm dropdown-content  rounded-box z-[1] mt-3  p-2 shadow `}
               >
                 <dialog id="my_modal_4" className="modal">
-                  <div className="modal-box w-11/12 h-96 max-w-5xl bg-background flex flex-col justify-between">
-                    <div>
-                      <h3 className="font-bold text-lg text-headline text-center">Announcement</h3>
-                      <p className="py-4 text-paragraph text-lg">{modalData.body}</p>
+                  <div className="modal-box w-11/12 h-96 max-w-5xl bg-background flex flex-col">
+                    <h3 className="font-bold text-lg text-headline text-center py-0">Announcement</h3>
+                    <div className="flex-1 overflow-y-auto border-t-[2px] border-b-[2px] border-gray-200 ">
+                      <p className="text-paragraph text-md break-words px-4 py-2" dangerouslySetInnerHTML={{ __html: modalData.body }}></p>
                     </div>
-                    <div className="modal-action flex justify-end">
+                    <div className="modal-action flex justify-end py-0">
                       <form method="dialog">
                         <button className="btn">Close</button>
                       </form>
+
                     </div>
                   </div>
                 </dialog>
+
+
 
                 <div className="py-2">
                   <h1 className="text-xl text-paragraph font-semibold text-center">

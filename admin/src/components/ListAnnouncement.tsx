@@ -16,7 +16,7 @@ interface Announcement {
 
 const ListAnnouncement: React.FC = () => {
   const context = useContext(WorkoutAdminContext);
-  
+
   const [selectedAnnouncement, setSelectedAnnouncement] = useState<Set<string>>(new Set());
   const [currentAnnouncementId, setCurrentAnnouncementId] = useState<string | null>(null);
 
@@ -28,7 +28,7 @@ const ListAnnouncement: React.FC = () => {
     return null;
   }
 
-  const { data, apiURL, userInfo } = context;
+  const { data, apiURL, userInfo, getAllAnnouncement } = context;
 
   if (!data) {
     return <div>Loading...</div>;
@@ -44,12 +44,13 @@ const ListAnnouncement: React.FC = () => {
     try {
       const response = await axios.post(`${apiURL}/api/admin/announcement/deleteAnnouncement`, { userId });
       console.log("Delete response:", response); // Log response from API
-
+      getAllAnnouncement();
       toast.success(response.data.message);
       setCurrentAnnouncementId(null);
 
     } catch (error: any) {
       if (error.response && error.response.data && error.response.data.message) {
+
         toast.error(error.response.data.message);
         console.error("API Error:", error.response.data.message);
       } else {
