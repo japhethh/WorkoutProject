@@ -17,6 +17,7 @@ interface Item {
   name: string;
   set: number;
   rep: number;
+  focusArea: string;
 }
 
 const Users: React.FC = () => {
@@ -149,6 +150,7 @@ const Users: React.FC = () => {
                       ) : (
                         user.exercises.map((exercise: Item, index: number) => (
                           <li key={index} className="p-2 border-b border-gray-200">
+                            <h1 className="text-gray-800">Focus Area: {exercise.focusArea}</h1>
                             <h1 className="text-gray-800">Name: {exercise.name}</h1>
                             <h1 className="text-gray-600">
                               Set: <span className="text-blue-500">{exercise.set}</span>
