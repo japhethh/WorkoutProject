@@ -5,8 +5,8 @@ import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
 interface Data {
   name: string;
-  set: number;
-  rep: number;
+  set: string;
+  rep: string;
   focusArea: string;
 }
 
@@ -23,8 +23,8 @@ const AddExercise = ({ darkMode }: Dark) => {
 
   const [info, setInfo] = useState<Data>({
     name: "",
-    set: 0,
-    rep: 0,
+    set: "",
+    rep: "",
     focusArea: "",
   });
 
@@ -45,7 +45,7 @@ const AddExercise = ({ darkMode }: Dark) => {
     try {
       const response = await axios.post(`${apiURL}/api/workout/add`, info, { headers: { token } });
       getAll();
-      setInfo({ name: "", set: 0, rep: 0, focusArea: "" });
+      setInfo({ name: "", set: "", rep: "", focusArea: "" });
       toast.success(response.data.message);
     } catch (err) {
       console.log("Error adding exercise");
@@ -78,6 +78,7 @@ const AddExercise = ({ darkMode }: Dark) => {
           name="focusArea"
           onChange={onHandleChanges}
           value={info.focusArea}
+          required
         >
           <option className='text-paragraph' disabled value="">
             Focus Area?

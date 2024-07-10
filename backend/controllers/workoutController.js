@@ -2,6 +2,10 @@ import workoutModel from "../models/workoutModel.js";
 
 const addWorkout = async (req, res) => {
   const { focusArea, name, set, rep, userId } = req.body;
+
+  const parseSet = parseInt(set);
+  const parseRep = parseInt(rep);
+
   try {
     const user = await workoutModel.findById(userId);
     if (!user) {
@@ -12,8 +16,8 @@ const addWorkout = async (req, res) => {
 
     const newExercise = {
       name: name,
-      set: set,
-      rep: rep,
+      set: parseSet,
+      rep: parseRep,
       focusArea: focusArea,
     };
 
