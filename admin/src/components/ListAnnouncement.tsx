@@ -4,6 +4,8 @@ import { WorkoutAdminContext } from "../context/WorkoutAdminContext";
 import axios from "axios";
 import { RiDeleteBinFill } from "react-icons/ri";
 import { toast } from "react-toastify";
+import { IoAddSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 
 interface Announcement {
@@ -45,7 +47,7 @@ const ListAnnouncement: React.FC = () => {
       const response = await axios.post(`${apiURL}/api/admin/announcement/deleteAnnouncement`, { userId });
       console.log("Delete response:", response); // Log response from API
       getAllAnnouncement();
-      toast.success(response.data.message);
+      toast.error(response.data.message);
       setCurrentAnnouncementId(null);
 
     } catch (error: any) {
@@ -79,6 +81,16 @@ const ListAnnouncement: React.FC = () => {
 
   return (
     <div className="container mx-auto px-2 overflow-y-scroll h-5/6">
+    
+      <div className="flex justify-between items-center">
+        <h1 className="font-bold text-4xl px-3 py-2">
+          List Announcement
+        </h1>
+        <Link to="/add-announcement" className="btn rounded-full font-bold flex justify-center items-center">
+          <IoAddSharp className=" font-bold" />
+          New Announcement
+        </Link>
+      </div>
       <div className="">
         <table className="table">
           <thead>

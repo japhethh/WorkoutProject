@@ -68,6 +68,11 @@ const Users: React.FC = () => {
 
   return (
     <div className="container mx-auto px-2 overflow-y-scroll h-5/6">
+      <div>
+        <h1 className="font-bold text-4xl px-3 py-2">
+          Users
+        </h1>
+      </div>
       <div className="">
         <table className="table">
           <thead>

@@ -53,8 +53,13 @@ const Home = () => {
   }, [UserData]); // Update userData whenever UserData context changes
 
   return (
-    <div className="container mx-auto px-2 overflow-y-scroll h-5/6">
-      <div className="flex flex-col justify-center py-4 px-2">
+    <div className="container mx-auto px-3 py-2 overflow-y-scroll h-5/6 ">
+      <div>
+        <h1 className="font-bold text-4xl">
+          Announcement
+        </h1>
+      </div>
+      <div className="flex flex-col justify-center py-4 ">
         <div className="stats w-full shadow">
           <div className="stat">
             <div className="stat-figure text-secondary">

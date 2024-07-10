@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css'; // Import the styles
 import { WorkoutAdminContext } from '../context/WorkoutAdminContext';
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 interface Data {
   head: string;
@@ -18,7 +19,7 @@ const AddAnnouncement = () => {
     return null;
   }
 
-  const { apiURL } = context;
+  const { apiURL, getAllAnnouncement } = context;
 
   const [announceData, setAnnounceData] = useState<Data>({
     head: "",
@@ -44,6 +45,7 @@ const AddAnnouncement = () => {
     try {
       const response = await axios.post(`${apiURL}/api/admin/announcement/addAnnouncement`, announceData);
       if (response.data.success) {
+        getAllAnnouncement();
         toast.success(response.data.message);
         setAnnounceData({ head: "", body: "", footer: "" }); // Clear form fields after successful submission
       }
@@ -56,49 +58,61 @@ const AddAnnouncement = () => {
   }
 
   return (
-    <div className="container mx-auto px-2 overflow-y-scroll h-5/6">
+    <div className="container mx-auto  px-3 py-2 overflow-y-scroll h-5/6">
+      <div className="breadcrumbs text-sm">
+        <ul>
+          <li ><Link to="/listannouncement" >List</Link></li>
+          <li>Add Announcement</li>
+        </ul>
+      </div>
       <div>
-        <h1 className="font-bold text-4xl py-5">
+        <h1 className="font-bold text-4xl">
           Announcement
         </h1>
       </div>
       <form onSubmit={handleOnSubmit} className="">
-        <label className="form-control w-full max-w-xs mb-3">
-          <div className="label mt-5">
-            <span className="label-text">Enter your Title</span>
-          </div>
-          <input
-            type="text"
-            className="input input-bordered w-full max-w-xs"
-            value={announceData.head}
-            name="head"
-            onChange={handleChange}
-            placeholder="Heading..."
-          />
-        </label>
+        <div className="flex gap-2 items-center">
+
+          <label className="form-control w-full max-w-xs ">
+            <div className="label mt-5">
+              <span className="label-text">Enter your Title <span className="text-red-500">*</span></span>
+            </div>
+            <input
+              type="text"
+              className="input input-bordered w-full max-w-xs"
+              value={announceData.head}
+              name="head"
+              onChange={handleChange}
+              placeholder="Heading..."
+              required
+            />
+          </label>
+          <label className="form-control w-full max-w-xs ">
+            <div className="label mt-5">
+              <span className="label-text">Enter your Footer</span>
+            </div>
+            <input
+              type="text"
+              className="input input-bordered w-full max-w-xs"
+              value={announceData.footer}
+              name="footer"
+              onChange={handleChange}
+              placeholder="Footer..."
+            />
+          </label>
+        </div>
 
         <ReactQuill
           className="w-full h-64 my-5 rounded-md py-5"
           value={announceData.body}
           onChange={handleQuillChange}
           placeholder="Type here..."
+
         />
 
-        <label className="form-control w-full max-w-xs mb-3">
-          <div className="label mt-5">
-            <span className="label-text">Enter your Footer</span>
-          </div>
-          <input
-            type="text"
-            className="input input-bordered w-full max-w-xs"
-            value={announceData.footer}
-            name="footer"
-            onChange={handleChange}
-            placeholder="Footer..."
-          />
-        </label>
 
-        <button className="btn" type="submit">
+
+        <button className="btn my-2 mb-5" type="submit">
           Button
           <svg
             xmlns="http://www.w3.org/2000/svg"

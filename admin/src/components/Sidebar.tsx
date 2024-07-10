@@ -23,7 +23,7 @@ export const Sidebar = ({ expand }: Expands) => {
     { name: "Statistic", href: "/statistic", icon: <SiSimpleanalytics /> },
     { name: "Users", href: "/users", icon: <FaUser /> },
     { name: "Inventory", href: "/inventory", icon: <MdOutlineInventory2 /> },
-    { name: "Announcement", href: "/announcement", icon: <TfiAnnouncement /> },
+    { name: "Announcement", href: "/listannouncement", icon: <TfiAnnouncement /> },
     { name: "Billings", href: "/billings", icon: <LiaMoneyBillSolid /> },
     { name: "Settings", href: "/settings", icon: <IoSettingsOutline /> },
     { name: "Help", href: "/help", icon: <MdOutlineHelpOutline /> },
