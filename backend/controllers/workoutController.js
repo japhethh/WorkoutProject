@@ -10,7 +10,13 @@ const addWorkout = async (req, res) => {
         .json({ success: false, message: "Work out not found" });
     }
 
-    const newExercise = { name, set, rep, focusArea };
+    const newExercise = {
+      name: name,
+      set: set,
+      rep: rep,
+      focusArea: focusArea,
+    };
+
     user.exercises.push(newExercise);
 
     await user.save();
