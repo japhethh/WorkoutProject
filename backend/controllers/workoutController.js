@@ -1,14 +1,14 @@
 import workoutModel from "../models/workoutModel.js";
 
 const addWorkout = async (req, res) => {
-  const { name, set, rep, userId } = req.body;
+  const { focusArea,name, set, rep, userId } = req.body;
   try {
     const user = await workoutModel.findById(userId);
     if (!user) {
       return res.status(400).json({ success: false, message: "Work out not found" });
     }
 
-    const newExercise = { name, set, rep };
+    const newExercise = { focusArea,name, set, rep };
     user.exercises.push(newExercise);
 
     await user.save();
@@ -35,7 +35,7 @@ const getWorkout = async (req, res) => {
 
 const updateWorkout = async (req, res) => {
   const { id, exerciseId } = req.params;
-  const { name, set, rep } = req.body;
+  const { name, set, rep,focusArea } = req.body;
   try {
     const user = await workoutModel.findById(id);
     if (!user) {
@@ -50,6 +50,7 @@ const updateWorkout = async (req, res) => {
     if (name) exercise.name = name;
     if (set) exercise.set = set;
     if (rep) exercise.rep = rep;
+    if (focusArea) exercise.focusArea = focusArea;
 
     await user.save();
     res.status(200).json({ success: true, message: "Exercise updated successfully", updatedExercise: exercise });

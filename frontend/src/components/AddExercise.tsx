@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
@@ -7,6 +7,7 @@ interface Data {
   name: string;
   set: any;
   rep: any;
+  focusArea: string;
 }
 
 interface Dark {
@@ -24,8 +25,13 @@ const AddExercise = ({ darkMode }: Dark) => {
     name: "",
     set: null,
     rep: null,
+    focusArea: "",
   });
 
+
+  useEffect(() => {
+    console.log(info);
+  })
 
   // Handiling the onChange in inputs
   const onHandleChanges = async (event: any) => {
@@ -40,11 +46,11 @@ const AddExercise = ({ darkMode }: Dark) => {
     try {
       const response = await axios.post(`${apiURL}/api/workout/add`, info, { headers: { token } });
       getAll();
-      setInfo({ name: "", set: 0, rep: 0 });
+      setInfo({ name: "", set: 0, rep: 0, focusArea: "" });
       toast.success(response.data.message);
     } catch (err) {
       console.log("Error adding exercise");
-    } 
+    }
   };
 
   if (!data) {
@@ -61,12 +67,25 @@ const AddExercise = ({ darkMode }: Dark) => {
     );
   }
 
+
+
+
   return (
     <div className="">
       <form onSubmit={handleAdd}>
         <div>
           <h1 className={`font-semibold text-md text-paragraph`}>Add a New Workout</h1>
         </div>
+
+        <select className="select select-bordered bg-background text-paragraph w-full max-w-xs"  name="focusArea" onChange={onHandleChanges}>
+          <option className='text-paragraph' disabled selected>Focus Area?</option>
+          <option value="ARM" >ARM</option>
+          <option value="BACK" >BACK</option>
+          <option value="CHEST" >CHEST</option>
+          <option value="SHOULDER" >SHOULDER</option>
+          <option value="LEGS">LEGS</option>
+        </select>
+
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
             <span className="label-text text-paragraph">Exercise Name:</span>

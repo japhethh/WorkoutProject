@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 // import Navbar from "./components/Navbar";
 import Nav from "./components/Nav";
+import WorkoutComponent from "./components/WorkoutComponent";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Footer from "./pages/Footer";
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/test" element={<WorkoutComponent />} />
         </Routes>
         <Footer darkMode={darkMode} />
 
