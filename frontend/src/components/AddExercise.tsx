@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { toast } from 'react-toastify';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
 interface Data {
-  focusArea: string;
   name: string;
   set: any;
   rep: any;
@@ -22,16 +21,11 @@ const AddExercise = ({ darkMode }: Dark) => {
   const { apiURL, getAll, token, data } = context;
 
   const [info, setInfo] = useState<Data>({
-    focusArea: "",
     name: "",
     set: null,
     rep: null,
   });
 
-
-  useEffect(() => {
-    console.log(info);
-  })
 
   // Handiling the onChange in inputs
   const onHandleChanges = async (event: any) => {
@@ -46,14 +40,10 @@ const AddExercise = ({ darkMode }: Dark) => {
     try {
       const response = await axios.post(`${apiURL}/api/workout/add`, info, { headers: { token } });
       getAll();
-      setInfo({ name: "", set: 0, rep: 0, focusArea: "" });
+      setInfo({ name: "", set: 0, rep: 0 });
       toast.success(response.data.message);
-    } catch (err: any) {
-      if (err && err.response && err.response.data && err.response.data.message) {
-        toast.error(err.response.data.message);
-      } else {
-        console.log("Fuckkkkkk");
-      }
+    } catch (err) {
+      console.log("Error adding exercise");
     }
   };
 
@@ -71,25 +61,12 @@ const AddExercise = ({ darkMode }: Dark) => {
     );
   }
 
-
-
-
   return (
     <div className="">
       <form onSubmit={handleAdd}>
         <div>
           <h1 className={`font-semibold text-md text-paragraph`}>Add a New Workout</h1>
         </div>
-
-        <select className="select select-bordered bg-background text-paragraph w-full max-w-xs" name="focusArea" onChange={onHandleChanges} value={info.focusArea}>
-          <option className='text-paragraph' disabled selected>Focus Area?</option>
-          <option value="ARM" >ARM</option>
-          <option value="BACK" >BACK</option>
-          <option value="CHEST" >CHEST</option>
-          <option value="SHOULDER" >SHOULDER</option>
-          <option value="LEGS">LEGS</option>
-        </select>
-
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
             <span className="label-text text-paragraph">Exercise Name:</span>
