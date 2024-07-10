@@ -48,8 +48,12 @@ const AddExercise = ({ darkMode }: Dark) => {
       getAll();
       setInfo({ name: "", set: 0, rep: 0, focusArea: "" });
       toast.success(response.data.message);
-    } catch (err) {
-      console.log("Error adding exercise");
+    } catch (err: any) {
+      if (err && err.response && err.response.data && err.response.data.message) {
+        toast.error(err.response.data.message);
+      } else {
+        console.log("Fuckkkkkk");
+      }
     }
   };
 
@@ -77,7 +81,7 @@ const AddExercise = ({ darkMode }: Dark) => {
           <h1 className={`font-semibold text-md text-paragraph`}>Add a New Workout</h1>
         </div>
 
-        <select className="select select-bordered bg-background text-paragraph w-full max-w-xs"  name="focusArea" onChange={onHandleChanges}>
+        <select className="select select-bordered bg-background text-paragraph w-full max-w-xs" name="focusArea" onChange={onHandleChanges}>
           <option className='text-paragraph' disabled selected>Focus Area?</option>
           <option value="ARM" >ARM</option>
           <option value="BACK" >BACK</option>
