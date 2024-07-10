@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
 interface Data {
+  focusArea: string;
   name: string;
   set: any;
   rep: any;
-  focusArea: string;
 }
 
 interface Dark {
@@ -22,10 +22,10 @@ const AddExercise = ({ darkMode }: Dark) => {
   const { apiURL, getAll, token, data } = context;
 
   const [info, setInfo] = useState<Data>({
+    focusArea: "",
     name: "",
     set: null,
     rep: null,
-    focusArea: "",
   });
 
 
@@ -81,7 +81,7 @@ const AddExercise = ({ darkMode }: Dark) => {
           <h1 className={`font-semibold text-md text-paragraph`}>Add a New Workout</h1>
         </div>
 
-        <select className="select select-bordered bg-background text-paragraph w-full max-w-xs" name="focusArea" onChange={onHandleChanges}>
+        <select className="select select-bordered bg-background text-paragraph w-full max-w-xs" name="focusArea" onChange={onHandleChanges} value={info.focusArea}>
           <option className='text-paragraph' disabled selected>Focus Area?</option>
           <option value="ARM" >ARM</option>
           <option value="BACK" >BACK</option>
