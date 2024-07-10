@@ -5,8 +5,8 @@ import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
 interface Data {
   name: string;
-  set: any;
-  rep: any;
+  set: number;
+  rep: number;
   focusArea: string;
 }
 
@@ -23,8 +23,8 @@ const AddExercise = ({ darkMode }: Dark) => {
 
   const [info, setInfo] = useState<Data>({
     name: "",
-    set: null,
-    rep: null,
+    set: 0,
+    rep: 0,
     focusArea: "",
   });
 
