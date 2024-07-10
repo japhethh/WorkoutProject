@@ -37,7 +37,7 @@ const workoutscheme = new mongoose.Schema(
         },
         focusArea: {
           type: String,
-          required: true,
+          // required: true,
         },
         
       },
