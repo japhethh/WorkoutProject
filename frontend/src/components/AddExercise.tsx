@@ -25,12 +25,12 @@ const AddExercise = ({ darkMode }: Dark) => {
     name: "",
     set: null,
     rep: null,
-    focusArea: "fuckkkkkk",
+    focusArea: "",
   });
 
   useEffect(() => {
     console.log(info)
-  })
+  }, [info])
 
   // Handiling the onChange in inputs
   const onHandleChanges = async (event: any) => {
@@ -72,6 +72,22 @@ const AddExercise = ({ darkMode }: Dark) => {
         <div>
           <h1 className={`font-semibold text-md text-paragraph`}>Add a New Workout</h1>
         </div>
+
+        <select
+          className="select select-bordered bg-background text-paragraph w-full max-w-xs"
+          name="focusArea"
+          onChange={onHandleChanges}
+          value={info.focusArea}
+        >
+          <option className='text-paragraph' disabled value="">
+            Focus Area?
+          </option>
+          <option value="ARM">ARM</option>
+          <option value="BACK">BACK</option>
+          <option value="CHEST">CHEST</option>
+          <option value="SHOULDER">SHOULDER</option>
+          <option value="LEGS">LEGS</option>
+        </select>
         <label className="form-control w-full max-w-xs mb-3">
           <div className="label">
             <span className="label-text text-paragraph">Exercise Name:</span>
