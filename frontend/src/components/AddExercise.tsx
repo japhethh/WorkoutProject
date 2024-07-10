@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 
@@ -7,6 +7,7 @@ interface Data {
   name: string;
   set: any;
   rep: any;
+  focusArea: string;
 }
 
 interface Dark {
@@ -24,8 +25,12 @@ const AddExercise = ({ darkMode }: Dark) => {
     name: "",
     set: null,
     rep: null,
+    focusArea: "fuckkkkkk",
   });
 
+  useEffect(() => {
+    console.log(info)
+  })
 
   // Handiling the onChange in inputs
   const onHandleChanges = async (event: any) => {
@@ -40,7 +45,7 @@ const AddExercise = ({ darkMode }: Dark) => {
     try {
       const response = await axios.post(`${apiURL}/api/workout/add`, info, { headers: { token } });
       getAll();
-      setInfo({ name: "", set: 0, rep: 0 });
+      setInfo({ name: "", set: 0, rep: 0, focusArea: "" });
       toast.success(response.data.message);
     } catch (err) {
       console.log("Error adding exercise");
