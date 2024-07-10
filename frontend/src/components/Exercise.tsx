@@ -55,7 +55,7 @@ const Exercise = ({ darkMode }: Dark) => {
         {data.exercises.length === 0 ? (
           <>
             <div className="text-center text-paragraph flex justify-center items-center h-64 w-full">
-                No exercises available
+              No exercises available
             </div>
           </>
         )
@@ -75,6 +75,7 @@ const Exercise = ({ darkMode }: Dark) => {
                 </button>
               </div>
               <div className="text-paragraph">
+                <h1>Focus Area: <span className="font-semibold">{item.focusArea}</span></h1>
                 <h1>Sets: <span className="font-semibold">{item.set}</span></h1>
                 <h1>Reps:  <span className="font-semibold">{item.rep}</span></h1>
               </div>

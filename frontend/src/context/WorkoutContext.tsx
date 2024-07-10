@@ -26,6 +26,7 @@ interface Item {
   set: number;
   rep: number;
   _id: string;
+  focusArea:string;
 }
 
 interface Data {
