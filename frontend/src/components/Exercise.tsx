@@ -64,16 +64,16 @@ const Exercise = ({ darkMode }: Dark) => {
     <div >
 
       <div>
-        <ul className="flex gap-2 text-lg text-paragraph font-semibold cursor-pointer max-md:overflow-x-scroll max-md:w-6/6 max-md:mx-auto max-md:border-t-2  max-md:border-b-2 max-md:border-gray-500 py-3 px-1  ">
-          <li className={`px-2 py-1  rounded-md ${filter === "ARM" ? "bg-blue-200" : "bg-gray-200"}`}
+        <ul className="flex gap-2 text-lg text-paragraph font-semibold cursor-pointer max-md:overflow-x-scroll max-md:w-6/6 max-md:mx-auto   max-md:border-b-2 max-md:border-gray-500 py-3 px-1  ">
+          <li className={`px-2 py-1  rounded-md ${filter === "ARM" ? "bg-[#D7DFFF] text-[#4F46E5]" : "bg-gray-200 text-gray-800"}`}
             onClick={() => handleFilterClick("ARM")}>ARM</li>
-          <li className={`px-2 py-1  rounded-md ${filter === "BACK" ? "bg-blue-200" : "bg-gray-200"}`}
+          <li className={`px-2 py-1  rounded-md ${filter === "BACK" ? "bg-[#D7DFFF] text-[#4F46E5]" : "bg-gray-200 text-gray-800"}`}
             onClick={() => handleFilterClick("BACK")}>BACK</li>
-          <li className={`px-2 py-1  rounded-md ${filter === "CHEST" ? "bg-blue-200" : "bg-gray-200"}`}
+          <li className={`px-2 py-1  rounded-md ${filter === "CHEST" ? "bg-[#D7DFFF] text-[#4F46E5]" : "bg-gray-200 text-gray-800"}`}
             onClick={() => handleFilterClick("CHEST")}>CHEST</li>
-          <li className={`px-2 py-1  rounded-md ${filter === "SHOULDER" ? "bg-blue-200" : "bg-gray-200"}`}
+          <li className={`px-2 py-1  rounded-md ${filter === "SHOULDER" ? "bg-[#D7DFFF] text-[#4F46E5]" : "bg-gray-200 text-gray-800"}`}
             onClick={() => handleFilterClick("SHOULDER")}>SHOULDER</li>
-          <li className={`px-2 py-1  rounded-md ${filter === "LEGS" ? "bg-blue-200" : "bg-gray-200"}`}
+          <li className={`px-2 py-1  rounded-md ${filter === "LEGS" ? "bg-[#D7DFFF] text-[#4F46E5]" : "bg-gray-200 text-gray-800"}`}
             onClick={() => handleFilterClick("LEGS")}>LEGS</li>
         </ul>
       </div>
