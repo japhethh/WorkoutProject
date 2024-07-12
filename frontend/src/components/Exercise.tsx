@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { PiTrashSimpleFill } from "react-icons/pi";
 import { WorkoutContext } from '../context/WorkoutContext';
+// import { IoOptionsOutline } from "react-icons/io5";
+
 
 interface Dark {
   darkMode: string;
@@ -10,6 +12,7 @@ const Exercise = ({ darkMode }: Dark) => {
   const context = useContext(WorkoutContext);
   const [showModal, setShowModal] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+  const [filter, setFilter] = useState<string>("ALL");
 
   if (!context) {
     return null; // Handle the case where context is null
@@ -36,6 +39,12 @@ const Exercise = ({ darkMode }: Dark) => {
     closeModal();
   };
 
+
+  const handleFilterClick = (bodyPart: string) => {
+    setFilter((prevFilter) => (prevFilter === bodyPart ? "ALL" : bodyPart))
+  }
+
+
   if (!data) {
     return (
       <div className="bg-gray-300  rounded-xl w-full p-5">
@@ -49,10 +58,28 @@ const Exercise = ({ darkMode }: Dark) => {
     )
   }
 
+  const filterExercises = filter === "ALL" ? data.exercises : data.exercises.filter((item) => item.focusArea === filter);
+
   return (
     <div className="max-md:overflow-y-auto overflow-y-scroll lg:h-[420px]">
+
       <div>
-        {data.exercises.length === 0 ? (
+        <ul className="flex gap-2 text-lg text-paragraph font-semibold cursor-pointer max-md:overflow-x-scroll max-md:w-6/6 max-md:mx-auto max-md:border-t-2  max-md:border-b-2 max-md:border-gray-500 py-3 px-1  ">
+          <li className={`px-2 py-1  rounded-md ${filter === "ARM" ? "bg-blue-200" : "bg-gray-200"}`}
+            onClick={() => handleFilterClick("ARM")}>ARM</li>
+          <li className={`px-2 py-1  rounded-md ${filter === "BACK" ? "bg-blue-200" : "bg-gray-200"}`}
+            onClick={() => handleFilterClick("BACK")}>BACK</li>
+          <li className={`px-2 py-1  rounded-md ${filter === "CHECK" ? "bg-blue-200" : "bg-gray-200"}`}
+            onClick={() => handleFilterClick("CHECK")}>CHECK</li>
+          <li className={`px-2 py-1  rounded-md ${filter === "SHOULDER" ? "bg-blue-200" : "bg-gray-200"}`}
+            onClick={() => handleFilterClick("SHOULDER")}>SHOULDER</li>
+          <li className={`px-2 py-1  rounded-md ${filter === "LEGS" ? "bg-blue-200" : "bg-gray-200"}`}
+            onClick={() => handleFilterClick("LEGS")}>LEGS</li>
+        </ul>
+      </div>
+
+      <div>
+        {filterExercises.length === 0 ? (
           <>
             <div className="text-center text-paragraph flex justify-center items-center h-64 w-full">
               No exercises available
@@ -60,7 +87,7 @@ const Exercise = ({ darkMode }: Dark) => {
           </>
         )
           :
-          data.exercises.map((item) => (
+          filterExercises.map((item) => (
             <div key={item._id} className="shadow-md rounded-md p-4 mb-2">
               <div className="flex justify-between items-center">
                 <h1 className="text-md text-green-600 font-semibold">

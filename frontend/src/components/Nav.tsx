@@ -101,7 +101,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   <div className="modal-box w-11/12 h-96 max-w-5xl bg-background flex flex-col">
                     <h3 className="font-bold text-lg text-headline text-center py-0">Announcement</h3>
                     <div className="flex-1 overflow-y-auto border-t-[2px] border-b-[2px] border-gray-200 text-paragraph ">
-                    <p className="text-md break-words px-4 py-2 text-paragraph" dangerouslySetInnerHTML={{ __html: modalData.body }}></p>
+                      <p className="text-md break-words px-4 py-2 text-paragraph" dangerouslySetInnerHTML={{ __html: modalData.body }}></p>
                     </div>
                     <div className="modal-action flex justify-end py-0">
                       <form method="dialog">

@@ -101,7 +101,7 @@ const AddExercise = ({ darkMode }: Dark) => {
             <span className="label-text text-paragraph">Set:</span>
           </div>
           <div className="indicator">
-            <div className="tooltip tooltip-right z-10" data-tip="A group of exercises performed consecutively.">
+            <div className="tooltip tooltip-right z-10" data-tip="A group of exercises performed one after another.">
               <span className="indicator-item indicator-start badge badge-primary"> </span>
             </div>
             <input value={info.set} type="text" onChange={onHandleChanges} name="set" placeholder="0" className="input border input-bordered w-full max-w-xs text-paragraph bg-background" />
