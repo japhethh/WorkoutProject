@@ -7,6 +7,7 @@ import { Sidebar } from './components/Sidebar';
 // import SidebarMobile from './components/SidebarMobile';
 import Users from './components/Users';
 import ListAnnouncement from './components/ListAnnouncement';
+// import ListAnnounce from './components/ListAnnounce';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -21,7 +22,7 @@ const App = () => {
   }, [expand]);
 
   return (
-    <div className="container mx-auto  flex">
+    <div className=" flex">
       <ToastContainer />
 
       <Sidebar expand={expand} setExpand={setExpand} />
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/users" element={<Users />} />
           <Route path="/add-announcement" element={<AddAnnouncement />} />
           <Route path="/listannouncement" element={<ListAnnouncement />} />
+          {/* <Route path="/listannouncement" element={<ListAnnounce />} /> */}
         </Routes>
       </div>
     </div>

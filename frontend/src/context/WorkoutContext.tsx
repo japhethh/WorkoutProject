@@ -10,11 +10,13 @@ interface WorkoutContextValue {
   setData: (value: Data) => void;
   getAll: () => Promise<void>;
   handleDelete: (id: string) => Promise<void>;
-  getAllAnnouncement: () => Promise<void>;
+  getAllAnnouncement: () => Promise<void>; 
+  formatTimeInPhilippines: (date: Date) => string; // Function signature
   token: string | null;
   setToken: (value: any | null) => void;
   userInfo: StateType;
-  dispatch: Dispatch<ActionType>
+  dispatch: Dispatch<ActionType>;
+  clockTime:Date;
 }
 
 interface Props {
@@ -26,7 +28,7 @@ interface Item {
   set: number;
   rep: number;
   _id: string;
-  focusArea:string;
+  focusArea: string;
 }
 
 interface Data {
@@ -78,14 +80,40 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   const [userInfo, dispatch] = useReducer(reduce, { user: null, announcement: null });
   const [data, setData] = useState<Data | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
+  const [clockTime, setClockTime] = useState(new Date());
 
   useEffect(() => {
     if (token) {
       getAll();
       getAllAnnouncement();
       console.log(userInfo.announcement);
+
+      const intervalValid = setInterval(() => {
+        setClockTime(new Date);
+      }, 1000);
+
+      return () => clearInterval(intervalValid);
     }
   }, [token]);
+
+
+  const formatTimeInPhilippines = (date: Date): string => {
+    try {
+      const options = {
+        timeZone: 'Asia/Manila',
+        hour12: true,
+        hour:"numeric",
+        minute: 'numeric',
+        second: 'numeric'
+      };
+
+      return date.toLocaleString('en-US', options);
+    } catch (error) {
+      console.error('Error formatting time:', error);
+      return ''; // Handle error gracefully, return empty string or default value
+    }
+  };
+
 
   const getAll = async () => {
     try {
@@ -133,6 +161,7 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
 
 
 
+
   const contextValue: WorkoutContextValue = {
     apiURL,
     data,
@@ -143,7 +172,9 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
     token,
     setToken,
     userInfo,
-    dispatch
+    dispatch,
+    clockTime,
+    formatTimeInPhilippines
   };
 
   return (

@@ -1,4 +1,16 @@
 {
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "strict":true
+    // ...
+  }
+  ,  
   "files": [],
   "references": [
     {

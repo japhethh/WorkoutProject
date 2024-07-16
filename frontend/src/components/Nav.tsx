@@ -25,7 +25,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
   if (!context) {
     return null;
   }
-  const { token, userInfo } = context;
+  const { token, userInfo,formatTimeInPhilippines, clockTime } = context;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -64,7 +64,12 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
               </Link>
             )}
           </div>
+
+            
           <div className="flex-none">
+            <div className="text-paragraph font-semibold">
+              {formatTimeInPhilippines(clockTime)}
+            </div>
             {/* Notification */}
             <div className="dropdown dropdown-end z-30">
               <div
