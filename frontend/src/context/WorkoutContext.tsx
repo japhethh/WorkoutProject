@@ -97,22 +97,23 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   }, [token]);
 
 
-  const formatTimeInPhilippines = (date: Date): string => {
-    try {
-      const options = {
-        timeZone: 'Asia/Manila',
-        hour12: true,
-        hour:"numeric",
-        minute: 'numeric',
-        second: 'numeric'
-      };
+ const formatTimeInPhilippines = (date: Date): string => {
+  try {
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'Asia/Manila',
+      hour12: true,
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric'
+    };
 
-      return date.toLocaleString('en-US', options);
-    } catch (error) {
-      console.error('Error formatting time:', error);
-      return ''; // Handle error gracefully, return empty string or default value
-    }
-  };
+    return date.toLocaleString('en-US', options);
+  } catch (error) {
+    console.error('Error formatting time:', error);
+    return ''; // Handle error gracefully, return empty string or default value
+  }
+};
+
 
 
   const getAll = async () => {
