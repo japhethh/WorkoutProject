@@ -4,20 +4,7 @@ import axios from "axios";
 
 export const WorkoutContext = createContext<WorkoutContextValue | null>(null);
 
-interface WorkoutContextValue {
-  apiURL: string;
-  data: Data | null;
-  setData: (value: Data) => void;
-  getAll: () => Promise<void>;
-  handleDelete: (id: string) => Promise<void>;
-  getAllAnnouncement: () => Promise<void>; 
-  formatTimeInPhilippines: (date: Date) => string; // Function signature
-  token: string | null;
-  setToken: (value: any | null) => void;
-  userInfo: StateType;
-  dispatch: Dispatch<ActionType>;
-  clockTime:Date;
-}
+
 
 interface Props {
   children: ReactNode;
@@ -53,6 +40,20 @@ interface StateType {
 interface ActionType {
   type: "GET_USER" | "GET_ANNOUNCEMENT",
   payload: any;
+}
+interface WorkoutContextValue {
+  apiURL: string;
+  data: Data | null;
+  setData: (value: Data) => void;
+  getAll: () => Promise<void>;
+  handleDelete: (id: string) => Promise<void>;
+  getAllAnnouncement: () => Promise<void>;
+  formatTimeInPhilippines: (date: Date) => string; // Function signature
+  token: string | null;
+  setToken: (value: any | null) => void;
+  userInfo: StateType;
+  dispatch: Dispatch<ActionType>;
+  clockTime: Date;
 }
 
 const reduce = (state: StateType, action: ActionType) => {
@@ -97,22 +98,22 @@ const WorkoutContextProvider: FC<Props> = ({ children }) => {
   }, [token]);
 
 
- const formatTimeInPhilippines = (date: Date): string => {
-  try {
-    const options: Intl.DateTimeFormatOptions = {
-      timeZone: 'Asia/Manila',
-      hour12: true,
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
-    };
+  const formatTimeInPhilippines = (date: Date): string => {
+    try {
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: 'Asia/Manila',
+        hour12: true,
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+      };
 
-    return date.toLocaleString('en-US', options);
-  } catch (error) {
-    console.error('Error formatting time:', error);
-    return ''; // Handle error gracefully, return empty string or default value
-  }
-};
+      return date.toLocaleString('en-US', options);
+    } catch (error) {
+      console.error('Error formatting time:', error);
+      return ''; // Handle error gracefully, return empty string or default value
+    }
+  };
 
 
 

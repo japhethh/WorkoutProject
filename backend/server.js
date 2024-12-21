@@ -9,7 +9,7 @@ import "dotenv/config";
 import announcementRouter from "./routes/announcementRoute.js";
 
 const app = express();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +25,14 @@ app.use("/images", express.static("uploads"));
 app.use("/api/user", userRouter); 
 app.use("/api/admin", adminRouter);
 app.use("/api/admin/announcement", announcementRouter);
+
+app.post("/adduser", async(req,res) => {
+  const {name, email, password} = req.body;
+  const URL = "http://localhost:4000/api/user/register";
+  const response = await axios.post(URL,{name, email, password})
+
+  res.status(200).json(response)
+})
 
 // app.use("/api/user", testingRoute);
 

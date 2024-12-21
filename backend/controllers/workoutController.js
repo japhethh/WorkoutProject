@@ -21,7 +21,7 @@ const addWorkout = async (req, res) => {
       focusArea: focusArea,
     };
 
-    user.exercises.push(newExercise);
+    user.exercises.push(newExercise); 
 
     await user.save();
     res.status(200).json({ message: "Created Successfully" });
