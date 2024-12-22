@@ -2,9 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from 'axios';
 import { WorkoutContext } from '../context/WorkoutContext.tsx';
 import { toast } from 'react-toastify';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from "jwt-decode";
+// import { GoogleOAuthProvider } from '@react-oauth/google';
+// import { GoogleLogin } from '@react-oauth/google';
+// import { jwtDecode } from "jwt-decode";
 
 interface Data {
   email: string;
@@ -161,10 +161,10 @@ const Login = () => {
                   </>
                 )}
               </button>
-              <GoogleOAuthProvider clientId="361649882289-lr0hbnh5o0ihe84cvgq1mmbeoh6022qd.apps.googleusercontent.com">
+              {/* <GoogleOAuthProvider clientId="361649882289-lr0hbnh5o0ihe84cvgq1mmbeoh6022qd.apps.googleusercontent.com">
                 <div className="">
 
-                  {/* <GoogleLogin
+                  <GoogleLogin
                     onSuccess={(credentialResponse) => {
                       const decoded = jwtDecode(credentialResponse?.credential)
                       console.log(decoded);
@@ -173,9 +173,9 @@ const Login = () => {
                     onError={() => {
                       console.log('Login Failed');
                     }}
-                  /> */}
+                  />
                 </div>
-              </GoogleOAuthProvider>
+              </GoogleOAuthProvider> */}
             </div>
           </form>
         </div>
