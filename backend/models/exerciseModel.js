@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const exerciseSchema = new mongoose.Schema({
   name: { type: String, required: true },
   equipment: { type: String, required: true },
-  description: { type: String },
   targetMuscleGroup: { type: String },
+  description: { type: String },
   level: {
     type: String,
     enum: ["Beginner", "Intermediate", "Advanced"],

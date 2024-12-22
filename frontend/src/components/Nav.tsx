@@ -53,7 +53,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
   };
 
   return (
-    <div className={`navbar bg-background  oswald_jap container mx-auto max-md:px-0 py-2 px-7`}>
+    <div className={`navbar bg-background  oswald_jap md:w-4/6 w-6/6 mx-auto max-md:px-0 py-5 `}>
 
 
       {token ? (
@@ -71,6 +71,9 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
             <Link to="/">
               <h1 className="">Home</h1>
             </Link>
+            <Link to="/exercise-list">
+              <h1 className="">Exercises List</h1>
+            </Link>
             <Link to="/workout-plans">
               <h1 className="">Workout plan</h1>
             </Link>
@@ -81,27 +84,24 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
 
           <div className="max-md:drawer md:hidden z-50">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
-              {/* Page content here */}
-            </div>
             <div className="drawer-side">
               <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+
+              <ul className="menu bg-base-200 text-xl  min-h-full w-80 p-4 text-white/80">
+                <li className="menu-title">
+                  <h2 className="text-lg font-bold uppercase text-center mb-4 text-white/80">Site Menu</h2>
+                </li>
                 {/* Sidebar content here */}
-                <li><a>Sidebar Item 1</a></li>
-                <li><a>Sidebar Item 2</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/workout-plans">Workout Plan</Link></li>
+                <li><a>My Profile</a></li>
               </ul>
             </div>
           </div>
-          <div className="max-md:flex-1  md:hidden  mx-4 border py-2 px-2">
-            <label htmlFor="my-drawer" className="">
-              <RxHamburgerMenu className="text-paragraph text-2xl " />
 
-            </label>
-          </div>
-          <div className="flex-none max-md:hidden">
+          <div className="flex-none ">
 
-            <div className="text-paragraph font-semibold ">
+            <div className="text-paragraph font-semibold max-md:hidden">
               {formatTimeInPhilippines(clockTime)}
             </div>
 
@@ -197,7 +197,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
             </label>
 
             {/* Profile Dropdown */}
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end max-md:hidden">
               <div
                 tabIndex={0}
                 role="button"
@@ -228,6 +228,12 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                   {/* <Link to="/login" onClick={handleLogout} > Logout</Link> */}
                 </li>
               </ul>
+            </div>
+            <div className="max-md:flex-1  md:hidden  mx-4 border py-1 px-1">
+              <label htmlFor="my-drawer" className="text-semibold">
+                <RxHamburgerMenu className="text-paragraph  text-2xl " />
+
+              </label>
             </div>
           </div>
         </>

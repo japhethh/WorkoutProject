@@ -16,13 +16,11 @@ const Home = ({ darkMode }: Dark) => {
 
   const { token } = context;
   return (
-    <div className={`flex flex-wrap  w-5/6 mx-auto py-8 gap-10 bg-background`}>
-      <div className="w-full lg:w-1/5 flex justify-center ">
-
+    <div className={`flex flex-wrap oswald_jap md:w-4/6 w-6/6 mx-auto max-md:px-0 px-2 py-8 bg-background`}>
+      <div className="w-full lg:w-1/6 flex justify-center px-4 ">
         <AddExercise darkMode={darkMode} />
       </div>
-      <div className="w-full lg:w-3/5 ">
-
+      <div className="w-full lg:w-5/6 px-4">
         <Exercise darkMode={darkMode} />
       </div>
       {token ?

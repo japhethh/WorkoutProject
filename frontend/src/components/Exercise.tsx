@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { PiTrashSimpleFill } from "react-icons/pi";
 import { WorkoutContext } from '../context/WorkoutContext';
+import { Link } from "react-router-dom";
 // import { IoOptionsOutline } from "react-icons/io5";
 
 
@@ -61,10 +62,14 @@ const Exercise = ({ darkMode }: Dark) => {
   const filterExercises = filter === "ALL" ? data.exercises : data.exercises.filter((item) => item.focusArea === filter);
 
   return (
-    <div >
-
+    <div>
+        <div className="flex justify-end">
+          <Link to="/create-exercise">
+          <h1 className="uppercase btn btn-success btn-sm text-white">new program +</h1>
+          </Link>
+        </div>
       <div>
-        <ul className="flex gap-2 text-lg text-paragraph font-semibold cursor-pointer max-md:overflow-x-scroll max-md:w-6/6 max-md:mx-auto   max-md:border-b-2 max-md:border-gray-500 py-3 px-1  ">
+        <ul className="flex gap-2 text-lg text-paragraph font-semibold cursor-pointer max-md:overflow-x-scroll max-md:w-6/6 max-md:mx-auto   max-md:border-b-2 max-md:border-gray-500 py-3 px-4  ">
           <li className={`px-2 py-1  rounded-md ${filter === "ARM" ? "bg-[#D7DFFF] text-[#4F46E5]" : "bg-gray-200 text-gray-800"}`}
             onClick={() => handleFilterClick("ARM")}>ARM</li>
           <li className={`px-2 py-1  rounded-md ${filter === "BACK" ? "bg-[#D7DFFF] text-[#4F46E5]" : "bg-gray-200 text-gray-800"}`}
@@ -77,7 +82,7 @@ const Exercise = ({ darkMode }: Dark) => {
             onClick={() => handleFilterClick("LEGS")}>LEGS</li>
         </ul>
       </div>
-      <div className="max-md:overflow-y-auto overflow-y-scroll lg:h-[420px]">
+      <div className="max-md:overflow-y-auto overflow-y-scroll lg:h-[420px] px-5">
         <div>
           {filterExercises.length === 0 ? (
             <>

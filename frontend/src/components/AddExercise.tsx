@@ -67,7 +67,7 @@ const AddExercise = ({ darkMode }: Dark) => {
   }
 
   return (
-    <div className="">
+    <div className="w-full">
       <form onSubmit={handleAdd}>
         <div>
           <h1 className={`font-semibold text-md text-paragraph`}>Add a New Workout</h1>
