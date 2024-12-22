@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { WorkoutContext } from "./context/WorkoutContext";
+import WorkoutPlans from "./pages/WorkoutPlans";
 
 
 const App = () => {
@@ -54,8 +55,8 @@ const App = () => {
   }
 
   return (
-    <div className={` ${darkMode} bg-background`}>
-      <div className="container mx-auto max-md:px-0 py-2 px-7">
+    <div className={` ${darkMode} bg-background `}>
+      <div className="">
         <ToastContainer />
         <Nav darkMode={darkMode} setDarkMode={setDarkMode} />
         <Routes>
@@ -64,6 +65,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/test" element={<WorkoutComponent />} />
+          <Route path="/workout-plans" element={<WorkoutPlans />} />
         </Routes>
         <Footer darkMode={darkMode} />
 

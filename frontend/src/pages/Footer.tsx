@@ -9,7 +9,8 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ darkMode }) => {
   return (
-    <div>
+    <div >
+
       <footer className={`footer footer-center p-10 text-base-content rounded bg-background`}>
         <nav>
           <div className="grid grid-flow-col gap-4">

@@ -4,9 +4,10 @@ import { ConnectDB } from "./config/db.js";
 import workoutRouter from "./routes/workoutRoute.js";
 import userRouter from "./routes/userRoute.js";
 import testingRoute from "./routes/testingRoute.js";
-import adminRouter from './routes/adminRoute.js'
+import adminRouter from "./routes/adminRoute.js";
 import "dotenv/config";
 import announcementRouter from "./routes/announcementRoute.js";
+import exerciseRouter from "./routes/exerciseRouter.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,17 +23,18 @@ app.get("/", (req, res) => {
 
 app.use("/api/workout", workoutRouter);
 app.use("/images", express.static("uploads"));
-app.use("/api/user", userRouter); 
+app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin/announcement", announcementRouter);
+app.use("/api/user/exercise/", exerciseRouter);
 
-app.post("/adduser", async(req,res) => {
-  const {name, email, password} = req.body;
+app.post("/adduser", async (req, res) => {
+  const { name, email, password } = req.body;
   const URL = "http://localhost:4000/api/user/register";
-  const response = await axios.post(URL,{name, email, password})
+  const response = await axios.post(URL, { name, email, password });
 
-  res.status(200).json(response)
-})
+  res.status(200).json(response);
+});
 
 // app.use("/api/user", testingRoute);
 

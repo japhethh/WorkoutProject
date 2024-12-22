@@ -123,7 +123,7 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="max-md:px-5">
+    <div className="max-md:px-5 container mx-auto py-2 px-7">
       <div className="py-4">
         <h1 className="text-2xl text-paragraph py-2">
           Hello,{" "}

@@ -19,8 +19,8 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const context = React.useContext(WorkoutContext);
-  
-  if(!context){
+
+  if (!context) {
     return null;
   }
   const { token, userInfo } = context || {};
@@ -65,8 +65,8 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-                {userInfo.user && 
-            <h1>{userInfo.user.userName}</h1>
+            {userInfo.user &&
+              <h1>{userInfo.user.userName}</h1>
             }
           </Typography>
 
@@ -119,8 +119,8 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-               {userInfo.user && 
-            <h1>{userInfo.user.userName}</h1>
+            {userInfo.user &&
+              <h1>{userInfo.user.userName}</h1>
             }
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>

@@ -2,8 +2,7 @@ import { WorkoutContext } from "../context/WorkoutContext";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import DefaultLogo from '../assets/defaultLogo.png';
-// import { MdOutlineTipsAndUpdates } from "react-icons/md";
-
+import { RxHamburgerMenu } from "react-icons/rx";
 
 interface Dark {
   setDarkMode: (value: string) => void;
@@ -25,7 +24,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
   if (!context) {
     return null;
   }
-  const { token, userInfo,formatTimeInPhilippines, clockTime } = context;
+  const { token, userInfo, formatTimeInPhilippines, clockTime } = context;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -54,22 +53,58 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
   };
 
   return (
-    <div className={`navbar bg-background  `}>
+    <div className={`navbar bg-background  oswald_jap container mx-auto max-md:px-0 py-2 px-7`}>
+
+
       {token ? (
         <>
-          <div className="flex-1">
+          <div className="flex-1 ">
             {userInfo.user && (
               <Link to="/" className={`btn btn-ghost text-xl text-paragraph`}>
                 {userInfo.user.userName}
               </Link>
             )}
+
           </div>
 
-            
-          <div className="flex-none">
-            <div className="text-paragraph font-semibold">
+          <div className="flex-1 max-md:hidden text-paragraph text-lg font-semibold uppercase gap-5">
+            <Link to="/">
+              <h1 className="">Home</h1>
+            </Link>
+            <Link to="/workout-plans">
+              <h1 className="">Workout plan</h1>
+            </Link>
+            <Link to="/">
+              <h1 className="">My profile</h1>
+            </Link>
+          </div>
+
+          <div className="max-md:drawer md:hidden z-50">
+            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              {/* Page content here */}
+            </div>
+            <div className="drawer-side">
+              <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+              <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                {/* Sidebar content here */}
+                <li><a>Sidebar Item 1</a></li>
+                <li><a>Sidebar Item 2</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="max-md:flex-1  md:hidden  mx-4 border py-2 px-2">
+            <label htmlFor="my-drawer" className="">
+              <RxHamburgerMenu className="text-paragraph text-2xl " />
+
+            </label>
+          </div>
+          <div className="flex-none max-md:hidden">
+
+            <div className="text-paragraph font-semibold ">
               {formatTimeInPhilippines(clockTime)}
             </div>
+
             {/* Notification */}
             <div className="dropdown dropdown-end z-30">
               <div
@@ -222,6 +257,8 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
           </div>
         </>
       )}
+
+
     </div>
   );
 };
