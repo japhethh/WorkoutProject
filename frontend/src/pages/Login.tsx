@@ -164,7 +164,7 @@ const Login = () => {
               <GoogleOAuthProvider clientId="361649882289-lr0hbnh5o0ihe84cvgq1mmbeoh6022qd.apps.googleusercontent.com">
                 <div className="">
 
-                  <GoogleLogin
+                  {/* <GoogleLogin
                     onSuccess={(credentialResponse) => {
                       const decoded = jwtDecode(credentialResponse?.credential)
                       console.log(decoded);
@@ -173,7 +173,7 @@ const Login = () => {
                     onError={() => {
                       console.log('Login Failed');
                     }}
-                  />
+                  /> */}
                 </div>
               </GoogleOAuthProvider>
             </div>
