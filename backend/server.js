@@ -8,6 +8,7 @@ import adminRouter from "./routes/adminRoute.js";
 import "dotenv/config";
 import announcementRouter from "./routes/announcementRoute.js";
 import exerciseRouter from "./routes/exerciseRouter.js";
+import exerciseBundleRouter from "./routes/exerciseBundleRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,6 +28,7 @@ app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin/announcement", announcementRouter);
 app.use("/api/user/exercise/", exerciseRouter);
+app.use("/api/user/bundle/", exerciseBundleRouter);
 
 app.post("/adduser", async (req, res) => {
   const { name, email, password } = req.body;

@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 
 const exerciseBundleSchema = new mongoose.Schema(
   {
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "Workout" },
+    // userId: { type: mongoose.Schema.Types.ObjectId, ref: "Workout" },
     bundleName: { type: String, required: true },
     exercises: [
       {
         exerciseId: { type: mongoose.Schema.Types.ObjectId, ref: "Exercise" },
-        sets: { type: Number },
-        reps: { type: Number },
+        sets: { type: Number, default: 3 },
+        reps: { type: Number, default: 13 },
       },
     ],
   },
