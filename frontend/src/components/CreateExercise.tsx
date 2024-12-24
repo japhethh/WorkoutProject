@@ -1,16 +1,28 @@
-import { useEffect, useState } from 'react';
-import Store, { apiURL } from '../context/Store';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import axios from 'axios';
-import { useContext } from 'react';
-import { WorkoutContext } from '../context/WorkoutContext';
+import { useEffect, useState } from "react";
+import Store, { apiURL } from "../context/Store";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useContext } from "react";
+import { WorkoutContext } from "../context/WorkoutContext";
 
-const CreateExercise = () => {
+interface Exercise {
+  _id: string;
+  name: string;
+  equipment?: string;
+  targetMuscleGroup?: string;
+  image?: string;
+}
+
+interface FormData {
+  newProgram: string;
+}
+
+const CreateExercise: React.FC = () => {
   const { fetchExerciseData, exerciseData } = Store();
-  const [selectedExercises, setSelectedExercises] = useState([]);
+  const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
 
-  const { token } = useContext(WorkoutContext)
+  const { token } = useContext(WorkoutContext);
 
   useEffect(() => {
     fetchExerciseData();
@@ -20,9 +32,13 @@ const CreateExercise = () => {
     console.log(exerciseData);
   }, [exerciseData]);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const handleCheckboxChange = (exerciseId: any) => {
+  const handleCheckboxChange = (exerciseId: string) => {
     setSelectedExercises((prevSelected) =>
       prevSelected.includes(exerciseId)
         ? prevSelected.filter((id) => id !== exerciseId) // Uncheck: remove from array
@@ -30,7 +46,7 @@ const CreateExercise = () => {
     );
   };
 
-  const onSubmit = async (data:any) => {
+  const onSubmit = async (data: FormData) => {
     if (selectedExercises.length === 0) {
       toast.error("Please select at least one exercise.");
       return;
@@ -43,12 +59,15 @@ const CreateExercise = () => {
 
     console.log(formData); // Logs the program name and selected exercise IDs
 
-    // Example API call (uncomment for actual use)
     try {
-      const response = await axios.post(`${apiURL}/api/user/bundle`, formData, { headers: { token } });
+      const response = await axios.post(
+        `${apiURL}/api/user/bundle`,
+        formData,
+        { headers: { token } }
+      );
       toast.success("Program Created Successfully!");
       setSelectedExercises([]); // Reset selected exercises after success
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error?.response?.data?.message || "An error occurred");
     }
   };
@@ -87,19 +106,26 @@ const CreateExercise = () => {
       <div className="md:w-4/6 w-full px-4 md:px-0 mx-auto ">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex py-5">
-            <label htmlFor="newProgram" className="label text-paragraph">New Program:</label>
+            <label htmlFor="newProgram" className="label text-paragraph">
+              New Program:
+            </label>
             <input
               id="newProgram"
-              {...register('newProgram', { required: "Program name is required" })}
+              {...register("newProgram", { required: "Program name is required" })}
               type="text"
               className="input text-paragraph"
             />
-            {errors.newProgram && <p className="text-red-500 text-sm">{errors.newProgram.message}</p>}
+            {errors.newProgram && (
+              <p className="text-red-500 text-sm">{errors.newProgram.message}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
-            {exerciseData?.map((exercise, index) => (
-              <div key={index} className="flex items-center justify-between shadow-xl p-3 rounded-sm">
+            {exerciseData?.map((exercise: Exercise, index: number) => (
+              <div
+                key={index}
+                className="flex items-center justify-between shadow-xl p-3 rounded-sm"
+              >
                 <div className="flex gap-4 items-center justify-between w-full">
                   <div className="flex items-center gap-2">
                     <input
@@ -110,17 +136,28 @@ const CreateExercise = () => {
                     />
                     <div className="font-bold flex max-md:flex-row-reverse gap-2">
                       <div className="flex flex-col justify-center">
-                        <h1 className="text-paragraph md:text-xl text-sm">{exercise?.name}</h1>
+                        <h1 className="text-paragraph md:text-xl text-sm">
+                          {exercise?.name}
+                        </h1>
                         <p className="md:text-sm text-xs font-medium text-gray-500">
-                          <span className="font-bold text-paragraph">Equipment:</span> {exercise?.equipment}
+                          <span className="font-bold text-paragraph">
+                            Equipment:
+                          </span>{" "}
+                          {exercise?.equipment}
                         </p>
                         <p className="max-md:hidden text-sm font-medium text-gray-500">
-                          <span className="font-bold text-paragraph">Target Muscle Group:</span> {exercise?.targetMuscleGroup}
+                          <span className="font-bold text-paragraph">
+                            Target Muscle Group:
+                          </span>{" "}
+                          {exercise?.targetMuscleGroup}
                         </p>
                       </div>
                       <img
                         className="md:w-32 md:h-32 h-16 w-16 md:ml-[100px] lg:ml-[300px]"
-                        src={exercise?.image || "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"}
+                        src={
+                          exercise?.image ||
+                          "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
+                        }
                         alt="Exercise"
                       />
                     </div>
