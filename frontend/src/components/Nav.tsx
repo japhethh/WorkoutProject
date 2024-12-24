@@ -78,7 +78,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
             <Link to="/workout-plans">
               <h1 className="">Workout plan</h1>
             </Link>
-            <Link to="/workout-plans">
+            <Link to="/custom">
               <h1 className="">Custom</h1>
             </Link>
             <Link to="/profile">
@@ -91,7 +91,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
             <div className="drawer-side">
               <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
 
-              <ul className={`menu bg-base-200 text-2xl  min-h-full w-80 p-4 text-paragraph  ${darkMode === "light" ? "bg-black " : "bg-white " 
+              <ul className={`menu bg-base-200 text-2xl  min-h-full w-80 p-4 text-paragraph  ${darkMode === "light" ? "bg-black " : "bg-white "
                 }`}>
                 <li className="menu-title">
                   <h2 className="text-3xl font-bold uppercase text-center mb-4 text-paragraph">Site Menu</h2>
@@ -99,6 +99,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                 {/* Sidebar content here */}
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/workout-plans">Workout Plan</Link></li>
+                <li><Link to="/custom">Custom</Link></li>
                 <li><a>My Profile</a></li>
               </ul>
             </div>

@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import exerciseBundleModel from "../models/exerciseBundleModel.js";
-
+import workoutModel from "../models/workoutModel.js";
 const createExerciseBundle = expressAsyncHandler(async (req, res) => {
   const { newProgram, exercises } = req.body;
 
@@ -31,4 +31,20 @@ const createExerciseBundle = expressAsyncHandler(async (req, res) => {
     .json({ success: true, message: "Created Successfully!", newBundle });
 });
 
-export { createExerciseBundle };
+const getAllExerciseBundle = expressAsyncHandler(async (req, res) => {
+  const { userId } = req.body;
+
+  const exist = await workoutModel.findById(userId);
+
+  if (!exist) {
+    return res
+      .status(401)
+      .json({ success: false, message: "Exercise Bundle Not found!" });
+  }
+
+  const getAll = await exerciseBundleModel.find({});
+
+  res.status(200).json(getAll);
+});
+
+export { createExerciseBundle, getAllExerciseBundle };

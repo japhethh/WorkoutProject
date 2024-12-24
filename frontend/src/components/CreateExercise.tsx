@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useContext } from "react";
 import { WorkoutContext } from "../context/WorkoutContext";
+import SectionTitle from "./SectionTitle";
 
 interface Exercise {
   _id: string;
@@ -25,8 +26,8 @@ const CreateExercise: React.FC = () => {
     return null;
   }
 
-  const { apiURL } = context;
-  const { fetchExerciseData, exerciseData, token } = Store();
+  const { token } = context;
+  const { fetchExerciseData, exerciseData } = Store();
   const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
   const [focusArea, setFocusArea] = useState<string>("");
   const [gender, setGender] = useState<string>("");
@@ -81,12 +82,8 @@ const CreateExercise: React.FC = () => {
 
   return (
     <div className="min:h-screen h-auto w-full oswald_jap">
-      <div className="h-32 md:h-48 bg-[#2A2A2A]">
-        <div className="flex items-center text-white text-3xl md:text-4xl font-semibold w-full h-full max-md:px-5 w-6/6 md:w-4/6 mx-auto">
-          <h1 className="uppercase">Add Exercises</h1>
-        </div>
-      </div>
-
+      {/* Adding Section */}
+      <SectionTitle title="Add Exercise" />
       <div className="flex justify-center items-center gap-5 py-5 shadow-xl text-paragraph">
         <div className="flex gap-1 uppercase">
           <label htmlFor="focusArea">FOCUS AREA:</label>

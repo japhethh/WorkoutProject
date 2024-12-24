@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import axios from "axios";
-
 export const apiURL =
   window.location.hostname === "localhost"
     ? "http://localhost:3000"
@@ -11,14 +10,13 @@ interface StoreState {
   loading: boolean;
   error: string | null;
   fetchExerciseData: () => Promise<void>;
-  token: string | null
+  fetchExerciseBundle: () => Promise<void>
 }
 
 const Store = create<StoreState>((set) => ({
   exerciseData: null,
   loading: false,
   error: null,
-  token: localStorage.getItem("token"),
   fetchExerciseData: async () => {
     const token = localStorage.getItem("token");
 
@@ -40,6 +38,23 @@ const Store = create<StoreState>((set) => ({
       });
     }
   },
+  fetchExerciseBundle: async () => {
+    const token: string = localStorage.getItem("token");
+
+    if (!token) {
+      set({ error: "Token not found in localStorage", loading: false });
+      return;
+    }
+
+    set({ loading: true, error: null }); // Start loading
+
+    try {
+      const response = await axios.get(`${apiURL}/api/user/bundle`, { headers: { Authorization: `Bearer ${token}` } })
+      console.log(response?.data)
+    } catch (error: any) {
+      console.log(error?.response.data.message)
+    }
+  }
 }));
 
 export default Store;

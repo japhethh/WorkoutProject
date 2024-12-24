@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { WorkoutContext } from "./context/WorkoutContext";
 import WorkoutPlans from "./pages/WorkoutPlans";
 import CreateExercise from "./components/CreateExercise";
+import Custom from "./pages/Custom";
 
 
 const App = () => {
@@ -68,6 +69,7 @@ const App = () => {
           <Route path="/test" element={<WorkoutComponent />} />
           <Route path="/workout-plans" element={<WorkoutPlans />} />
           <Route path="/create-exercise" element={<CreateExercise />} />
+          <Route path="/custom" element={<Custom />} />
         </Routes>
         <Footer darkMode={darkMode} />
 
