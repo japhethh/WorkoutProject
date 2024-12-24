@@ -29,7 +29,7 @@ app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin/announcement", announcementRouter);
 app.use("/api/user/exercise/", exerciseRouter);
-app.use("/api/user/bundle/", exerciseBundleRouter);
+app.use("/api/user/bundle", exerciseBundleRouter);
 app.use("/api/user/totalAmount", totalPrices);
 app.post("/adduser", async (req, res) => {
   const { name, email, password } = req.body;

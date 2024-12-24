@@ -53,12 +53,12 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
   };
 
   return (
-    <div className={`navbar bg-background  oswald_jap md:w-4/6 w-6/6 mx-auto max-md:px-0 py-5 `}>
+    <div className={`navbar bg-background  flex justify-between items-center oswald_jap md:w-4/6 w-6/6 mx-auto max-md:px-0 py-5 `}>
 
 
       {token ? (
         <>
-          <div className="flex-1 ">
+          <div className=" ">
             {userInfo.user && (
               <Link to="/" className={`btn btn-ghost text-xl text-paragraph`}>
                 {userInfo.user.userName}
@@ -67,7 +67,8 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
 
           </div>
 
-          <div className="flex-1 max-md:hidden text-paragraph text-lg font-semibold uppercase gap-5">
+          <div className=" max-lg:hidden ml-10 text-paragraph text-lg font-semibold uppercase gap-5">
+
             <Link to="/">
               <h1 className="">Home</h1>
             </Link>
@@ -77,19 +78,23 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
             <Link to="/workout-plans">
               <h1 className="">Workout plan</h1>
             </Link>
-            <Link to="/">
+            <Link to="/workout-plans">
+              <h1 className="">Custom</h1>
+            </Link>
+            <Link to="/profile">
               <h1 className="">My profile</h1>
             </Link>
           </div>
 
-          <div className="max-md:drawer md:hidden z-50">
+          <div className={`max-md:drawer md:hidden z-50 `}>
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-side">
               <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
 
-              <ul className="menu bg-base-200 text-xl  min-h-full w-80 p-4 text-white/80">
+              <ul className={`menu bg-base-200 text-2xl  min-h-full w-80 p-4 text-paragraph  ${darkMode === "light" ? "bg-black " : "bg-white " 
+                }`}>
                 <li className="menu-title">
-                  <h2 className="text-lg font-bold uppercase text-center mb-4 text-white/80">Site Menu</h2>
+                  <h2 className="text-3xl font-bold uppercase text-center mb-4 text-paragraph">Site Menu</h2>
                 </li>
                 {/* Sidebar content here */}
                 <li><Link to="/">Home</Link></li>
@@ -99,7 +104,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
             </div>
           </div>
 
-          <div className="flex-none ">
+          <div className="">
 
             <div className="text-paragraph font-semibold max-md:hidden">
               {formatTimeInPhilippines(clockTime)}

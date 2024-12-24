@@ -11,12 +11,14 @@ interface StoreState {
   loading: boolean;
   error: string | null;
   fetchExerciseData: () => Promise<void>;
+  token: string | null
 }
 
 const Store = create<StoreState>((set) => ({
   exerciseData: null,
   loading: false,
   error: null,
+  token: localStorage.getItem("token"),
   fetchExerciseData: async () => {
     const token = localStorage.getItem("token");
 

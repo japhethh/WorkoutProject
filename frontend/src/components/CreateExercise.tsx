@@ -12,6 +12,7 @@ interface Exercise {
   equipment?: string;
   targetMuscleGroup?: string;
   image?: string;
+  gender?: string; // Assuming the data includes a gender field
 }
 
 interface FormData {
@@ -19,18 +20,20 @@ interface FormData {
 }
 
 const CreateExercise: React.FC = () => {
-  const { fetchExerciseData, exerciseData } = Store();
-  const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
+  const context = useContext(WorkoutContext);
+  if (!context) {
+    return null;
+  }
 
-  const { token } = useContext(WorkoutContext)!;
+  const { apiURL } = context;
+  const { fetchExerciseData, exerciseData, token } = Store();
+  const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
+  const [focusArea, setFocusArea] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
 
   useEffect(() => {
     fetchExerciseData();
   }, []);
-
-  useEffect(() => {
-    console.log(exerciseData);
-  }, [exerciseData]);
 
   const {
     register,
@@ -46,6 +49,12 @@ const CreateExercise: React.FC = () => {
     );
   };
 
+  const filteredExercises = exerciseData?.filter((exercise: Exercise) => {
+    const matchesFocusArea = focusArea ? exercise.targetMuscleGroup === focusArea : true;
+    const matchesGender = gender ? exercise.gender === gender : true;
+    return matchesFocusArea && matchesGender;
+  });
+
   const onSubmit = async (data: FormData) => {
     if (selectedExercises.length === 0) {
       toast.error("Please select at least one exercise.");
@@ -57,14 +66,12 @@ const CreateExercise: React.FC = () => {
       exercises: selectedExercises,
     };
 
-    console.log(formData); // Logs the program name and selected exercise IDs
-
     try {
-      const response = await axios.post(
-        `${apiURL}/api/user/bundle`,
-        formData,
-        { headers: { token } }
-      );
+      const response = await axios.post(`${apiURL}/api/user/bundle`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.success(response.data.message);
       setSelectedExercises([]); // Reset selected exercises after success
     } catch (error: any) {
@@ -74,16 +81,20 @@ const CreateExercise: React.FC = () => {
 
   return (
     <div className="min:h-screen h-auto w-full oswald_jap">
-      <div className="h-32 md:h-48 bg-[#2A2A2A] ">
+      <div className="h-32 md:h-48 bg-[#2A2A2A]">
         <div className="flex items-center text-white text-3xl md:text-4xl font-semibold w-full h-full max-md:px-5 w-6/6 md:w-4/6 mx-auto">
           <h1 className="uppercase">Add Exercises</h1>
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-5 py-5 shadow-xl text-paragraph ">
-        <div className="flex gap-1 uppercase ">
+      <div className="flex justify-center items-center gap-5 py-5 shadow-xl text-paragraph">
+        <div className="flex gap-1 uppercase">
           <label htmlFor="focusArea">FOCUS AREA:</label>
-          <select className="text-white bg-[#2A2A2A]" id="focusArea">
+          <select
+            className="text-white bg-[#2A2A2A]"
+            id="focusArea"
+            onChange={(e) => setFocusArea(e.target.value)}
+          >
             <option value="">Show All</option>
             <option value="Arm">Arm</option>
             <option value="Back">Back</option>
@@ -95,7 +106,11 @@ const CreateExercise: React.FC = () => {
 
         <div className="flex gap-1">
           <label htmlFor="gender">GENDER:</label>
-          <select className="text-white bg-[#2A2A2A]" id="gender">
+          <select
+            className="text-white bg-[#2A2A2A]"
+            id="gender"
+            onChange={(e) => setGender(e.target.value)}
+          >
             <option value="">Show All</option>
             <option value="female">Female</option>
             <option value="male">Male</option>
@@ -103,7 +118,7 @@ const CreateExercise: React.FC = () => {
         </div>
       </div>
 
-      <div className="md:w-4/6 w-full px-4 md:px-0 mx-auto ">
+      <div className="md:w-4/6 w-full px-4 md:px-0 mx-auto">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex py-5">
             <label htmlFor="newProgram" className="label text-paragraph">
@@ -121,7 +136,7 @@ const CreateExercise: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
-            {exerciseData?.map((exercise: Exercise, index: number) => (
+            {filteredExercises?.map((exercise: Exercise, index: number) => (
               <div
                 key={index}
                 className="flex items-center justify-between shadow-xl p-3 rounded-sm"
