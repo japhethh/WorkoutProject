@@ -22,7 +22,7 @@ const CreateExercise: React.FC = () => {
   const { fetchExerciseData, exerciseData } = Store();
   const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
 
-  const { token } = useContext(WorkoutContext);
+  const { token } = useContext(WorkoutContext)!;
 
   useEffect(() => {
     fetchExerciseData();
@@ -65,7 +65,7 @@ const CreateExercise: React.FC = () => {
         formData,
         { headers: { token } }
       );
-      toast.success("Program Created Successfully!");
+      toast.success(response.data.message);
       setSelectedExercises([]); // Reset selected exercises after success
     } catch (error: any) {
       toast.error(error?.response?.data?.message || "An error occurred");
