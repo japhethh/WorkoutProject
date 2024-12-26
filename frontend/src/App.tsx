@@ -57,7 +57,7 @@ const App = () => {
   }
 
   return (
-    <div className={` ${darkMode} bg-background `}>
+    <div className={`${darkMode} bg-background `}>
       <div className="">
         <ToastContainer />
         <Nav darkMode={darkMode} setDarkMode={setDarkMode} />

@@ -4,10 +4,13 @@ import jwt from "jsonwebtoken";
 import validator from "validator";
 import cloudinary from "../utils/cloudinary.js";
 import fs from "fs";
+import dotenv from "dotenv";
+dotenv.config();
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
+  console.log(email);
+  console.log(password);
   try {
     const user = await workoutModel.findOne({ email });
 
@@ -24,7 +27,7 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Invalid credential" });
     }
-
+    console.log(user._id);
     const token = createToken(user._id);
     res.status(200).json({ success: true, token });
   } catch (error) {
@@ -34,7 +37,8 @@ const loginUser = async (req, res) => {
 };
 
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET);
+  console.log(id);
+  return jwt.sign({ id }, "kupal");
 };
 
 const registerUser = async (req, res) => {
@@ -79,7 +83,6 @@ const registerUser = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
-
 
 const changeAccount = async (req, res) => {
   const { userName, userId, email } = req.body;

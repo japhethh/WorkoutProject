@@ -101,6 +101,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                 <li><Link to="/workout-plans">Workout Plan</Link></li>
                 <li><Link to="/custom">Custom</Link></li>
                 <li><a>My Profile</a></li>
+                <li><a>Logout</a></li>
               </ul>
             </div>
           </div>

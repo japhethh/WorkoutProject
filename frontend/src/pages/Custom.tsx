@@ -22,12 +22,10 @@ const Custom: React.FC = () => {
   }, [])
 
   const fetchExerciseBundle = async () => {
-
-    const tokens = localStorage.getItem("token");
     try {
-      const response = await axios.get(`${apiURL}/api/user/bundle/`, {
+      const response = await axios.get(`${apiURL}/api/user/bundle`, {
         headers: {
-          Authorization: `Bearer ${tokens}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       console.log(response?.data)
@@ -61,90 +59,29 @@ const Custom: React.FC = () => {
       {/* Work out List */}
       <div className="max-md:px-5 w-6/6 md:w-4/6 mx-auto ">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-4">
 
 
-          <div className="card bg-white  shadow-xl">
-            <figure>
-              <img
-                src={shoulder_workout}
-                alt="Shoes"
-                className="rounded-sm" />
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
-              <p className="text-red-500">Beginners</p>
-              <div className="card-actions">
-                <button className="
-      bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
-              </div>
-            </div>
-          </div>
-          <div className="card bg-white  shadow-xl">
-            <figure>
-              <img
-                src={shoulder_workout}
-                alt="Shoes"
-                className="rounded-sm" />
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
-              <p className="text-red-500">Beginners</p>
-              <div className="card-actions">
-                <button className="
-      bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
-              </div>
-            </div>
-          </div>
-          <div className="card bg-white  shadow-xl">
-            <figure>
-              <img
-                src={shoulder_workout}
-                alt="Shoes"
-                className="rounded-sm" />
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
-              <p className="text-red-500">Beginners</p>
-              <div className="card-actions">
-                <button className="
-      bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
-              </div>
-            </div>
-          </div>
-          <div className="card bg-white  shadow-xl">
-            <figure>
-              <img
-                src={shoulder_workout}
-                alt="Shoes"
-                className="rounded-sm" />
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
-              <p className="text-red-500">Beginners</p>
-              <div className="card-actions">
-                <button className="
-      bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
-              </div>
-            </div>
-          </div>
-          <div className="card bg-white  shadow-xl">
-            <figure>
-              <img
-                src={shoulder_workout}
-                alt="Shoes"
-                className="rounded-sm" />
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
-              <p className="text-red-500">Beginners</p>
-              <div className="card-actions">
-                <button className="
-        bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
-              </div>
-            </div>
-          </div>
+          {/* List */}
+          {
 
+          }
+          <div className="card bg-white  shadow-xl">
+            <figure>
+              <img
+                src={shoulder_workout}
+                alt="Shoes"
+                className="rounded-sm" />
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
+              <p className="text-red-500">Beginners</p>
+              <div className="card-actions">
+                <button className="
+      bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>

@@ -39,7 +39,7 @@ const Store = create<StoreState>((set) => ({
     }
   },
   fetchExerciseBundle: async () => {
-    const token: string = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (!token) {
       set({ error: "Token not found in localStorage", loading: false });
