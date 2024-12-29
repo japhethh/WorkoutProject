@@ -3,7 +3,6 @@ import CustomList from '../components/CustomList'
 import axios from 'axios'
 import { WorkoutContext } from '../context/WorkoutContext'
 import { apiURL } from '../context/Store'
-import { images } from '../assets'
 import { Link } from 'react-router-dom'
 
 interface Exercises {

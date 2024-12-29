@@ -15,6 +15,7 @@ import WorkoutPlans from "./pages/WorkoutPlans";
 import CreateExercise from "./components/CreateExercise";
 import Custom from "./pages/Custom";
 import CustomStart from "./pages/CustomStart";
+import Exercise_list from "./pages/Exercise_list";
 
 
 const App = () => {
@@ -72,6 +73,7 @@ const App = () => {
           <Route path="/create-exercise" element={<CreateExercise />} />
           <Route path="/custom" element={<Custom />} />
           <Route path="/custom/:id" element={<CustomStart />} />
+          <Route path="/exercise-list" element={<Exercise_list />} />
         </Routes>
         <Footer darkMode={darkMode} />
 

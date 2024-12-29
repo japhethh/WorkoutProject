@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { apiURL } from "../context/Store";
 import { WorkoutContext } from "../context/WorkoutContext";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ interface ExerciseId {
   name: string;
   equipment: string;
   targetMuscleGroup: string;
+  image: string
 }
 
 interface Exercises {
@@ -28,7 +29,6 @@ const CustomStart = () => {
   const [exerciseBundleData, setExerciseBundleData] = useState<ExerciseData | null>(null);
   const { token } = useContext(WorkoutContext)!;
   const { id } = useParams();
-  const navigate = useNavigate();
 
   if (!token) {
     return null;
