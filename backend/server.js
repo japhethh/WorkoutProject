@@ -10,6 +10,7 @@ import announcementRouter from "./routes/announcementRoute.js";
 import exerciseRouter from "./routes/exerciseRouter.js";
 import exerciseBundleRouter from "./routes/exerciseBundleRoutes.js";
 import { totalPrices } from "./models/totalPriceAggregation.js";
+import finishExerciseBundleRouter from "./routes/finishExerciseBundleRouter.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -31,6 +32,8 @@ app.use("/api/admin/announcement", announcementRouter);
 app.use("/api/user/exercise/", exerciseRouter);
 app.use("/api/user/bundle", exerciseBundleRouter);
 app.use("/api/user/totalAmount", totalPrices);
+app.use("/api/user/finishExerciseBundle", finishExerciseBundleRouter);
+
 app.post("/adduser", async (req, res) => {
   const { name, email, password } = req.body;
   const URL = "http://localhost:4000/api/user/register";

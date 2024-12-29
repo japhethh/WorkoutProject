@@ -1,13 +1,29 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CustomList from '../components/CustomList'
-import shoulder_workout from '../assets/shoulder-workout-for-beginners.png'
 import axios from 'axios'
 import { WorkoutContext } from '../context/WorkoutContext'
 import { apiURL } from '../context/Store'
+import { images } from '../assets'
+import { Link } from 'react-router-dom'
 
+interface Exercises {
+  exerciseId: string,
+  ref: string,
+  sets: string,
+  reps: string,
+}
+
+interface Filtering {
+  bundleName: string,
+  exercises: Exercises,
+  custom: string
+}
+
+
+console.log(images)
 
 const Custom: React.FC = () => {
-
+  const [getCustomData, setGetCustomData] = useState<any[]>([])
   const context = useContext(WorkoutContext);
 
   if (!context) {
@@ -23,12 +39,18 @@ const Custom: React.FC = () => {
 
   const fetchExerciseBundle = async () => {
     try {
-      const response = await axios.get(`${apiURL}/api/user/bundle`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const response = await axios.get(`${apiURL}/api/user/bundle`,
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      )
+      const datas = response?.data
+      const filterCustom = datas.filter((filtering: Filtering) => {
+        return filtering?.custom === "custom"
       })
-      console.log(response?.data)
+
+      console.log(filterCustom)
+      setGetCustomData(response?.data)
     } catch (error: any) {
       console.log(error?.response.data.message)
     }
@@ -64,24 +86,29 @@ const Custom: React.FC = () => {
 
           {/* List */}
           {
-
-          }
-          <div className="card bg-white  shadow-xl">
-            <figure>
-              <img
-                src={shoulder_workout}
-                alt="Shoes"
-                className="rounded-sm" />
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
-              <p className="text-red-500">Beginners</p>
-              <div className="card-actions">
-                <button className="
-      bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
+            getCustomData?.map((customer, index) => (
+              <div key={index} className="card bg-white  shadow-xl">
+                <figure>
+                  <img
+                    src={images?.customDefaultImage}
+                    alt="Shoes"
+                    className="rounded-sm" />
+                </figure>
+                <div className="card-body items-center text-center font-semibold">
+                  <h2 className="card-title text-paragraph">{customer?.bundleName}</h2>
+                  <p className="text-red-600">Beginners</p>
+                  <div className="card-actions">
+                    <Link to={`/custom/${customer._id}`} className=" bg-paragraph
+bg-green-600 rounded-sm hover:bg-paragraph/80 py-2 px-6 text-white border-2 border-paragraph">Start</Link>
+                    <button className="
+bg-blue-600 rounded-sm hover:bg-blue-600/80 py-2 px-6 text-white border-2 border-blue-500">Edit</button>
+                    <button className='bg-white-700 text-red-500 border-2 border-red-500  rounded-sm hover:bg-red-600/80 py-2 px-5 hover:text-white'>Delete</button>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ))
+          }
+
         </div>
 
       </div>

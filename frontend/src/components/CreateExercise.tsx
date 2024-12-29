@@ -69,9 +69,7 @@ const CreateExercise: React.FC = () => {
 
     try {
       const response = await axios.post(`${apiURL}/api/user/bundle`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` }
       });
       toast.success(response.data.message);
       setSelectedExercises([]); // Reset selected exercises after success

@@ -1,7 +1,7 @@
 import shoulder_workout from '../assets/shoulder-workout-for-beginners.png'
 const WorkoutPlans = () => {
 
-  
+
   return (
     <div className="min:h-screen h-auto w-full oswald_jap">
       <div className="h-32 md:h-48 bg-[#2A2A2A] ">
@@ -33,7 +33,7 @@ const WorkoutPlans = () => {
       {/* Work out List */}
       <div className="max-md:px-5 w-6/6 md:w-4/6 mx-auto ">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-4">
 
 
           <div className="card bg-white  shadow-xl">
@@ -100,23 +100,23 @@ const WorkoutPlans = () => {
               </div>
             </div>
           </div>
-            <div className="card bg-white  shadow-xl">
-              <figure>
-                <img
-                  src={shoulder_workout}
-                  alt="Shoes"
-                  className="rounded-sm" />
-              </figure>
-              <div className="card-body items-center text-center">
-                <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
-                <p className="text-red-500">Beginners</p>
-                <div className="card-actions">
-                  <button className="
+          <div className="card bg-white  shadow-xl">
+            <figure>
+              <img
+                src={shoulder_workout}
+                alt="Shoes"
+                className="rounded-sm" />
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title text-paragraph">SHOULDER WORKOUT FOR BEGINNERS</h2>
+              <p className="text-red-500">Beginners</p>
+              <div className="card-actions">
+                <button className="
                 bg-red-600 rounded-sm hover:bg-red-600/80 py-2 px-6 text-white">View Details</button>
-                </div>
               </div>
             </div>
-        
+          </div>
+
         </div>
 
       </div>

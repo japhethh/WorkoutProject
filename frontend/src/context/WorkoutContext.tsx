@@ -77,7 +77,9 @@ const reduce = (state: StateType, action: ActionType) => {
 const WorkoutContextProvider: FC<Props> = ({ children }) => {
   // const URL = "https://workout-project-api.vercel.app";
   //const URL = "http://localhost:4000";
-  const apiURL = "https://workoutproject-api.onrender.com";
+  const apiURL = window.location.hostname === "localhost"
+    ? "http://localhost:3000"
+    : "https://backend-logistic1.jjm-manufacturing.com";
   const [userInfo, dispatch] = useReducer(reduce, { user: null, announcement: null });
   const [data, setData] = useState<Data | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));

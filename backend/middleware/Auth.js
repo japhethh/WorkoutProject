@@ -5,13 +5,14 @@ dotenv.config();
 
 const authMiddleware = expressAsyncHandler(async (req, res, next) => {
   const { token } = req.headers;
-  console.log(token);
   if (!token) {
     return res
       .status(401)
       .json({ success: false, message: "Not Authorized Login Again" });
   }
   const token_decode = jwt.verify(token, process.env.JWT_SECRET);
+  console.log("tama tama");
+  console.log(token_decode, "blast");
   req.body.userId = token_decode.id;
   next();
 });

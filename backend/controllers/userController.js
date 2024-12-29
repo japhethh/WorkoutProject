@@ -5,6 +5,7 @@ import validator from "validator";
 import cloudinary from "../utils/cloudinary.js";
 import fs from "fs";
 import dotenv from "dotenv";
+import expressAsyncHandler from "express-async-handler";
 dotenv.config();
 
 const loginUser = async (req, res) => {
@@ -22,12 +23,13 @@ const loginUser = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
 
+    console.log(user._id);
+
     if (!isMatch) {
       return res
         .status(400)
         .json({ success: false, message: "Invalid credential" });
     }
-    console.log(user._id);
     const token = createToken(user._id);
     res.status(200).json({ success: true, token });
   } catch (error) {
@@ -37,8 +39,7 @@ const loginUser = async (req, res) => {
 };
 
 const createToken = (id) => {
-  console.log(id);
-  return jwt.sign({ id }, "kupal");
+  return jwt.sign({ id:id }, process.env.JWT_SECRET);
 };
 
 const registerUser = async (req, res) => {
@@ -157,4 +158,5 @@ const changePassword = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
 export { loginUser, registerUser, changeAccount, changePassword };
