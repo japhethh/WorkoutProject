@@ -3,7 +3,7 @@ import CustomList from '../components/CustomList'
 import axios from 'axios'
 import { WorkoutContext } from '../context/WorkoutContext'
 import { apiURL } from '../context/Store'
-import { images } from '../assets/index.js'
+
 import { Link } from 'react-router-dom'
 
 interface Exercises {
@@ -14,13 +14,14 @@ interface Exercises {
 }
 
 interface Filtering {
+  _id: string,
   bundleName: string,
   exercises: Exercises,
   custom?: string
 }
 
 
-console.log(images)
+
 
 const Custom: React.FC = () => {
   const [getCustomData, setGetCustomData] = useState<Filtering[]>([])
@@ -92,7 +93,7 @@ const Custom: React.FC = () => {
               <div key={index} className="card bg-white  shadow-xl">
                 <figure>
                   <img
-                    src={images?.customDefaultImage}
+                    src="https://images.pexels.com/photos/50597/man-male-boy-a-person-50597.jpeg?auto=compress&cs=tinysrgb&w=600"
                     alt="Shoes"
                     className="rounded-sm" />
                 </figure>
@@ -100,7 +101,7 @@ const Custom: React.FC = () => {
                   <h2 className="card-title text-paragraph">{customer?.bundleName}</h2>
                   <p className="text-red-600">Beginners</p>
                   <div className="card-actions">
-                    <Link to={`/custom/${customer._id}`} className=" bg-paragraph
+                    <Link to={`/custom/${customer?._id}`} className=" bg-paragraph
 bg-green-600 rounded-sm hover:bg-paragraph/80 py-2 px-6 text-white border-2 border-paragraph">Start</Link>
                     <button className="
 bg-blue-600 rounded-sm hover:bg-blue-600/80 py-2 px-6 text-white border-2 border-blue-500">Edit</button>

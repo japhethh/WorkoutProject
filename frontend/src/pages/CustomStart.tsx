@@ -43,7 +43,7 @@ const CustomStart = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setExerciseBundleData(response.data);
-    } catch (error) {
+    } catch (error:any) {
       console.log(error?.response?.data?.message || "An error occurred");
     }
   };
@@ -77,7 +77,7 @@ const CustomStart = () => {
       console.log("Bundle finished successfully:", response.data);
       toast.success("Bundle finished successfully")
       // navigate("/history");
-    } catch (error) {
+    } catch (error:any) {
       console.log(error?.response?.data?.message || "An error occurred");
 
     }
@@ -97,18 +97,18 @@ const CustomStart = () => {
       </div>
 
       <div className="max-md:px-5 w-6/6 lg:w-4/6 mx-auto">
-        {exerciseBundleData?.exercises.map((exercise, index) => (
+        {exerciseBundleData?.exercises.map((exercise, index:number) => (
           <div
             key={index}
-            className={`flex items-center justify-between shadow-xl p-3 rounded-sm oswald_jap ${exercise.isCompleted ? "bg-green-100" : ""
+            className={`flex items-center justify-between shadow-xl p-3 rounded-sm oswald_jap ${exercise?.isCompleted ? "bg-green-100" : ""
               }`}
           >
             <div className="flex gap-4 items-center justify-between w-full">
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
-                  checked={exercise.isCompleted}
-                  onChange={() => handleCheckboxChange(exercise.exerciseId._id)}
+                  checked={exercise?.isCompleted}
+                  onChange={() => handleCheckboxChange(exercise?.exerciseId?._id)}
                   className="checkbox rounded-none checkbox-sm border-2 border-gray-500 checkbox-success"
                 />
                 <div className="font-bold flex max-md:flex-row-reverse gap-2">
