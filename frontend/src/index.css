@@ -19,6 +19,7 @@
   font-family: "Inter", sans-serif;
   --headline: 212, 212, 212;
   --paragraph: 163, 163, 163;
+  --buttonPrimary: 74, 0, 255;
   --button: 255, 216, 3;
   --background: 13, 17, 23;
   --mainbackground: 13, 17, 23;
@@ -32,6 +33,7 @@
   font-family: "Inter", sans-serif;
   --headline: 39, 35, 67;
   --paragraph: 45, 51, 74;
+  --buttonPrimary: 13, 13, 13;
   --button: 255, 216, 3;
   --background: 240, 242, 245;
   --mainbackground: 250, 250, 250;

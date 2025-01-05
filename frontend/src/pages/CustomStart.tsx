@@ -71,7 +71,7 @@ const CustomStart = () => {
         `${apiURL}/api/user/finishExerciseBundle`,
         {
           bundleName: exerciseBundleData.bundleName,
-          exercises: exerciseBundleData.exercises,
+        exercises: exerciseBundleData.exercises,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -53,7 +53,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
   };
 
   return (
-    <div className={`navbar bg-background  flex justify-between items-center oswald_jap md:w-4/6 w-6/6 mx-auto max-md:px-0 py-5 `}>
+    <div className={`navbar bg-background  flex justify-between items-center oswald_jap md:w-4/6 w-6/6 px-10 max-md:px-5 mx-auto  py-5 `}>
 
 
       {token ? (
@@ -101,7 +101,9 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                 <li><Link to="/workout-plans">Workout Plan</Link></li>
                 <li><Link to="/custom">Custom</Link></li>
                 <li><a>My Profile</a></li>
-                <li><a>Logout</a></li>
+                <li>
+                  <button type="button" onClick={handleLogout}>Logout</button>
+                </li>
               </ul>
             </div>
           </div>
@@ -262,7 +264,7 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
               <span className="slider"></span>
             </label>
             <Link
-              className="btn text-white border-none bg-[#3B82F6]"
+              className="btn text-white border-none bg-buttonPrimary hover:bg-buttonPrimary/80 focus:bg-paragraph/80"
               to={location.pathname === "/login" ? "/register" : "/login"}
             >
               {location.pathname === "/login" ? "Sign up" : "Sign in"}

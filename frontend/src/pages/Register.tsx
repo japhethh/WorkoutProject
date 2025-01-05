@@ -95,7 +95,7 @@ const Register = () => {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700"
+              className="px-4 py-2 rounded text-white inline-block shadow-lg bg-buttonPrimary hover:bg-buttonPrimary/80 focus:bg-paragraph/80"
             >
               Create Account
             </button>

@@ -7,6 +7,7 @@ export default {
         headline: "rgba(var(--headline))",
         paragraph: "rgba(var(--paragraph))",
         background: "rgba(var(--background))",
+        buttonPrimary:"rgba(var(--buttonPrimary))",
         mainbackground: "rgba(var(--mainbackground))",
         help: "rgba(var(--help))",
         secondary_background: "rgba(var(--secondary_background))",

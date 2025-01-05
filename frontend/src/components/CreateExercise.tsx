@@ -99,7 +99,7 @@ const CreateExercise: React.FC = () => {
           </select>
         </div>
 
-        <div className="flex gap-1">
+        {/* <div className="flex gap-1">
           <label htmlFor="gender">GENDER:</label>
           <select
             className="text-white bg-[#2A2A2A]"
@@ -110,7 +110,8 @@ const CreateExercise: React.FC = () => {
             <option value="female">Female</option>
             <option value="male">Male</option>
           </select>
-        </div>
+        </div> */}
+
       </div>
 
       <div className="md:w-4/6 w-full px-4 md:px-0 mx-auto">
@@ -187,7 +188,7 @@ const CreateExercise: React.FC = () => {
           </div>
 
           <div className="py-5">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn text-white border-none bg-buttonPrimary hover:bg-buttonPrimary/80 focus:bg-paragraph/80">
               Create New Program
             </button>
           </div>
