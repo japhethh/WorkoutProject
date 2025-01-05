@@ -29,7 +29,7 @@ const CustomStart = () => {
   const [exerciseBundleData, setExerciseBundleData] = useState<ExerciseData | null>(null);
   const { token } = useContext(WorkoutContext)!;
   const { id } = useParams();
-
+  const [loading, setLoading] = useState<boolean>(false)
   if (!token) {
     return null;
   }
@@ -100,7 +100,7 @@ const CustomStart = () => {
         {exerciseBundleData?.exercises.map((exercise, index) => (
           <div
             key={index}
-            className={`flex items-center justify-between shadow-xl p-3 rounded-sm oswald_jap ${exercise.isCompleted ? "bg-green-100" : "bg-red-100"
+            className={`flex items-center justify-between shadow-xl p-3 rounded-sm oswald_jap ${exercise.isCompleted ? "bg-green-100" : ""
               }`}
           >
             <div className="flex gap-4 items-center justify-between w-full">
@@ -146,7 +146,7 @@ const CustomStart = () => {
         ))}
 
         <div className="flex justify-center items-center">
-          <button className="btn btn-error my-4" onClick={handleFinish}>
+          <button className="py-2 px-5 rounded-sm bg-paragraph hover:bg-paragraph/80 text-white my-4" onClick={handleFinish}>
             Finish
           </button>
         </div>
