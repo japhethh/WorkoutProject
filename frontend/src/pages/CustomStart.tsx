@@ -29,7 +29,6 @@ const CustomStart = () => {
   const [exerciseBundleData, setExerciseBundleData] = useState<ExerciseData | null>(null);
   const { token } = useContext(WorkoutContext)!;
   const { id } = useParams();
-  const [loading, setLoading] = useState<boolean>(false)
   if (!token) {
     return null;
   }
@@ -45,7 +44,7 @@ const CustomStart = () => {
       });
       setExerciseBundleData(response.data);
     } catch (error) {
-      console.error(error?.response?.data?.message);
+      console.log(error?.response?.data?.message || "An error occurred");
     }
   };
 
@@ -79,7 +78,8 @@ const CustomStart = () => {
       toast.success("Bundle finished successfully")
       // navigate("/history");
     } catch (error) {
-      console.error("Error finishing bundle:", error?.response?.data?.message);
+      console.log(error?.response?.data?.message || "An error occurred");
+
     }
   };
 
@@ -114,8 +114,8 @@ const CustomStart = () => {
                 <div className="font-bold flex max-md:flex-row-reverse gap-2">
                   <div className="flex flex-col justify-center">
                     <h1 className="text-red-600 font-normal text-md">Exercise {index + 1}</h1>
-                    <h1 className="uppercase font-normal text-xl">{exercise.exerciseId.name}</h1>
-                    <p className="font-normal">
+                    <h1 className="uppercase font-normal md:text-xl text-sm">{exercise.exerciseId.name}</h1>
+                    <p className="font-normal md:text-md text-xs">
                       Equipment: <span className="text-gray-500">{exercise.exerciseId.equipment}</span>
                     </p>
                     <a href="#" className="text-red-600 font-normal text-sm">

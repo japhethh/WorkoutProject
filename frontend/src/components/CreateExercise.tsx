@@ -176,7 +176,7 @@ const CreateExercise: React.FC = () => {
                   <div>
                     <button
                       type="button"
-                      className="md:py-2 md:px-6 px-4 py-1 rounded-sm bg-red-800 text-white hover:bg-red-800/80 text-xs"
+                      className="md:py-2 md:px-6 px-4 max-md:w-24 py-1 rounded-sm bg-red-800 text-white hover:bg-red-800/80 text-xs"
                     >
                       VIEW DETAILS
                     </button>

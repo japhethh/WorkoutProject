@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
@@ -27,18 +27,18 @@ const ReactQuery = () => {
   const { data, isLoading, error, isError } = useQuery({ queryKey: ["todos"], queryFn: fetchTodos })
 
 
-  const addMutation = useMutation(addTodo,);
-  const handleTodo = async () => {
-    addMutation.mutate({ title })
-  }
+  // const addMutation = useMutation(addTodo,);
+  // const handleTodo = async () => {
+  //   addMutation.mutate({ title })
+  // }
   return (
     <div>
       <label htmlFor="title">Title</label>
       <input className="block" id="title" type="text" />
-
+{/* 
       <button type="submit" onClick={handleTodo}>
         Add Todo
-      </button>
+      </button> */}
 
     </div>
   )

@@ -47,6 +47,7 @@ const getAllExerciseBundle = expressAsyncHandler(async (req, res) => {
   }
 
   const getAll = await exerciseBundleModel.find({ userId });
+  console.log(getAll);
 
   res.status(200).json(getAll);
 });

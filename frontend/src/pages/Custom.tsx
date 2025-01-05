@@ -3,7 +3,7 @@ import CustomList from '../components/CustomList'
 import axios from 'axios'
 import { WorkoutContext } from '../context/WorkoutContext'
 import { apiURL } from '../context/Store'
-import { images } from '../assets'
+import { images } from '../assets/index.js'
 import { Link } from 'react-router-dom'
 
 interface Exercises {
@@ -16,14 +16,14 @@ interface Exercises {
 interface Filtering {
   bundleName: string,
   exercises: Exercises,
-  custom: string
+  custom?: string
 }
 
 
 console.log(images)
 
 const Custom: React.FC = () => {
-  const [getCustomData, setGetCustomData] = useState<any[]>([])
+  const [getCustomData, setGetCustomData] = useState<Filtering[]>([])
   const context = useContext(WorkoutContext);
 
   if (!context) {
@@ -39,18 +39,20 @@ const Custom: React.FC = () => {
 
   const fetchExerciseBundle = async () => {
     try {
-      const response = await axios.get(`${apiURL}/api/user/bundle`,
+      const response = await axios.get(`${apiURL}/api/user/bundle/`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
       )
-      const datas = response?.data
-      const filterCustom = datas.filter((filtering: Filtering) => {
-        return filtering?.custom === "custom"
-      })
+      // const datas = response?.data
+      // const filterCustom = datas.filter((filtering: Filtering) => {
+      //   return filtering?.custom === "custom"
+      // })
 
-      console.log(filterCustom)
+      // console.log(filterCustom)
+      console.log(response?.data)
       setGetCustomData(response?.data)
+
     } catch (error: any) {
       console.log(error?.response.data.message)
     }
@@ -86,7 +88,7 @@ const Custom: React.FC = () => {
 
           {/* List */}
           {
-            getCustomData?.map((customer, index) => (
+            getCustomData?.map((customer: Filtering, index: number) => (
               <div key={index} className="card bg-white  shadow-xl">
                 <figure>
                   <img

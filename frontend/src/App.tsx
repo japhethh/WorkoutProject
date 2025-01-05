@@ -16,7 +16,7 @@ import CreateExercise from "./components/CreateExercise";
 import Custom from "./pages/Custom";
 import CustomStart from "./pages/CustomStart";
 import Exercise_list from "./pages/Exercise_list";
-import ReactQuery from "./testing/ReactQuery";
+// import ReactQuery from "./testing/ReactQuery";
 
 
 const App = () => {
@@ -75,7 +75,7 @@ const App = () => {
           <Route path="/custom" element={<Custom />} />
           <Route path="/custom/:id" element={<CustomStart />} />
           <Route path="/exercise-list" element={<Exercise_list />} />
-          <Route path="/testingQuery" element={<ReactQuery />} />
+          {/* <Route path="/testingQuery" element={<ReactQuery />} /> */}
         </Routes>
         <Footer darkMode={darkMode} />
 

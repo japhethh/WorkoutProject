@@ -14,7 +14,7 @@ interface ExerciseList {
 }
 // Date: 12/29/2024
 const Exercise_list = () => {
-  const [exerciseList, setExerciseList] = useState<ExerciseList | null>(null)
+  const [exerciseList, setExerciseList] = useState<ExerciseList[]>([])
 
   useEffect(() => {
     fetchExerciseList();
@@ -24,8 +24,8 @@ const Exercise_list = () => {
     try {
       const response = await axios.get(`${apiURL}/api/user/exercise`)
       setExerciseList(response.data)
-    } catch (error) {
-      console.log(error?.response.data.message)
+    } catch (error: any) {
+      console.log(error?.response?.data?.message || "An error occurred");
     }
   }
 
@@ -57,7 +57,7 @@ const Exercise_list = () => {
       <div className="max-md:px-5 w-6/6 lg:w-4/6 mx-auto">
         {
           exerciseList?.map((exercise: ExerciseList, index: number) => (
-            <div
+            <div key={index}
               className={`flex items-center justify-between shadow-xl p-3 rounded-sm oswald_jap `}
             >
               <div className="flex gap-4 items-center justify-between w-full">

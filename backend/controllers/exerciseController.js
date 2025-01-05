@@ -8,6 +8,17 @@ const createExercise = expressAsyncHandler(async (req, res) => {
   const createData = req.body;
   const createField = { ...createData };
 
+  const existName = await exerciseModel.findOne({ name });
+
+  if (existName) {
+    return res
+      .status(404)
+      .json({
+        success: false,
+        message: "Exercise with the name is already Exist!",
+      });
+  }
+
   if (req.file) {
     try {
       const result = await cloudinary.uploader.upload(req.file.path, {
