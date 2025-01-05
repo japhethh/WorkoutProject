@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiURL } from "../context/Store";
 import { WorkoutContext } from "../context/WorkoutContext";
 import { toast } from "react-toastify";
@@ -33,6 +33,8 @@ const CustomStart = () => {
     return null;
   }
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     fetchExerciseData();
   }, []);
@@ -43,7 +45,7 @@ const CustomStart = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setExerciseBundleData(response.data);
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error?.response?.data?.message || "An error occurred");
     }
   };
@@ -76,8 +78,12 @@ const CustomStart = () => {
 
       console.log("Bundle finished successfully:", response.data);
       toast.success("Bundle finished successfully")
+
+
+      // window.location.reload();
       // navigate("/history");
-    } catch (error:any) {
+      navigate("/custom")
+    } catch (error: any) {
       console.log(error?.response?.data?.message || "An error occurred");
 
     }
@@ -97,7 +103,7 @@ const CustomStart = () => {
       </div>
 
       <div className="max-md:px-5 w-6/6 lg:w-4/6 mx-auto">
-        {exerciseBundleData?.exercises.map((exercise, index:number) => (
+        {exerciseBundleData?.exercises.map((exercise, index: number) => (
           <div
             key={index}
             className={`flex items-center justify-between shadow-xl p-3 rounded-sm oswald_jap ${exercise?.isCompleted ? "bg-green-100" : ""
