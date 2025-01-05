@@ -3,7 +3,7 @@ import axios from "axios";
 export const apiURL =
   window.location.hostname === "localhost"
     ? "http://localhost:3000"
-    : "https://backend-logistic1.jjm-manufacturing.com";
+    : "https://workoutproject-api.onrender.com";
 
 interface StoreState {
   exerciseData: any; // Replace `any` with the actual type of your exercise data
