@@ -22,7 +22,12 @@ export default authMiddleware;
 export const authMiddlewareBearer = expressAsyncHandler(
   async (req, res, next) => {
     const authHeader = req.headers.authorization;
-    const token = authHeader && authHeader.split(" ")[1];
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "Not Authorized!" });
+    }
+
+    const token = authHeader.split(" ")[1];
     console.log("Decoded Token:", token);
 
     // console.log(token);

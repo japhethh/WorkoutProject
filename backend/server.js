@@ -11,6 +11,8 @@ import exerciseRouter from "./routes/exerciseRouter.js";
 import exerciseBundleRouter from "./routes/exerciseBundleRoutes.js";
 import { totalPrices } from "./models/totalPriceAggregation.js";
 import finishExerciseBundleRouter from "./routes/finishExerciseBundleRouter.js";
+import { getMonthlyAnalytics } from "./aggregation/finishExerciseAnalyticsAggregation.js";
+import { authMiddlewareBearer } from "./middleware/Auth.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -33,6 +35,11 @@ app.use("/api/user/exercise/", exerciseRouter);
 app.use("/api/user/bundle", exerciseBundleRouter);
 app.use("/api/user/totalAmount", totalPrices);
 app.use("/api/user/finishExerciseBundle", finishExerciseBundleRouter);
+app.use(
+  "/api/user/finishExerciseAnalytics",
+  authMiddlewareBearer,
+  getMonthlyAnalytics
+);
 
 app.post("/adduser", async (req, res) => {
   const { name, email, password } = req.body;

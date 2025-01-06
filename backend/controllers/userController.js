@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
 };
 
 const createToken = (id) => {
-  return jwt.sign({ id:id }, process.env.JWT_SECRET);
+  return jwt.sign({ id: id }, process.env.JWT_SECRET);
 };
 
 const registerUser = async (req, res) => {
@@ -159,4 +159,20 @@ const changePassword = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser, changeAccount, changePassword };
+const allUsers = expressAsyncHandler(async (req, res) => {
+  const { userId } = req.body;
+
+  const exists = await workoutModel.findOne({ _id: userId });
+  if (!exists) {
+    return res.status(404).json({ success: false, message: "User not found!" });
+  }
+
+  const allData = await workoutModel.find({});
+  if (!exists) {
+    return res.status(404).json({ success: false, message: "User not found!" });
+  }
+
+  res.status(200).json(allData);
+});
+
+export { loginUser, registerUser, changeAccount, changePassword, allUsers };

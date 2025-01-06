@@ -98,11 +98,11 @@ const Custom: React.FC = () => {
                     className="rounded-sm" />
                 </figure>
                 <div className="card-body items-center text-center font-semibold">
-                  <h2 className="card-title text-paragraph">{customer?.bundleName}</h2>
+                  <h2 className="card-title text-gray-800">{customer?.bundleName}</h2>
                   <p className="text-red-600">Beginners</p>
                   <div className="card-actions">
-                    <Link to={`/custom/${customer?._id}`} className=" bg-paragraph
-bg-green-600 rounded-sm hover:bg-paragraph/80 py-2 px-6 text-white border-2 border-paragraph">Start</Link>
+                    <Link to={`/custom/${customer?._id}`} className=" bg-buttonPrimary
+ rounded-sm hover:bg-buttonPrimary/80 py-2 px-6 text-white border-2 border-paragraph">Start</Link>
                     <button className="
 bg-blue-600 rounded-sm hover:bg-blue-600/80 py-2 px-6 text-white border-2 border-blue-500">Edit</button>
                     {/* <button className='bg-white-700 text-red-500 border-2 border-red-500  rounded-sm hover:bg-red-600/80 py-2 px-5 hover:text-white'>Delete</button> */}
