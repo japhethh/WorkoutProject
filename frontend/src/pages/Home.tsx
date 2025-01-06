@@ -3,7 +3,7 @@ import axios from "axios";
 import { WorkoutContext } from "../context/WorkoutContext";
 import { apiURL } from "../context/Store";
 import DefaultLogo from '../assets/defaultLogo.png'
-import { MyBarChart } from "../components/apexChart/MyBarChart.jsx"; // Correct the import path
+import { MyBarChart } from "../components/apexChart/MyBarChart"; // Correct the import path
 
 
 
