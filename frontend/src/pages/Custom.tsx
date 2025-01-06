@@ -105,7 +105,7 @@ const Custom: React.FC = () => {
  rounded-sm hover:bg-buttonPrimary/80 py-2 px-6 text-white border-2 border-paragraph">Start</Link>
                     <button className="
 bg-blue-600 rounded-sm hover:bg-blue-600/80 py-2 px-6 text-white border-2 border-blue-500">Edit</button>
-                    {/* <button className='bg-white-700 text-red-500 border-2 border-red-500  rounded-sm hover:bg-red-600/80 py-2 px-5 hover:text-white'>Delete</button> */}
+                    <button className='bg-white-700 text-red-500 border-2 border-red-500  rounded-sm hover:bg-red-600/80 py-2 px-5 hover:text-white'>Delete</button>
                   </div>
                 </div>
               </div>

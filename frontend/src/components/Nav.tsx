@@ -100,7 +100,9 @@ const Nav = ({ setDarkMode, darkMode }: Dark) => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/workout-plans">Workout Plan</Link></li>
                 <li><Link to="/custom">Custom</Link></li>
-                <li><a>My Profile</a></li>
+                <li><Link to="/profile">
+                  <h1 className="">My profile</h1>
+                </Link></li>
                 <li>
                   <button type="button" onClick={handleLogout}>Logout</button>
                 </li>

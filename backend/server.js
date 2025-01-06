@@ -35,8 +35,8 @@ app.use("/api/user/exercise/", exerciseRouter);
 app.use("/api/user/bundle", exerciseBundleRouter);
 app.use("/api/user/totalAmount", totalPrices);
 app.use("/api/user/finishExerciseBundle", finishExerciseBundleRouter);
-app.use(
-  "/api/user/finishExerciseAnalytics",
+app.get(
+  "/api/user/getMonthlyAnalytics",
   authMiddlewareBearer,
   getMonthlyAnalytics
 );
