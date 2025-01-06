@@ -1,18 +1,6 @@
 import Chart from "react-apexcharts";
 
-interface interfaceSeries {
-  name: string;
-  data: any[]
-}
-
-interface myChart {
-  categories: string[],
-  series: interfaceSeries[]
-}
-
-
-
-const MyBarChart = ({ categories, series }: myChart) => {
+const MyBarChart = ({ categories, series }) => {
   const options = {
     chart: {
       type: "bar",
