@@ -30,7 +30,6 @@ const CreateExercise: React.FC = () => {
   const { fetchExerciseData, exerciseData } = Store();
   const [selectedExercises, setSelectedExercises] = useState<string[]>([]);
   const [focusArea, setFocusArea] = useState<string>("");
-  const [gender, setGender] = useState<string>("");
 
   useEffect(() => {
     fetchExerciseData();
@@ -52,8 +51,7 @@ const CreateExercise: React.FC = () => {
 
   const filteredExercises = exerciseData?.filter((exercise: Exercise) => {
     const matchesFocusArea = focusArea ? exercise.targetMuscleGroup === focusArea : true;
-    const matchesGender = gender ? exercise.gender === gender : true;
-    return matchesFocusArea && matchesGender;
+    return matchesFocusArea;
   });
 
   const onSubmit = async (data: FormData) => {

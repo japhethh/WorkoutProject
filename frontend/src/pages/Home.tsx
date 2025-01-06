@@ -5,11 +5,9 @@ import { WorkoutContext } from "../context/WorkoutContext";
 import { apiURL } from "../context/Store";
 import DefaultLogo from '../assets/defaultLogo.png'
 
-interface Dark {
-  darkMode: string;
-}
 
-const Home = ({ darkMode }: Dark) => {
+
+const Home = () => {
 
   const context = useContext(WorkoutContext)
 
