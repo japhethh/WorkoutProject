@@ -1,7 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const BarChart = ({ categories, series }) => {
+const MyBarChart = ({ categories, series }) => {
   const options = {
     chart: {
       type: "bar",
@@ -32,4 +32,4 @@ const BarChart = ({ categories, series }) => {
   );
 };
 
-export default BarChart;
+export { MyBarChart };

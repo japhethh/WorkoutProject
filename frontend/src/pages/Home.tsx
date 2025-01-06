@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import BarChart from '../ApexCharts/BarChart'
 import { WorkoutContext } from "../context/WorkoutContext";
 import { apiURL } from "../context/Store";
 import DefaultLogo from '../assets/defaultLogo.png'
+import { MyBarChart } from "../components/apexChart/MyBarChart.jsx"; // Correct the import path
 
 
 
@@ -75,7 +75,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <BarChart categories={categories} series={series} />
+      <MyBarChart categories={categories} series={series} />
     </div>
   );
 };
