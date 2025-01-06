@@ -1,9 +1,16 @@
+import React from "react";
 import Chart from "react-apexcharts";
+import { ApexOptions } from "apexcharts"; // Import ApexOptions type
 
-const MyBarChart = ({ categories, series }) => {
-  const options = {
+interface MyBarChartProps {
+  categories: string[];
+  series: { name: string; data: number[] }[];
+}
+
+const MyBarChart: React.FC<MyBarChartProps> = ({ categories, series }) => {
+  const options: ApexOptions = {
     chart: {
-      type: "bar",
+      type: "bar", // Ensure this matches ApexOptions accepted types
       height: 350,
     },
     xaxis: {
