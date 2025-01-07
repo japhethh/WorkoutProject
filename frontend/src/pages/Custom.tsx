@@ -89,7 +89,7 @@ const Custom: React.FC = () => {
 
           {/* List */}
           {
-            getCustomData?.map((customer: Filtering, index: number) => (
+            getCustomData.length > 0 ? getCustomData?.map((customer: Filtering, index: number) => (
               <div key={index} className="card bg-white  shadow-xl">
                 <figure>
                   <img
@@ -102,14 +102,14 @@ const Custom: React.FC = () => {
                   <p className="text-red-600">Beginners</p>
                   <div className="card-actions">
                     <Link to={`/custom/${customer?._id}`} className=" bg-buttonPrimary
- rounded-sm hover:bg-buttonPrimary/80 py-2 px-6 text-white border-2 border-paragraph">Start</Link>
+rounded-sm hover:bg-buttonPrimary/80 py-2 px-6 text-white border-2 border-paragraph">Start</Link>
                     <button className="
 bg-blue-600 rounded-sm hover:bg-blue-600/80 py-2 px-6 text-white border-2 border-blue-500">Edit</button>
                     <button className='bg-white-700 text-red-500 border-2 border-red-500  rounded-sm hover:bg-red-600/80 py-2 px-5 hover:text-white'>Delete</button>
                   </div>
                 </div>
               </div>
-            ))
+            )) : <h1 className="text-center text-4xl font-semibold my-5">Empty...</h1>
           }
 
         </div>
