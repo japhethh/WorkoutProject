@@ -4,8 +4,7 @@ import { WorkoutContext } from "../context/WorkoutContext";
 import { apiURL } from "../context/Store";
 import DefaultLogo from '../assets/defaultLogo.png'
 import { MyBarChart } from "../components/apexChart/MyBarChart"; // Correct the import path
-
-
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -54,6 +53,11 @@ const Home = () => {
 
   return (
     <div className="oswald_jap md:w-4/6 w-6/6 mx-auto max-md:px-0 px-2 py-8 bg-background">
+
+
+      <div className="px-4">
+        <Link to="/create-exercise" className="btn btn-primary">Create Exercise</Link>
+      </div>
       <div className="flex justify-center my-4 px-2">
         <div className="stats lg:stats-horizontal shadow max-md:gap-5">
 
