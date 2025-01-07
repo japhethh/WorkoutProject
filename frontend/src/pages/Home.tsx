@@ -56,7 +56,7 @@ const Home = () => {
 
 
       <div className="px-4">
-        <Link to="/create-exercise" className="btn btn-primary">Create Exercise</Link>
+        <Link to="/create-exercise" className="btn btn-secondary w-full">Create New Exercise</Link>
       </div>
       <div className="flex justify-center my-4 px-2">
         <div className="stats lg:stats-horizontal shadow max-md:gap-5">

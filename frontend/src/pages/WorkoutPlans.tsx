@@ -1,4 +1,4 @@
-import shoulder_workout from '../assets/shoulder-workout-for-beginners.png'
+// import shoulder_workout from '../assets/shoulder-workout-for-beginners.png'
 const WorkoutPlans = () => {
 
 
@@ -10,7 +10,12 @@ const WorkoutPlans = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-5 py-5  shadow-xl text-paragraph ">
+
+      <div className="my-10">
+        <h1 className="text-4xl text-center">Coming soon...</h1>
+      </div>
+
+      {/* <div className="flex justify-center items-center gap-5 py-5  shadow-xl text-paragraph ">
         <div className=" flex gap-1">
           <label htmlFor="">GOAL:</label>
           <select className="text-white" name="goal" id="goal">
@@ -28,10 +33,12 @@ const WorkoutPlans = () => {
             <option value="male">Male</option>
           </select>
         </div>
-      </div>
+      </div> */}
+
+
 
       {/* Work out List */}
-      <div className="max-md:px-5 w-6/6 md:w-4/6 mx-auto ">
+      {/* <div className="max-md:px-5 w-6/6 md:w-4/6 mx-auto ">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-4">
 
@@ -119,8 +126,10 @@ const WorkoutPlans = () => {
 
         </div>
 
-      </div>
+      </div> */}
     </div>
+
+
   )
 }
 
